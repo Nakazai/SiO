@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load staticfiles i18n %}
+{#{% load i18n %}#}
+
+{% block head %}
+  <link href="{% static 'css/dashboard.css' %}?v=1" rel="stylesheet">
+
+{#  <script src="{% static 'js/feeds.js' %}?v=1"></script>#}
+{% endblock head %}
+
+{% block main %}
+
+     <center><h1><a>{{ user.profile.get_association_name }}</a></h1></center>
+
+    <div class="container">
+        <h3>{% trans 'Ny Medlem' %}</h3>
+    </div>
+
+    <div class="container">
+        <h3>{% trans 'Medlemmer' %}</h3>
+    </div>
+
+    <div class="container">
+        <h3>{% trans 'Statistikk' %}</h3>
+    </div>
+
+    <div class="container">
+        <h3><a href="{% url 'signup' %}" class="btn btn-link">{% trans 'Administrator' %}</a></h3>
+    </div>
+
+    <div class="container">
+        <h3>{% trans 'E-post' %}</h3>
+    </div>
+
+    <div class="container">
+        <h3>{% trans 'Kalender' %}</h3>
+    </div>
+
+{% endblock main %}
