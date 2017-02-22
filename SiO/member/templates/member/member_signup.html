@@ -3,7 +3,7 @@
 {% load staticfiles i18n %}
 
 {% block head %}
-  <link href="{% static 'css/signup.css' %}" rel="stylesheet">
+  <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
     {{ form.media }}
 {% endblock head %}
 
@@ -11,7 +11,7 @@
   <h1 class="logo"><a href="{% url 'home' %}">Medlemmer</a></h1>
   <div class="signup">
     <h2>{% trans 'Opprett member' %}</h2>
-    <form action="{% url 'membersignup' %}" method="post" role="form">
+    <form action="{% url 'member_signup' %}" method="post" role="form">
       {% csrf_token %}
       {% for field in form.visible_fields %}
         <div class="form-group{% if field.errors %} has-error{% endif %}">

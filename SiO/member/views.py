@@ -7,11 +7,17 @@ from SiO.member.forms import RegForm
 # TODO: Controller (en del av backend) for registrering av ny member
 
 
-def membersignup(request):
+def member_overview(request):
+    member = Member.objects.all()
+    context = {'member': member}
+    return render(request, 'member/member_overview.html', context)
+
+
+def member_signup(request):
     if request.method == 'POST':
         form = RegForm(request.POST)
         if not form.is_valid():
-            return render(request, 'member/membersignup.html',
+            return render(request, 'member/member_signup.html',
                           {'form': form})
 
         else:
@@ -25,6 +31,7 @@ def membersignup(request):
             Member.objects.create(first_name=first_name, last_name=last_name, email=email,
                                   student_status=student_status, reg_date=reg_date,
                                   gender=gender, birthday=birthday)
+            Member.save()
             # user = authenticate(first_name=first_name, last_name=last_name, email=email,
             #                     student_status=student_status, reg_date=reg_date,
             #                     gender=gender, birthday=birthday)
@@ -32,5 +39,5 @@ def membersignup(request):
             return redirect('/')
 
     else:
-        return render(request, 'member/membersignup.html',
+        return render(request, 'member/member_signup.html',
                       {'form': RegForm()})

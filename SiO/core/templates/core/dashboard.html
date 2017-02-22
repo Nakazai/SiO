@@ -13,11 +13,11 @@
      <center><h1><a>{{ user.profile.get_association_name }}</a></h1></center>
 
     <div class="container">
-        <h3><a href="{% url 'membersignup' %}" class="btn btn-link">{% trans 'Ny Medlem' %}</a></h3>
+        <h3><a href="{% url 'member_signup' %}" class="btn btn-link">{% trans 'Ny Medlem' %}</a></h3>
     </div>
 
     <div class="container">
-        <h3>{% trans 'Medlemmer' %}</h3>
+        <h3><a href="{% url 'member_overview' %}" class="btn btn-link">{% trans 'Medlemmer' %}</a></h3>
     </div>
 
     <div class="container">

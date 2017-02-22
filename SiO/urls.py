@@ -13,11 +13,12 @@ from SiO.core import views as core_views
 urlpatterns = [
     url(r'^$', core_views.home, name='home'),
     url(r'', include('SiO.core.urls')),
+    url(r'', include('SiO.member.urls')),
     url(r'^login', auth_views.login, {'template_name': 'core/cover.html'},
         name='login'),
     url(r'^logout', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^signup/$', admin_auth_views.signup, name='signup'),
-    url(r'^membersignup/$', member_views.membersignup, name='membersignup'),
+    # url(r'^membersignup/$', member_views.membersignup, name='membersignup'),
     url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
     # url(r'^', include(dedal_site.urls)),

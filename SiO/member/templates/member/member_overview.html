@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>email</th>
+            <th>student_status</th>
+            <th>reg_date</th>
+            <th>gender</th>
+            <th>birthday</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for member in members %}
+            <tr>
+                <td>{{ member.first_name }}</td>
+                <td>{{ member.last_name }}</td>
+                <td>{{ member.email }}</td>
+                <td>{{ member.student_status }}</td>
+                <td>{{ member.reg_date }}</td>
+                <td>{{ member.gender }}</td>
+                <td>{{ member.birthday }}</td>
+            </tr>
+            <td><a href="/member_signup/{{ member.id }}">Edit </a>
+            <a href="/delete/{{ member.id }}">Delete </a></td>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+</body>
+</html>
