@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% load staticfiles i18n %}
+
+{% block head %}
+  <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
+    {{ form.media }}
+{% endblock head %}
+
+{% block body %}
+    <h1 class="logo"><a href="{% url 'home' %}">Medlemmer</a></h1>
+    <div class="signup">
     <table border="1">
         <thead>
         <tr>
@@ -18,22 +23,21 @@
         </tr>
         </thead>
         <tbody>
-        {% for member in members %}
+        {% for m in member %}
             <tr>
-                <td>{{ member.first_name }}</td>
-                <td>{{ member.last_name }}</td>
-                <td>{{ member.email }}</td>
-                <td>{{ member.student_status }}</td>
-                <td>{{ member.reg_date }}</td>
-                <td>{{ member.gender }}</td>
-                <td>{{ member.birthday }}</td>
+                <td>{{ m.first_name }}</td>
+                <td>{{ m.last_name }}</td>
+                <td>{{ m.email }}</td>
+                <td>{{ m.student_status }}</td>
+                <td>{{ m.reg_date }}</td>
+                <td>{{ m.gender }}</td>
+                <td>{{ m.birthday }}</td>
             </tr>
-            <td><a href="/member_signup/{{ member.id }}">Edit </a>
-            <a href="/delete/{{ member.id }}">Delete </a></td>
+            <td><a href="{% url "member_edit" m.member_no %}">Edit </a>
+            <a href="{% url "member_delete" pk=m.member_no %}">Delete </a></td>
         {% endfor %}
 
         </tbody>
     </table>
-
-</body>
-</html>
+ </div>
+{% endblock body %}

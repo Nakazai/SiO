@@ -57,7 +57,7 @@ class member_expense(models.Model):
     # TODO: Er asocnumber_id strengt tatt nødvendig? Den blir litt annerledes fra den forrige modelen
     asocnumber_id = models.OneToOneField(Association)
     expensenumber_id = models.OneToOneField(Expense)
-    payment_id = models.OneToOneField(Member)
+    # payment_id = models.OneToOneField(Member)
 
     class Meta:
         db_table = 'member_expense'

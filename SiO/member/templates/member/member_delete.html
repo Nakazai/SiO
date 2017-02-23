@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load staticfiles i18n %}
+
+{% block head %}
+  <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
+    {{ form.media }}
+{% endblock head %}
+
+{% block body %}
+{#{% block content %}#}
+
+{#    <p>Are you sure you want to delete "{{ member_no }}"?</p>#}
+ <div class="signup">
+    <form action="" method="POST">
+{#    <form action="" method="POST">#}
+        {% csrf_token %}
+        <p>Are you sure you want to delete following member: {{ member.first_name }}?</p>
+        <input type="submit"  value="Yes, delete" />
+        <a href="{% url "member_overview" %}">No, cancel.</a>
+    </form>
+ </div>
+
+
+{#    <div class="confirmation-box">#}
+{#        <p>{{ messages }}</p>#}
+{#        <div>#}
+{#            <a href="{{ member_overview }}">Cancel</a>#}
+{#            <form action="{{ member_delete }}" method="post">#}
+{#                <input type="hidden" name="next" value="{{ member_overview }}" />#}
+{#                <input type="submit" value="Send" />#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
+
+{% endblock body %}
