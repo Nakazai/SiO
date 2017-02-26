@@ -35,13 +35,13 @@ INSTALLED_APPS = [
 
     'bootstrap3',
     'datetimewidget',
-    # 'dedal',
+    'dedal',
     # 'bootstrapform',
 
     'SiO.admin',
     'SiO.core',
     'SiO.member',
-    # 'SiO.feeds',
+    'SiO.events',
 ]
 
 # TODO: Dette må til slik at db-table får navnet Administrator

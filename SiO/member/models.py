@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-# from dedal.decorators import crud
+from dedal.decorators import crud
 
 # TODO: Her lages det database modeller Member, Association, member_asoc, Expense, member_expense
 
@@ -13,10 +13,10 @@ class Member(models.Model):
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
     email = models.CharField(max_length=50, null=True, blank=True)
-    student_status = models.BooleanField(default=False)
-    reg_date = models.DateTimeField(null=True, blank=True)
+    student_status = models.CharField(max_length=50,default=False)
+    reg_date = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=50, null=True, blank=True)
-    birthday = models.DateTimeField(null=True, blank=True)
+    birthday = models.DateField(null=True, blank=True)
 
     class Meta:
         db_table = 'Member'

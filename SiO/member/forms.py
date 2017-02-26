@@ -56,7 +56,7 @@ def UniqueEmailValidator(value):
 #         raise ValidationError('User with this Username already exists.')
 
 
-class RegForm(forms.Form):
+class RegForm(forms.ModelForm):
     first_name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
@@ -69,19 +69,21 @@ class RegForm(forms.Form):
         widget=forms.EmailInput(attrs={'class': 'form-control'}),
         required=True,
         max_length=75)
-    student_status = forms.BooleanField(
-        widget=forms.CheckboxInput(attrs={'class': 'form-control'}))
-    reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
-    gender = forms.CharField(
+    student_status = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
         required=True)
+    reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+    gender = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        max_length=30)
     birthday = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
 
     class Meta:
         model = Member
         exclude = ['last_login', 'date_joined']
         fields = ['first_name', 'last_name', 'email', 'student_status', 'reg_date', 'gender', 'birthday', ]
+        # fields = ['first_name', 'last_name', 'email', 'reg_date', ]
 
     def __init__(self, *args, **kwargs):
         super(RegForm, self).__init__(*args, **kwargs)
@@ -89,7 +91,7 @@ class RegForm(forms.Form):
         # self.fields['username'].validators.append(InvalidUsernameValidator)
         # self.fields['username'].validators.append(
         #     UniqueUsernameIgnoreCaseValidator)
-        self.fields['email'].validators.append(UniqueEmailValidator)
+        # self.fields['email'].validators.append(UniqueEmailValidator)
         self.fields['email'].validators.append(SignupDomainValidator)
 
     # def clean(self):

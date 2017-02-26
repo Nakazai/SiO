@@ -17,6 +17,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="bootstrap-datepicker" level="application" />
+    <orderEntry type="library" name="jquery-ui" level="application" />
+    <orderEntry type="library" name="jquery-1.12.4" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
@@ -27,6 +30,8 @@
         <option value="$MODULE_DIR$/SiO/admin/templates" />
         <option value="$MODULE_DIR$/SiO/member/templates/member" />
         <option value="$MODULE_DIR$/SiO/admin/templates/admin" />
+        <option value="$MODULE_DIR$/SiO/events/templates" />
+        <option value="$MODULE_DIR$/SiO/events/templates/events" />
       </list>
     </option>
   </component>

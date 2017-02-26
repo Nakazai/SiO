@@ -6,6 +6,7 @@ from django.contrib.auth import views as auth_views
 from SiO.admin import views as admin_auth_views
 from SiO.member import views as member_views
 from SiO.core import views as core_views
+from SiO.events import views as events_views
 
 # from dedal.site import site as dedal_site
 
@@ -22,6 +23,7 @@ urlpatterns = [
     url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
     # url(r'^', include(dedal_site.urls)),
+    url(r'^events/$', events_views.events, name='events')
 ]
 
 if settings.DEBUG:

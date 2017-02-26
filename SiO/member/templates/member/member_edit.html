@@ -4,41 +4,54 @@
 
 {% block head %}
   <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
-{#    {{ form.media }}#}
+{#    <script src="{% static 'js/../../../static/js/date.js' %}"></script>#}
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>#}
+{#        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>#}
+{#  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>#}
+    {{ form.media }}
+{#    <script type="text/javascript">#}
+{#    $(".form_datetime").datetimepicker({#}
+{#        format: "dd MM yyyy - hh:ii",#}
+{#        autoclose: true,#}
+{#        todayBtn: true,#}
+{#        startDate: "2013-02-14 10:00",#}
+{#        minuteStep: 10#}
+{#    });#}
+{#</script>#}
 {% endblock head %}
 
 {% block body %}
-  <h1 class="logo"><a href="{% url 'member_overview' %}">Medlemmer</a></h1>
+  <h1 class="logo"><a href="{% url 'member_overview' %}">Members</a></h1>
   <div class="signup">
-    {% if messages %}
-        {% for message in messages %}
-          <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{ message }}
-          </div>
-        {% endfor %}
-      {% endif %}
-    <h2>{% trans 'Oppddater member' %}</h2>
-    <form action="{% url 'member_update' member.member_no %}"  method="post" role="form">
+{#    {% if messages %}#}
+{#        {% for message in messages %}#}
+{#          <div class="alert alert-success alert-dismissable">#}
+{#            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>#}
+{#            {{ message }}#}
+{#          </div>#}
+{#        {% endfor %}#}
+{#      {% endif %}#}
+    <h2>{% trans 'Update member' %}</h2>
+    <form action=""  method="POST" role="form">
         {% csrf_token %}
-{#          {% for field in form.visible_fields %}#}
-{#            <div class="form-group{% if field.errors %} has-error{% endif %}">#}
-{#              <label for="{{ field.label }}">{{ field.label }}</label>#}
-{#                <div class="col-sm-10">#}
-{#                  {{ field }}#}
-{#                  {% if field.help_text %}#}
-{#                    <span class="help-block">{{ field.help_text }}</span>#}
-{#                  {% endif %}#}
-{#                  {% for error in field.errors %}#}
-{#                    <label class="control-label">{{ error }}</label>#}
-{#                  {% endfor %}#}
-{#                </div>#}
-{#            </div>#}
-{#          {% endfor %}#}
-{#      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'member_update' %}</button></center>#}
-{#    </form>#}
-{#  </div>#}
-{#{% endblock body %}#}
+          {% for field in form.visible_fields %}
+            <div class="form-group{% if field.errors %} has-error{% endif %}">
+
+              <label for="{{ field.label }}">{{ field.label }}</label>
+                  {{ field }}
+                  {% if field.help_text %}
+                    <span class="help-block">{{ field.help_text }}</span>
+                  {% endif %}
+                  {% for error in field.errors %}
+                    <label class="control-label">{{ error }}</label>
+                  {% endfor %}
+
+            </div>
+          {% endfor %}
+      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Update member' %}</button></center>
+    </form>
+  </div>
+{% endblock body %}
 
 
 {#      <form action="" method="post">#}
@@ -52,30 +65,45 @@
 
 
 
-
-        <label for="first_name">first_name: <input type="text" name="first_name" id="first_name"
-       value="{{ member.first_name }}" placeholder="{{ member.first_name }}"/>
-        </label>
-        <label for="last_name">last_name: <input type="text" name="last_name" id="last_name"
-         value="{{ member.last_name }}" placeholder="{{ member.last_name }}"/>
-        </label>
-        <label for="email">email: <input type="text" name="email" id="email"
-         value="{{ member.email }}" placeholder="{{ member.email }}"/>
-        </label>
-        <label for="student_status">student_status: <input type="checkbox" name="student_status" id="student_status"
-         value="{{ member.student_status }}" placeholder="{{ member.student_status }}"/>
-        </label>
-        <label for="reg_date">reg_date: <input type="datetime" name="reg_date" id="reg_date"
-         value="{{ member.reg_date }}" placeholder="{{ member.reg_date }}"/>
-        </label>
-          <label for="gender">gender: <input type="text" name="gender" id="gender"
-         value="{{ member.gender }}" placeholder="{{ member.gender }}"/>
-        </label>
-        <label for="birthday">birthday: <input type="datetime" name="birthday" id="birthday"
-         value="{{ member.birthday }}" placeholder="{{ member.birthday }}"/>
-        </label>
-
-          <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'member_update' %}</button></center>
-    </form>
-  </div>
-{% endblock body %}
+{#    <div class="form-group">#}
+{#        <label for="first_name">First name: </label>#}
+{#        <input type="text" name="first_name" id="first_name" class="form-control"#}
+{#       value="{{ member.first_name }}" placeholder="{{ member.first_name }}"/>#}
+{#    </div>#}
+{#    <div class="form-group">#}
+{#        <label for="last_name">Last name: </label>#}
+{#        <input type="text" name="last_name" id="last_name" class="form-control"#}
+{#         value="{{ member.last_name }}" placeholder="{{ member.last_name }}"/>#}
+{#    </div>#}
+{#    <div class="form-group">#}
+{#        <label for="email">email: </label>#}
+{#        <input type="text" name="email" id="email" class="form-control"#}
+{#         value="{{ member.email }}" placeholder="{{ member.email }}"/>#}
+{#    </div>#}
+{#    <div class="form-group">#}
+{#        <label for="student_status">student_status: </label>#}
+{#            <input type="text" name="student_status" id="student_status" class="form-control"#}
+{#         value="{{ member.student_status }}" placeholder="{{ member.student_status }}"/>#}
+{#    </div>#}
+{#    <div class="form-group">#}
+{#        <label for="reg_date">reg_date: </label>#}
+{#            <input type="datetime" name="reg_date" id="reg_date" class="form-control"#}
+{#         value="{{ member.reg_date }}" placeholder="{{ member.reg_date }}"/>#}
+{#    </div>#}
+{#    <div class="form-group">#}
+{#          <label for="gender">gender: </label>#}
+{#        <input type="text" name="gender" id="gender" class="form-control"#}
+{#         value="{{ member.gender }}" placeholder="{{ member.gender }}"/>#}
+{#    </div>#}
+{#    <div class="input-append date form_datetime" data-date="2013-02-21T15:25:00Z">#}
+{#           <span class="add-on"><i class="icon-remove"></i></span>#}
+{#           <span class="add-on"><i class="icon-calendar"></i></span>#}
+{#        <label for="birthday">birthday: </label>#}
+{#            <input type="text" name="birthday" id="birthday"#}
+{#         value="{{ member.birthday }}" placeholder="{{ member.birthday }}"/>#}
+{#    </div>#}
+{##}
+{#          <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'member_update' %}</button></center>#}
+{#    </form>#}
+{#  </div>#}
+{#{% endblock body %}#}

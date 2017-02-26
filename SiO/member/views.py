@@ -5,9 +5,10 @@ from .models import Member
 from django.http import HttpResponse
 from django.http import QueryDict
 from django.urls import reverse_lazy
-from django.views.generic import DeleteView, UpdateView, CreateView
+from django.views.generic import DeleteView, UpdateView, CreateView, ListView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
+from django.views import generic
 
 import json
 
@@ -16,16 +17,21 @@ from SiO.member.forms import RegForm
 # TODO: Controller (en del av backend) for registrering av ny member
 
 
-def member_overview(request):
-    member = Member.objects.all()
-    context = {'member': member}
-    return render(request, 'member/member_overview.html', context)
+# def member_overview(request):
+#     member = Member.objects.all()
+#     context = {'member': member}
+#     return render(request, 'member/member_overview.html', context)
 
+class member_overview(ListView):
 
-def member_edit(request, member_no):
-    member = Member.objects.get(member_no=member_no)
-    context = {'member': member}
-    return render(request, 'member/member_edit.html', context)
+    model = Member
+    # form_class = RegForm
+    template_name = 'member/member_overview.html'
+
+# def member_edit(request, member_no):
+#     member = Member.objects.get(member_no=member_no)
+#     context = {'member': member}
+#     return render(request, 'member/member_edit.html', context)
 
 # class member_edit(CreateView):
 #     model = Member
@@ -33,33 +39,39 @@ def member_edit(request, member_no):
 #     fields = '__all__'
 
 
-def member_update(request, member_no):
-    member = Member.objects.get(member_no=member_no)
-    member.first_name = request.POST['first_name']
-    member.last_name = request.POST['last_name']
-    member.email = request.POST['email']
-    member.student_status = request.POST['student_status']
-    member.reg_date = request.POST['reg_date']
-    member.gender = request.POST['gender']
-    member.birthday = request.POST['birthday']
-    member.save()
-    return redirect('member_overview')
+# def member_update(request, member_no):
+#     member = Member.objects.get(member_no=member_no)
+#     member.first_name = request.POST['first_name']
+#     member.last_name = request.POST['last_name']
+#     member.email = request.POST['email']
+#     member.student_status = request.POST['student_status']
+#     member.reg_date = request.POST['reg_date']
+#     member.gender = request.POST['gender']
+#     member.birthday = request.POST['birthday']
+#     member.save()
+#     return redirect('member_overview')
 
-    # if request.method == 'POST':
-    #     form = RegForm(request.POST)
-    #     if form.is_valid():
-    #         member.first_name = form.cleaned_data.get('first_name')
-    #         member.last_name = form.cleaned_data.get('last_name')
-    #         member.email = form.cleaned_data.get('email')
-    #         member.student_status = form.cleaned_data.get('student_status')
-    #         member.reg_date = form.cleaned_data.get('reg_date')
-    #         member.gender = form.cleaned_data.get('gender')
-    #         member.birthday = form.cleaned_data.get('birthday')
-    #         member.save()
-    #         messages.add_message(request,
-    #                              messages.SUCCESS,
-    #                              'Your profile was successfully edited.')
-    #         return redirect('member/member_overview.html')
+# def member_edit(request, member_no):
+#     member = Member.objects.get(member_no=member_no)
+#     form = RegForm(request.POST)
+#     if form.is_valid():
+#         member.first_name = form.cleaned_data.get('first_name')
+#         member.last_name = form.cleaned_data.get('last_name')
+#         member.email = form.cleaned_data.get('email')
+#         member.student_status = form.cleaned_data.get('student_status')
+#         member.reg_date = form.cleaned_data.get('reg_date')
+#         member.gender = form.cleaned_data.get('gender')
+#         member.birthday = form.cleaned_data.get('birthday')
+#         member.save()
+#     return redirect('member_edit')
+    # messages.add_message(request,
+    #                      messages.SUCCESS,
+    #                      'Your profile was successfully edited.')
+    # else:
+    #     messages.add_message(request,
+    #                          messages.SUCCESS,
+    #                          'Something went wrong.')
+    # return render(request, 'member/member_edit.html', {'form': form})
     #
     #     else:
     #         return redirect(request, '/')
@@ -69,28 +81,30 @@ def member_update(request, member_no):
 #     template_name = 'member/member_edit.html'
 #     fields = ['first_name', 'last_name', 'email', 'student_status', 'reg_date', 'gender', 'birthday', ]
 
-# def member_update(request, member_no):
+# def member_edit(request, member_no):
+#     member = Member.objects.get(member_no=member_no)
 #     if request.method == 'POST':
-#         form = RegForm(request.POST)
-#         if not form.is_valid():
-#             return render(request, 'member/member_overview.html',
-#                           {'form': form})
-#
-#         else:
-#             member = Member.objects.get(member_no=member_no)
-#             member.first_name = form.request.POST['first_name']
-#             member.last_name = form.request.POST['last_name']
-#             member.email = form.request.POST['email']
-#             member.student_status = form.request.POST['student_status']
-#             member.reg_date = form.request.POST['reg_date']
-#             member.gender = form.request.POST['gender']
-#             member.birthday = form.request.POST['birthday']
-#             member.save()
-#             return render(request, 'member/member_overview.html')
-#
-#     else:
-#         return render(request, 'member/member_overview.html',
-#                       {'form': RegForm()})
+#         form = RegForm(request.POST or None, instance=member)
+#         if form.is_valid():
+#             # member.first_name = form.cleaned_data.get('first_name')
+#             # member.last_name = form.cleaned_data.get('last_name')
+#             # member.email = form.cleaned_data.get('email')
+#             # # member.student_status = form.cleaned_data.get('student_status')
+#             # member.reg_date = form.cleaned_data.get('reg_date')
+#             # # member.gender = form.cleaned_data.get('gender')
+#             # # member.birthday = form.cleaned_data.get('birthday')
+#             form.save()
+#             return redirect('member_overview')
+#     form = RegForm(instance=member)
+#     return render(request, 'member/member_edit.html', {'form': form, 'member': member})
+
+
+class member_edit(UpdateView):
+    model = Member
+    form_class = RegForm
+    # pk_url_kwarg = 'member_no'
+    success_url = reverse_lazy('member_overview')
+    template_name = 'member/member_edit.html'
 
 
 class member_delete(DeleteView):
@@ -117,6 +131,8 @@ def member_signup(request):
             Member.objects.create(first_name=first_name, last_name=last_name, email=email,
                                   student_status=student_status, reg_date=reg_date,
                                   gender=gender, birthday=birthday)
+            # Member.objects.create(first_name=first_name, last_name=last_name, email=email,
+            #                       reg_date=reg_date,)
             # Member.save()
             # user = authenticate(first_name=first_name, last_name=last_name, email=email,
             #                     student_status=student_status, reg_date=reg_date,
