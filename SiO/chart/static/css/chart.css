@@ -21,22 +21,21 @@ body {
   text-decoration: none;
 }
 
-.signup {
+.chart {
   background-color: #f6f6f6;
-  width: 100%;
+  width: 70%;
   border-radius: 7px;
   margin: 10px auto 0;
 }
 
-.signup {
+.chart {
   padding: 30px 20px;
 }
 
-.signup form {
+.chart form {
   margin-top: 20px;
 }
 
-.signup h2 {
+.chart h2 {
   margin: 0;
 }
-

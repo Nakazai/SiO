@@ -1,3 +1,8 @@
-from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin, admin
+from SiO.member.models import Member, Association
 
-# Register your models here.
+
+# class MemberAdmin(UserAdmin):
+#     pass
+
+admin.site.register(Member)

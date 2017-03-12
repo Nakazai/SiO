@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import Member
+from .models import Member, Association
 from django.http import HttpResponse
 from django.http import QueryDict
 from django.urls import reverse_lazy
@@ -9,10 +9,15 @@ from django.views.generic import DeleteView, UpdateView, CreateView, ListView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.views import generic
+from django.db.models import F
+from django.db.models import Q
 
 import json
 
-from SiO.member.forms import RegForm
+from SiO.CoAdmin.models import Administrator
+# from SiO.member.models import member_asoc
+from SiO.member.forms import RegForm, RegAsoc
+
 
 # TODO: Controller (en del av backend) for registrering av ny member
 
@@ -24,9 +29,70 @@ from SiO.member.forms import RegForm
 
 class member_overview(ListView):
 
-    model = Member
+    # model = Member
     # form_class = RegForm
     template_name = 'member/member_overview.html'
+    # queryset = Member.objects.all()
+
+    # def get_queryset(self, *args, **kwargs):
+    def get_queryset(self):
+        # user = self.request.administrator
+        # return Member.objects.filter(asoc_name=user)
+        # return Member.objects.select_related(association=administrator.association)
+        # return Member.objects.filter(association__in=Association.objects.filter(
+        #     administrator__in=Administrator.objects.filter(asoc_name=asoc_name)))
+        queryset = Member.objects.filter(association=self.request.user.association)
+        return queryset
+
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     member_no = self.request.member_no
+    #     asoc_admin = Administrator.objects.filter(asoc_name=user.asoc_name)
+    #     asoc_member = Member.objects.filter(asoc_name=member_no.asoc_name)
+    #     if user.is_authenticated():
+    #         if asoc_admin == asoc_member:
+    #             return Member.objects.all()
+
+    # def get_asoc_name(self, user):
+    #     CoAdmin = Administrator.objects.get(user=user)
+    #     # memb = Member.asoc_name
+    #     if CoAdmin == Administrator.objects.get(user=user):
+    #         return Member.objects.filter(asoc_name__icontains='hioa')
+    #         # return queryset
+
+
+
+    # if Administrator.association == Member.association:
+        # queryset = Member.objects.filter(Q(asoc_name='asoc_name'))
+
+            # queryset = Member.objects.all()
+            # Member.objects.filter(administrator__isnull=True).values_list('association', flat=True)
+
+    # queryset = member_asoc.objects.filter(user__asoc_name=F('member_no__asoc_name'))
+
+    # queryset = Member.objects.filter(asoc_name=F('asoc_name'))
+
+        # return queryset
+
+        # if Member.objects.filter(association__icontains=Administrator.username):
+        #     queryset = Member.objects.filter(association__icontains=Administrator.username)
+        # return queryset
+
+        # if Member.objects.filter(association__icontains=Administrator.username):
+        # queryset = Member.objects.filter(association='association').prefetch_related(self, 'association__administrator_set')
+        # return queryset
+
+        # TODO:Denne får fram kun forening CoAdmin er medlem av (hardkodet)
+        # queryset = Member.objects.filter(association__icontains='HiOA')
+
+        # qs = super(member_overview, self).get_queryset()
+        # return qs.filter(association=self.kwargs['association'])
+        # return Member.objects.filter(association=Member.association)
+        # return Member.objects.filter(association__in=Administrator.objects.filter(association='association'))
+        # return Administrator.objects.filter(association__in=Member.objects.filter(association='association'))
+        # return queryset
+    # queryset = Member.objects.filter(association='association')
+    # return super(ListView, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 # def member_edit(request, member_no):
 #     member = Member.objects.get(member_no=member_no)
@@ -115,7 +181,7 @@ class member_delete(DeleteView):
 
 def member_signup(request):
     if request.method == 'POST':
-        form = RegForm(request.POST)
+        form = RegForm(request.user, request.POST)
         if not form.is_valid():
             return render(request, 'member/member_signup.html',
                           {'form': form})
@@ -124,13 +190,16 @@ def member_signup(request):
             first_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
             email = form.cleaned_data.get('email')
+            # asoc_name = form.cleaned_data.get('asoc_name')
+            asoc = form.cleaned_data.get('association')
+            # asoc = Association.objects.get(id=asoc_pk.pk)
             student_status = form.cleaned_data.get('student_status')
             reg_date = form.cleaned_data.get('reg_date')
             gender = form.cleaned_data.get('gender')
             birthday = form.cleaned_data.get('birthday')
             Member.objects.create(first_name=first_name, last_name=last_name, email=email,
-                                  student_status=student_status, reg_date=reg_date,
-                                  gender=gender, birthday=birthday)
+                                  student_status=student_status, association=asoc,
+                                  reg_date=reg_date, gender=gender, birthday=birthday)
             # Member.objects.create(first_name=first_name, last_name=last_name, email=email,
             #                       reg_date=reg_date,)
             # Member.save()
@@ -142,8 +211,25 @@ def member_signup(request):
 
     else:
         return render(request, 'member/member_signup.html',
-                      {'form': RegForm()})
+                      {'form': RegForm(request.user)})
 
+
+def asoc_signup(request):
+    if request.method == 'POST':
+        form = RegAsoc(request.POST)
+        if not form.is_valid():
+            return render(request, 'member/asoc_signup.html',
+                          {'form': form})
+
+        else:
+            asoc_name = form.cleaned_data.get('asoc_name')
+            Association.objects.create(asoc_name=asoc_name)
+            # login(request, user) TODO:Denne linjen logger inn ny member øyeblikkelig etter registrering
+            return redirect('/')
+
+    else:
+        return render(request, 'member/asoc_signup.html',
+                      {'form': RegAsoc()})
 
 # class member_delete(DeleteView):
 #     def post(self, request, *args, **kwargs):

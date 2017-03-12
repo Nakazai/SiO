@@ -20,7 +20,7 @@
 {#</script>#}
 {% endblock head %}
 
-{% block body %}
+{% block main %}
   <h1 class="logo"><a href="{% url 'member_overview' %}">Members</a></h1>
   <div class="signup">
 {#    {% if messages %}#}
@@ -51,7 +51,7 @@
       <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Update member' %}</button></center>
     </form>
   </div>
-{% endblock body %}
+{% endblock main %}
 
 
 {#      <form action="" method="post">#}

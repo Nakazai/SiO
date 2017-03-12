@@ -1,8 +1,8 @@
 from calendar import monthrange
 from sched import Event
-
+#
 from django.shortcuts import render, render_to_response
-from django.template import RequestContext
+# from django.template import RequestContext
 from django.utils.datetime_safe import datetime, date
 
 
@@ -51,7 +51,7 @@ def events(request, year, month, series_id=None):
         my_next_month = 1
     my_year_after_this = my_year + 1
     my_year_before_this = my_year - 1
-    return render(request, "events/events.html", {'events_list': my_events,
+    return render(request, 'events/events.html', {'events_list': my_events,
                                                   'month': my_month,
                                                   'month_name': named_month(my_month),
                                                   'year': my_year,

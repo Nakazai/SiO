@@ -27,25 +27,29 @@ ALLOWED_HOSTS = []
 # TODO: For vær ny app som blir laget må det dannes PATH her
 INSTALLED_APPS = [
     # 'django.contrib.member',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 
     'bootstrap3',
     'datetimewidget',
     'dedal',
     # 'bootstrapform',
 
-    'SiO.admin',
-    'SiO.core',
     'SiO.member',
+    'SiO.CoAdmin',
+    'SiO.chart',
+    'SiO.core',
+    # 'SiO.member',
     'SiO.events',
 ]
 
 # TODO: Dette må til slik at db-table får navnet Administrator
-AUTH_USER_MODEL = 'admin.Administrator'
+AUTH_USER_MODEL = 'CoAdmin.Administrator'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

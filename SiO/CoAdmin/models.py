@@ -10,7 +10,8 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.auth.models import AbstractUser
-from SiO.member.models import Member
+# from SiO.member.models import Member
+from SiO.member.models import Association
 
 # TODO: Her lages det database modeller Admin, Mail og Events
 
@@ -18,28 +19,36 @@ from SiO.member.models import Member
 
 
 class Administrator(AbstractUser):
-    admin_id = models.AutoField(primary_key=True)
+    # admin_id = models.AutoField(primary_key=True)
     union_position = models.CharField(max_length=100)
-    association = models.CharField(max_length=100)
+
+    # asoc_name = models.CharField(max_length=100)
+    association = models.ForeignKey(Association)
+
+    # member_no = models.ForeignKey(Member)
+    # association = models.OneToOneField('Association', to_field='asocnumber',
+    #                                    primary_key=True, related_name='administrator')
+    # asocnumber = models.OneToOneField(Association)
+    # user = models.OneToOneField(AbstractUser)
 
     class Meta:
         db_table = 'Administrator'
 
 
-class Mail(models.Model):
-    domain = models.AutoField(primary_key=True)
-    admin_id = models.OneToOneField(Administrator)
-    member_no = models.OneToOneField(Member)
-    username = models.CharField(max_length=50, null=True, blank=True)
-    password = models.CharField(max_length=50, null=True, blank=True)
-
-    class Meta:
-        db_table = 'Mail'
+# class Mail(models.Model):
+#     domain = models.AutoField(primary_key=True)
+#     user = models.ForeignKey(Administrator)
+#     # member_no = models.OneToOneField(Member)
+#     username = models.CharField(max_length=50, null=True, blank=True)
+#     password = models.CharField(max_length=50, null=True, blank=True)
+#
+#     class Meta:
+#         db_table = 'Mail'
 
 
 class Events(models.Model):
     event_id = models.AutoField(primary_key=True)
-    admin_id = models.OneToOneField(Administrator)
+    user = models.ForeignKey(Administrator)
     place = models.CharField(max_length=50, null=True, blank=True)
     date = models.CharField(max_length=50, null=True, blank=True)
     name = models.CharField(max_length=50, null=True, blank=True)

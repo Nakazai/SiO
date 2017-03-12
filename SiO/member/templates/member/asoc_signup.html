@@ -6,11 +6,11 @@
   <link href="{% static 'css/signup.css' %}" rel="stylesheet">
 {% endblock head %}
 
-{% block body %}
-  <h1 class="logo"><a href="{% url 'home' %}">Administrator</a></h1>
+{% block main %}
+  <h1 class="logo"><a href="{% url 'home' %}">Forening</a></h1>
   <div class="signup">
-    <h2>{% trans 'Opprett admin' %}</h2>
-    <form action="{% url 'signup' %}" method="post" role="form">
+    <h2>{% trans 'Opprett forening' %}</h2>
+    <form action="{% url 'asoc_signup' %}" method="post" role="form">
       {% csrf_token %}
       {% for field in form.visible_fields %}
         <div class="form-group{% if field.errors %} has-error{% endif %}">
@@ -24,7 +24,7 @@
           {% endfor %}
         </div>
       {% endfor %}
-      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Registrer ny admin' %}</button></center>
+      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Registrer ny forening' %}</button></center>
     </form>
   </div>
-{% endblock body %}
+{% endblock main %}

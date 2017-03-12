@@ -3,8 +3,10 @@ from django import forms
 from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
 from django.core.exceptions import ValidationError
 # from django.contrib.auth.models import AbstractUser as Admin
-from .models import Member
+from .models import Member, Association
 from SiO.settings import ALLOWED_SIGNUP_DOMAINS
+from SiO.CoAdmin.models import Administrator
+
 
 # TODO: Her lages det validering
 
@@ -55,6 +57,10 @@ def UniqueEmailValidator(value):
 #     if Member.objects.filter(username__iexact=value).exists():
 #         raise ValidationError('User with this Username already exists.')
 
+# def get_queryset(self):
+#     queryset = Administrator.objects.filter(association=self.request.user.association)
+#     return queryset
+
 
 class RegForm(forms.ModelForm):
     first_name = forms.CharField(
@@ -69,6 +75,22 @@ class RegForm(forms.ModelForm):
         widget=forms.EmailInput(attrs={'class': 'form-control'}),
         required=True,
         max_length=75)
+    association = forms.ModelChoiceField(queryset=Association.objects.none(),
+                                         widget=forms.Select(attrs={'class': 'form-control'}),
+                                         required=True)
+
+    # association_choices = [(i['asoc_name'], i['asoc_name']) for i in Association.objects.values('asoc_name')]
+    # association = forms.ChoiceField(choices=association_choices, widget=forms.Select(attrs={'class': 'form-control'}),
+    #                               required=True)
+    # asoc_name = forms.CharField(
+    #     widget=forms.TextInput(attrs={'class': 'form-control'}),
+    #     max_length=30,
+    #     required=True)
+
+    # asoc_name = forms.ModelChoiceField(
+    #     queryset=Association.objects.values('asoc_name'),
+    #     widget=forms.Select(attrs={'class': 'form-control'}),
+    #     required=True)
     student_status = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
@@ -76,23 +98,50 @@ class RegForm(forms.ModelForm):
     reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
     gender = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
-        max_length=30)
+        max_length=30,
+        required=False)
     birthday = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
 
     class Meta:
         model = Member
         exclude = ['last_login', 'date_joined']
-        fields = ['first_name', 'last_name', 'email', 'student_status', 'reg_date', 'gender', 'birthday', ]
+        fields = ['first_name', 'last_name', 'email', 'association', 'student_status', 'reg_date', 'gender', 'birthday', ]
         # fields = ['first_name', 'last_name', 'email', 'reg_date', ]
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, user, *args, **kwargs):
         super(RegForm, self).__init__(*args, **kwargs)
+        self.fields['association'].queryset = Association.objects.filter(asoc_name=user.association)
+
+        # association = kwargs.pop('association', None)
         # self.fields['username'].validators.append(ForbiddenUsernamesValidator)
         # self.fields['username'].validators.append(InvalidUsernameValidator)
         # self.fields['username'].validators.append(
         #     UniqueUsernameIgnoreCaseValidator)
         # self.fields['email'].validators.append(UniqueEmailValidator)
         self.fields['email'].validators.append(SignupDomainValidator)
+        # self.fields['association'].validators.append(get_queryset)
+        # self.fields['association'].queryset = Association.objects.filter(asoc_name='asoc_name')
+
+    # def clean(self):
+    #     super(RegForm, self).clean()
+    #     association = self.cleaned_data.get('association')
+    #     if association:
+    #         self.fields['association'].queryset = Association.objects.filter(asoc_name='asoc_name')
+
+
+class RegAsoc(forms.ModelForm):
+    asoc_name = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        max_length=30,
+        required=True)
+
+    class Meta:
+        model = Association
+        fields = ['asoc_name', ]
+
+    def __init__(self, *args, **kwargs):
+        super(RegAsoc, self).__init__(*args, **kwargs)
+
 
     # def clean(self):
     #     super(RegForm, self).clean()

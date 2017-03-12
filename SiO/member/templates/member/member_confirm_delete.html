@@ -3,11 +3,11 @@
 {#{% load staticfiles i18n %}#}
 {##}
 {#{% block head %}#}
-{#  <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">#}
+{#  <link href="{% static 'css/events.css' %}" rel="stylesheet">#}
 {#    {{ form.media }}#}
 {#{% endblock head %}#}
 
-{% block content %}
+{% block main %}
 
 {#    <p>Are you sure you want to delete "{{ member.first_name }}"?</p>#}
 
@@ -31,4 +31,4 @@
 {#        </div>#}
 {#    </div>#}
 
-{% endblock %}
+{% endblock main %}

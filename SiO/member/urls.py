@@ -5,6 +5,7 @@ urlpatterns = [
     # url(r'^member_overview/$', views.member_overview, name='member_overview'),
     url(r'^member_overview/$', views.member_overview.as_view(), name='member_overview'),
     url(r'^member_signup/$', views.member_signup, name='member_signup'),
+    url(r'^asoc_signup/$', views.asoc_signup, name='asoc_signup'),
     # url(r'^member_edit/(?P<member_no>\d+)$', views.member_edit, name='member_edit'),
     url(r'^member_edit/(?P<pk>\d+)$', views.member_edit.as_view(), name='member_edit'),
     # url(r'^member_update/(?P<member_no>\d+)$', views.member_update, name='member_update'),

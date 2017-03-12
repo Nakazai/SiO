@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% load staticfiles i18n %}
+
+{% block head %}
+  <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
+{#    <script src="{% static 'js/../../../static/js/date.js' %}"></script>#}
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>#}
+{#        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>#}
+{#  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>#}
+    {{ form.media }}
+{#    <script type="text/javascript">#}
+{#    $(".form_datetime").datetimepicker({#}
+{#        format: "dd MM yyyy - hh:ii",#}
+{#        autoclose: true,#}
+{#        todayBtn: true,#}
+{#        startDate: "2013-02-14 10:00",#}
+{#        minuteStep: 10#}
+{#    });#}
+{#</script>#}
+{% endblock head %}
+
+{% block main %}
+  <h1 class="logo"><a href="{% url 'admin_overview' %}">Admins</a></h1>
+  <div class="signup">
+{#    {% if messages %}#}
+{#        {% for message in messages %}#}
+{#          <div class="alert alert-success alert-dismissable">#}
+{#            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>#}
+{#            {{ message }}#}
+{#          </div>#}
+{#        {% endfor %}#}
+{#      {% endif %}#}
+    <h2>{% trans 'Update CoAdmin' %}</h2>
+    <form action=""  method="POST" role="form">
+        {% csrf_token %}
+          {% for field in form.visible_fields %}
+            <div class="form-group{% if field.errors %} has-error{% endif %}">
+
+              <label for="{{ field.label }}">{{ field.label }}</label>
+                  {{ field }}
+                  {% if field.help_text %}
+                    <span class="help-block">{{ field.help_text }}</span>
+                  {% endif %}
+                  {% for error in field.errors %}
+                    <label class="control-label">{{ error }}</label>
+                  {% endfor %}
+
+            </div>
+          {% endfor %}
+      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Update CoAdmin' %}</button></center>
+    </form>
+  </div>
+{% endblock main %}

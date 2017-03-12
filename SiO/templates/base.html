@@ -15,11 +15,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-    <script src="{% static 'js/SiO.js' %}"></script>
-  <script src="{% static 'js/date.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+{#    <script src="{% static 'js/SiO.js' %}"></script>#}
+{#  <script src="{% static 'js/date.js' %}"></script>#}
     {% block head %}{% endblock %}
   </head>
   <body>
+  <script>
+      $(document).ready(function(){
+          {% block jquery %}{% endblock %}
+      })
+  </script>
     {% block body %}
       <header>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -66,6 +72,7 @@
 {#                    <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>#}
 {#                    <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>#}
                     <li class="divider"></li>
+                    <li><a href="{% url 'password' %}">{% trans 'Change password' %}</a></li>
                     <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
                   </ul>
                 </li>
@@ -81,9 +88,9 @@
           {% endblock main %}
         </div>
       </main>
-      <script src="{% static 'js/notifications.js' %}"></script>
-      <script src="{% static 'js/check_messages.js' %}"></script>
+{#      <script src="{% static 'js/notifications.js' %}"></script>#}
+{#      <script src="{% static 'js/check_messages.js' %}"></script>#}
     {% endblock body %}
-    <script src="{% static 'js/ga.js' %}"></script>
+{#    <script src="{% static 'js/ga.js' %}"></script>#}
   </body>
 </html>

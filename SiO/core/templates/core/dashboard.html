@@ -10,30 +10,30 @@
 
 {% block main %}
 
-     <center><h1><a>{{ user.profile.get_association_name }}</a></h1></center>
+     <center><h1>{{ user.profile.get_association_name }}</h1></center>
 
-    <div class="container">
-        <h3><a href="{% url 'member_signup' %}" class="btn btn-link">{% trans 'Ny Medlem' %}</a></h3>
-    </div>
+{#    <div class="container">#}
+{#        <h3><a href="{% url 'member_signup' %}" class="btn btn-link">{% trans 'Ny Medlem' %}</a></h3>#}
+{#    </div>#}
 
     <div class="container">
         <h3><a href="{% url 'member_overview' %}" class="btn btn-link">{% trans 'Medlemmer' %}</a></h3>
     </div>
 
     <div class="container">
-        <h3>{% trans 'Statistikk' %}</h3>
+        <h3><a href="{% url 'ChartView' %}" class="btn btn-link">{% trans 'Statestikk' %}</a></h3>
     </div>
 
     <div class="container">
-        <h3><a href="{% url 'signup' %}" class="btn btn-link">{% trans 'Administrator' %}</a></h3>
+        <h3><a href="{% url 'admin_overview' %}" class="btn btn-link">{% trans 'Administrator' %}</a></h3>
     </div>
 
-    <div class="container">
-        <h3>{% trans 'E-post' %}</h3>
-    </div>
+{#    <div class="container">#}
+{#        <h3>{% trans 'E-post' %}</h3>#}
+{#    </div>#}
 
     <div class="container">
-        <h3><h3><a href="{% url 'events' %}" class="btn btn-link">{% trans 'Kalender' %}</a></h3></h3>
+        <h3><a href="{% url 'events' %}" class="btn btn-link">{% trans 'Kalender' %}</a></h3>
     </div>
 
 {% endblock main %}
