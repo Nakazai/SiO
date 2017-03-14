@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'SiO.chart',
     'SiO.core',
     # 'SiO.member',
-    'SiO.events',
+    'SiO.calapp',
 ]
 
 # TODO: Dette må til slik at db-table får navnet Administrator

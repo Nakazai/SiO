@@ -7,7 +7,7 @@ from django.contrib import admin
 from SiO.CoAdmin import views as admin_auth_views
 from SiO.member import views as member_views
 from SiO.core import views as core_views
-from SiO.events import views as events_views
+from SiO.calapp import views as events_views
 from SiO.chart import views as chart_views
 
 # from dedal.site import site as dedal_site
@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'', include('SiO.core.urls')),
     url(r'', include('SiO.member.urls')),
     url(r'', include('SiO.CoAdmin.urls')),
-    # url(r'', include('SiO.events.urls')),
+    url(r'', include('SiO.calapp.urls')),
     url(r'', include('SiO.chart.urls')),
     url(r'^login', auth_views.login, {'template_name': 'core/cover.html'},
         name='login'),
@@ -28,10 +28,10 @@ urlpatterns = [
     # url(r'^signup/$', admin_auth_views.signup, name='signup'),
     # url(r'^membersignup/$', member_views.membersignup, name='membersignup'),
     url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
-    url(r'', include('SiO.events.urls')),
+    # url(r'', include('SiO.calapp.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
     # url(r'^', include(dedal_site.urls)),
-    # url(r'^events/$', events_views.events, name='events')
+    # url(r'^calapp/$', events_views.calapp, name='calapp')
 ]
 
 if settings.DEBUG:

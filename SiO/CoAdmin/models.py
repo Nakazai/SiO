@@ -46,15 +46,25 @@ class Administrator(AbstractUser):
 #         db_table = 'Mail'
 
 
-class Events(models.Model):
-    event_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(Administrator)
-    place = models.CharField(max_length=50, null=True, blank=True)
-    date = models.CharField(max_length=50, null=True, blank=True)
-    name = models.CharField(max_length=50, null=True, blank=True)
+# class Event(models.Model):
+#     event_id = models.AutoField(primary_key=True)
+#     user = models.ForeignKey(Administrator)
+#     place = models.CharField(max_length=50, null=True, blank=True)
+#     date = models.CharField(max_length=50, null=True, blank=True)
+#     name = models.CharField(max_length=50, null=True, blank=True)
+
+class Event(models.Model):
+    name = models.CharField(max_length=50)
+    location = models.CharField(max_length=100)
+    start = models.DateTimeField(blank=False)
+    end = models.DateTimeField(blank=False)
+    allday = models.BooleanField()
+    description = models.TextField(max_length=200)
+    synced = models.BooleanField(default=False)
+    gid = models.CharField(default='', max_length=100)
 
     class Meta:
-        db_table = 'Events'
+        db_table = 'Event'
 
 
 @python_2_unicode_compatible

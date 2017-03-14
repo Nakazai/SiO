@@ -12,20 +12,24 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+  	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+
 {#    <script src="{% static 'js/SiO.js' %}"></script>#}
 {#  <script src="{% static 'js/date.js' %}"></script>#}
     {% block head %}{% endblock %}
   </head>
   <body>
-  <script>
-      $(document).ready(function(){
-          {% block jquery %}{% endblock %}
-      })
-  </script>
+{#  <script>#}
+{#      $(document).ready(function(){#}
+{#          {% block jquery %}{% endblock %}#}
+{#      })#}
+{#  </script>#}
     {% block body %}
       <header>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
