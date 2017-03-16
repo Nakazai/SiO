@@ -66,6 +66,9 @@ class Event(models.Model):
     class Meta:
         db_table = 'Event'
 
+    def __str__(self):
+        return self.name
+
 
 @python_2_unicode_compatible
 class Profile(models.Model):
