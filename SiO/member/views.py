@@ -15,6 +15,8 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
+from django.contrib.messages.views import SuccessMessageMixin
+
 
 import json
 
@@ -206,19 +208,31 @@ class member_overview(ListView):
 #     form = RegForm(instance=member)
 #     return render(request, 'member/member_edit.html', {'form': form, 'member': member})
 
-
-class member_edit(UpdateView):
+class member_edit(SuccessMessageMixin, UpdateView):
     model = Member
     form_class = EditRegForm
     # pk_url_kwarg = 'member_no'
     success_url = reverse_lazy('member_overview')
     template_name = 'member/member_edit.html'
+    # success_message = 'Member "%(first_name)s %(last_name)s" successfully edited'
+    success_message = 'Member successfully edited'
 
 
-class member_delete(DeleteView):
+class member_delete(SuccessMessageMixin, DeleteView):
     model = Member
     success_url = reverse_lazy('member_overview')
     template_name = 'member/member_delete.html'
+    success_message = 'Member successfully deleted'
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(member_delete, self).delete(request, *args, **kwargs)
+
+    # This one has SuccessMessageMixin in member_delete parameter
+    # def delete(self, request, *args, **kwargs):
+    #     obj = self.get_object()
+    #     messages.success(self.request, self.success_message % obj.__dict__)
+    #     return super(member_delete, self).delete(request, *args, **kwargs)
 
 
 def member_signup(request):
@@ -238,10 +252,12 @@ def member_signup(request):
             student_status = form.cleaned_data.get('student_status')
             reg_date = form.cleaned_data.get('reg_date')
             gender = form.cleaned_data.get('gender')
-            birthday = form.cleaned_data.get('birthday')
+            end_date = form.cleaned_data.get('end_date')
             Member.objects.create(first_name=first_name, last_name=last_name, email=email,
                                   student_status=student_status, association=asoc,
-                                  reg_date=reg_date, gender=gender, birthday=birthday)
+                                  reg_date=reg_date, gender=gender, end_date=end_date)
+            messages.add_message(request, messages.SUCCESS,
+                                 'Member successfully added')
             # Member.objects.create(first_name=first_name, last_name=last_name, email=email,
             #                       reg_date=reg_date,)
             # Member.save()

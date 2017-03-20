@@ -54,7 +54,7 @@ class AdministratorAdmin(UserAdmin):
 admin.site.register(Administrator, AdministratorAdmin)
 
 
-admin.site.register(Association)
+# admin.site.register(Association)
 
 admin.site.unregister(Group)
 
