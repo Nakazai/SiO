@@ -238,10 +238,10 @@ def member_signup(request):
             student_status = form.cleaned_data.get('student_status')
             reg_date = form.cleaned_data.get('reg_date')
             gender = form.cleaned_data.get('gender')
-            birthday = form.cleaned_data.get('birthday')
+            end_date = form.cleaned_data.get('end_date')
             Member.objects.create(first_name=first_name, last_name=last_name, email=email,
                                   student_status=student_status, association=asoc,
-                                  reg_date=reg_date, gender=gender, birthday=birthday)
+                                  reg_date=reg_date, gender=gender, end_date=end_date)
             # Member.objects.create(first_name=first_name, last_name=last_name, email=email,
             #                       reg_date=reg_date,)
             # Member.save()
