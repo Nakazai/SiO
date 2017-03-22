@@ -41,22 +41,21 @@
 
     <div class="signup">
         <ul class="list-group">
-		{% for member in object_list %}
+
 			 <table class="table table-bordered">
-            <thead>
                 <tr>
-                    <th>first_name</th>
-                    <th>last_name</th>
-                    <th>email</th>
-                    <th>association</th>
-                    <th>student_status</th>
-                    <th>reg_date</th>
-                    <th>gender</th>
-                    <th>end_date</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                    <th>Association</th>
+                    <th>Member_status</th>
+                    <th>Reg date</th>
+                    <th>Gender</th>
+                    <th>End date</th>
                 </tr>
-             </thead>
-              <tbody>
+
                 <tr>
+                    {% for member in object_list %}
                     <td>{{ member.first_name }}</td>
                     <td>{{ member.last_name }}</td>
                     <td>{{ member.email }}</td>
@@ -77,15 +76,14 @@
                             {% trans 'Delete' %}
                         </a>
                     </td>
+                        
               </tr>
-             </tbody>
+                    {% empty %}
+			        <p>{% trans 'Nothing to display.' %}</p>
+		            {% endfor %}
+                 {% if is_paginated %}
 			  </table>
 
-		{% empty %}
-			<center><p>{% trans 'Nothing to display.' %}</p></center>
-		{% endfor %}
-
-         <center> {% if is_paginated %}
   <ul class="pagination">
     {% if page_obj.has_previous %}
       <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>

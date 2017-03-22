@@ -9,22 +9,22 @@
 {% endblock head %}
 
 {% block main %}
-
-     <center><h1>{{ user.profile.get_association_name }}</h1></center>
+            <h2 class="center">Din medlems registreringsside for</h2>
+            <h1 class="center">{{ user.profile.get_association_name }}</h1>
 
 {#    <div class="container">#}
 {#        <h3><a href="{% url 'member_signup' %}" class="btn btn-link">{% trans 'Ny Medlem' %}</a></h3>#}
 {#    </div>#}
-
-    <div class="container">
+<div class="boxes">
+    <div class="box">
         <h3><a href="{% url 'member_overview' %}" class="btn btn-link">{% trans 'Medlemmer' %}</a></h3>
     </div>
 
-    <div class="container">
+    <div class="box">
         <h3><a href="{% url 'ChartView' %}" class="btn btn-link">{% trans 'Statestikk' %}</a></h3>
     </div>
 
-    <div class="container">
+    <div class="box">
         <h3><a href="{% url 'admin_overview' %}" class="btn btn-link">{% trans 'Administrator' %}</a></h3>
     </div>
 
@@ -32,8 +32,10 @@
 {#        <h3>{% trans 'E-post' %}</h3>#}
 {#    </div>#}
 
-    <div class="container">
+    <div class="box">
         <h3><a href="{% url 'calendar' %}" class="btn btn-link">{% trans 'Kalender' %}</a></h3>
     </div>
-
+</div>
+    <br>
+ <img src="/static/img/logo.svg" class="logoimg">
 {% endblock main %}

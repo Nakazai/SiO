@@ -21,22 +21,19 @@
 
     <div class="signup">
         <ul class="list-group">
-		{% for administrator in object_list %}
 			 <table class="table table-bordered">
-            <thead>
                 <tr>
-                    <th>first_name</th>
-                    <th>last_name</th>
-                    <th>email</th>
-                    <th>association</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                    <th>Association</th>
 {#                    <th>student_status</th>#}
-                    <th>union_position</th>
-                    <th>username</th>
+                    <th>Union_position</th>
+                    <th>Username</th>
 {#                    <th>password</th>#}
                 </tr>
-             </thead>
-              <tbody>
                 <tr>
+                    {% for administrator in object_list %}
                     <td>{{ administrator.first_name }}</td>
                     <td>{{ administrator.last_name }}</td>
                     <td>{{ administrator.email }}</td>
@@ -58,11 +55,11 @@
                         </a>
                     </td>
               </tr>
-             </tbody>
+
+                        {% empty %}
+                 <p>{% trans 'Nothing to display.' %}</p>
+		        {% endfor %}
 			  </table>
-		{% empty %}
-			<center><p>{% trans 'Nothing to display.' %}</p></center>
-		{% endfor %}
 	</ul>
  </div>
 {% endblock main %}
