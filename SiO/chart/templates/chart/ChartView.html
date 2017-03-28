@@ -73,7 +73,29 @@
 
 {% block main %}
 <h1 class="logo"><a href="{% url 'home' %}">Charts</a></h1>
+    <script>
+          $(function(){
+    $(".dropdown-menu").on('click', 'li a', function(){
+      $(".btn:first-child").text($(this).text());
+      $(".btn:first-child").val($(this).text());
+   });
+});
+    </script>
 <div class="chart">
+<!-- Bruk denne dropdownen til å bestemme ulike statestikk -->
+
+  <div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-labelledby="dropdownMenu" aria-haspopup="true" aria-expanded="true">
+    Select statistic
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a tabindex="-1" href="#">Admin/member</a></li>
+        <li><a tabindex="-1" href="#">Gender</a></li>
+        <li><a tabindex="-1" href="#">Monthly registrations</a></li>
+        <li><a tabindex="-1" href="#">Something else here</a></li>
+  </ul>
+</div>
 {#    <div class="col-sm-12">#}
 {#        <h1>Hello World</h1>#}
         <canvas id="myChart" width="400" height="400"></canvas>

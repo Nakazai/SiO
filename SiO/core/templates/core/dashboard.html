@@ -4,38 +4,89 @@
 
 {% block head %}
   <link href="{% static 'css/dashboard.css' %}?v=1" rel="stylesheet">
-
+    <link rel="stylesheet" href="css/animate.css">
 {#  <script src="{% static 'js/feeds.js' %}?v=1"></script>#}
 {% endblock head %}
 
 {% block main %}
-            <h2 class="center">Din medlems registreringsside for</h2>
+     <script src="js/wow.min.js"></script>
+              <script>
+              new WOW().init();
+              </script>
+            <h2 class="center wow bounceInUp">Din medlems registreringsside for</h2>
             <h1 class="center">{{ user.profile.get_association_name }}</h1>
 
 {#    <div class="container">#}
 {#        <h3><a href="{% url 'member_signup' %}" class="btn btn-link">{% trans 'Ny Medlem' %}</a></h3>#}
 {#    </div>#}
-<div class="boxes">
-    <div class="box">
-        <h3><a href="{% url 'member_overview' %}" class="btn btn-link">{% trans 'Medlemmer' %}</a></h3>
-    </div>
+    <section class="service page-section" id="service">
+      <div class="container text-center">
+         <div class="heading">
 
-    <div class="box">
-        <h3><a href="{% url 'ChartView' %}" class="btn btn-link">{% trans 'Statestikk' %}</a></h3>
-    </div>
-
-    <div class="box">
-        <h3><a href="{% url 'admin_overview' %}" class="btn btn-link">{% trans 'Administrator' %}</a></h3>
-    </div>
+		</div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-user-plus"></i>
+                  </div>
+                  <h3><a href="{% url 'member_overview' %}" class="h3ref">{% trans 'Medlemmer' %}</a></h3>
+                  <div class="box-area-text">Medlemmer er siden hvor du kan registrere nye medlemmer, redigere gjellende medlemmer eller slette medlemmer. Du kan også søke etter medlemmer ved eventuelle arrangementer.</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                      <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                  </div>
+                  <h3><a href="{% url 'ChartView' %}" class="h3ref">{% trans 'Statestikk' %}</a></h3>
+                  <div class="box-area-text">Statestikk siden vil kunne gi deg verdifull statestikk over din medlemsbase. Kjønnsfordeling eller medlemsregistreringer fra måned til måned er noe av hva du kan finne her.</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-users"></i>
+                  </div>
+                  <h3><a href="{% url 'admin_overview' %}" class="h3ref">{% trans 'Administrator' %}</a></h3>
+                  <div class="box-area-text">I administrasjon siden kan du legge til nye administratorer, redigere disse eller slette eksisterende administratorer. Dette er hvem som har tilgang til siden.</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <h3><a href="{% url 'calendar' %}" class="h3ref">{% trans 'Kalender' %}</a></h3>
+                  <div class="box-area-text">Her kan du registrere interne og vanlige arrangemneter. Disse vil hovedsaklig bli synlig for administratorer av denne siden. Du kan også synce med google kallender. </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-cubes"></i>
+                  </div>
+                  <h3>Arena</h3>
+                  <div class="box-area-text">Våre arrangement er den perfekte plass å åpne seg for likesinnede og bygge nettverk som kan vare livet ut! Få hjelp eller hjelp andre med tekniske problemer.</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-envelope"></i>
+                  </div>
+                  <h3><a  class="h3ref">Mail</a></h3>
+                  <div class="box-area-text">Her kan du sende epost til dine medlemmer om kommende arrangementer. Prøv å ikke sende mer en enn epost i måneden til dine medlemmer for å unngå spam.</div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
 
 {#    <div class="container">#}
 {#        <h3>{% trans 'E-post' %}</h3>#}
 {#    </div>#}
 
-    <div class="box">
-        <h3><a href="{% url 'calendar' %}" class="btn btn-link">{% trans 'Kalender' %}</a></h3>
-    </div>
-</div>
     <br>
  <img src="/static/img/logo.svg" class="logoimg">
 {% endblock main %}
