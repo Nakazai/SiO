@@ -42,7 +42,6 @@
 {#                {{ form.student_status }}#}
 {#            </div>#}
 
-
       {% for field in form.visible_fields %}
         <div class="form-group{% if field.errors %} has-error{% endif %}">
           <label {{ field.label }}>{{ field.label }}</label>
@@ -55,8 +54,10 @@
           {% endfor %}
         </div>
       {% endfor %}
-      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Registrer ny member' %}</button></center>
+        <br class="space">
+      <button type="submit" class="btn btn-primary btn-lg btnfix">{% trans 'Registrer ny member' %}</button>
     </form>
+  <div class="hidden">Ibsum Lorem</div>
   </div>
 {% endblock main %}
 

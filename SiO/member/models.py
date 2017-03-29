@@ -23,8 +23,9 @@ class Member(models.Model):
 
     student_status = models.CharField(max_length=50, default=False)
     reg_date = models.DateField(null=True, blank=True)
-    gender = models.CharField(max_length=50, null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
+    gender = models.CharField(max_length=50, null=True, blank=True)
+
     # asocnumber = models.ForeignKey('Association')
     # user = models.OneToOneField(Administrator)
 
@@ -105,7 +106,8 @@ class Association(models.Model):
 #     asocnumber_id = models.OneToOneField(Association)
 #     trans_date = models.DateTimeField(null=True, blank=True)
 #
-#     class Meta:
+#     class Meta:,
+
 #         db_table = 'Expense'
 #
 #

@@ -15,9 +15,6 @@ ul.stream li {
 .h3ref{
     color: #d84545;
 }
-.box-area-icon i {
-    font-size: 40px;
-    color: #7B1801;
 }
 ul.stream li:last-child {
   border-bottom: none;
@@ -175,7 +172,10 @@ ul.stream li div.post div.interaction a {
   padding-left: 15px;
   padding-right: 15px;
 }
-
+.fa{
+    font-size: 40px;
+    color: #7B1801;
+}
 .logoimg{
     width: 70%;
     display: block;

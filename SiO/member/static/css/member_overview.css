@@ -39,6 +39,9 @@ body {
 .signup h2 {
   margin: 0;
 }
+th {
+  background-color: #eee;
+}
 
 
 

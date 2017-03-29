@@ -37,7 +37,7 @@ class member_overview(ListView):
     # form_class = RegForm
     template_name = 'member/member_overview.html'
     # queryset = Member.objects.all()
-    paginate_by = 3
+    paginate_by = 6
 
     # def get_context_data(self, **kwargs):
     #     context = super(ListView, self).get_context_data(**kwargs)
