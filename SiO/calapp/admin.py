@@ -1,5 +1,7 @@
 from django.contrib import admin
+# from SiO.member.models import Event
 from SiO.CoAdmin.models import Event
+
 
 
 # class EventAdmin(admin.ModelAdmin):

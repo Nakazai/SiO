@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import Http404
 from django.http import JsonResponse
@@ -5,25 +6,59 @@ from django.views.generic import DeleteView, UpdateView, CreateView, ListView
 
 from datetime import datetime
 
-from SiO.CoAdmin.models import Event
-# from SiO.member.models import Association
+# from SiO.member.models import Event, Administrator
+from SiO.CoAdmin.models import Event, Administrator
+from SiO.member.models import Member
+from SiO.CoAdmin.models import Association
+
 # from SiO.calapp.forms import CalForm
 
 
 # def calendar(request):
+#     # if request.method == 'POST':
+#     #     form = CalForm(request.user, request.POST)
+#     #     print(request.user.association)
+#     #     asoc_pk = form.cleaned_data.get('association')
+#     #     association = Association.objects.get(id=asoc_pk.pk)
+#     #
+#     #     Event.objects.create(
+#     #         association=association
+#     #     )
 #     return render(request, 'calapp/calendar.html', {})
+
+
+# def form_ajax(request):
+#     # res = {'success': False}
+#     if request.is_ajax() and request.method == 'GET':
+#         # association = request.POST['association']
+#         form = CalForm(request.user, request.GET)
+#         # print(request.user.association)
+#         asoc_pk = form.cleaned_data.get('association')
+#         association = Association.objects.get(id=asoc_pk.pk)
+#         # res['association'] = association
+#
+#         # return JsonResponse({'association': association})
+#         # res['success'] = True
+#         return JsonResponse(association)
+
 
 class calendar(ListView):
 
     model = Event
-    # form_class = RegForm
+    # form_class = CalForm
     template_name = 'calapp/calendar.html'
 
     # def get_queryset(self):
+    #     # queryset = Event.objects.filter(name=self.request.user.association)
     #     queryset = Event.objects.filter(association=self.request.user.association)
+    #     # queryset = Administrator.objects.filter(id=self.request.user.id).values('association__asoc_name')
+    #     # queryset = Administrator.objects.filter(association=self.request.user.association)
+    #     # association = Administrator.objects.filter(id=self.request.user.id).values('association__asoc_name')
+    #     # queryset = Association.objects.get(asoc_name=association)
     #     return queryset
 
 
+@login_required
 def event_get(request, start, end):
     res = {'success': False}
     try:
@@ -33,8 +68,9 @@ def event_get(request, start, end):
         res['message'] = \
             'Invalid params: ISO format start end dates expected'
         return JsonResponse(res)
-    result = Event.objects.filter(start__range=(start,
-                                                end)).order_by('start').values()
+    result = Event.objects.filter(
+        association=request.user.association,  # Add filter
+        start__range=(start, end)).order_by('start').values()
 
     res['data'] = list(result)
     res['success'] = True
@@ -67,25 +103,52 @@ def event_delete(request):
 
 
 def event_add_edit(request):
+    # if request.method == 'POST':
+    #     form = CalForm(request.POST)
+    #     user = request.user
+    #     form.fields['association'].queryset = Association.objects.filter(asoc_name=user.association)
     if request.method == 'POST':
+        # user = request.user
+        # association = Association.objects.filter(asoc_name=user.association)
+        # if Association == request.user:
         # form = CalForm(request.user, request.POST)
+        # print(request.user.association)
+
+        # if form.is_valid():
+        # print(request.user.association)
+        # form = CalForm(request.POST, user=request.user)
         res = {'success': False}
+        # print(request.user.association)
 
-        if paramMissing(request.POST, 'name', res) \
-                or paramMissing(request.POST, 'location', res) \
-                or paramMissing(request.POST, 'start', res) \
-                or paramMissing(request.POST, 'end', res) \
-                or paramMissing(request.POST, 'allday', res) \
-                or paramMissing(request.POST, 'description', res) \
-                or paramMissing(request.POST, 'action', res) \
-                or paramMissing(request.POST, 'synced', res):
-            return JsonResponse(res)
+        # if paramMissing(request.POST, 'name', res) \
+        #         or paramMissing(request.POST, 'location', res) \
+        #         or paramMissing(request.POST, 'start', res) \
+        #         or paramMissing(request.POST, 'end', res) \
+        #         or paramMissing(request.POST, 'allday', res) \
+        #         or paramMissing(request.POST, 'description', res) \
+        #         or paramMissing(request.POST, 'action', res) \
+        #         or paramMissing(request.POST, 'synced', res):
+        #     return JsonResponse(res)
 
+        # print(request.user.association)
+        # association = form.request.POST('association')
+            # asoc_pk = request.POST.get('association')
+            # association = Association.objects.get(id=asoc_pk.pk)
+        # res = {
+        #     'association': association,
+        #     'success': False
+        # }
+        # print(association)
         gid = request.POST.get('gid', '')
         # asoc_pk = form.cleaned_data.get('association')
         # asoc = Association.objects.get(id=asoc_pk.pk)
         # or paramMissing(request.POST, 'association', res) \ som ska være ovenfor
 
+        # asoc_pk = form.request.POST['association']
+        # asoc_pk = form.request('association')
+        # association = Association.objects.get(id=asoc_pk.pk)
+        # association = form.cleaned_data.get('association')
+        # print(association)
         action = request.POST['action']
         name = request.POST['name']
         location = request.POST['location']
@@ -94,11 +157,36 @@ def event_add_edit(request):
         allday = request.POST['allday'] == 'true'
         description = request.POST['description']
         synced = request.POST['synced'] == 'true'
-        # association_pk = Association.objects.filter(asoc_name=request.user.association)
-        # asoc_pk = Association.objects.get(id=association_pk.pk)
+        # association = Association.objects.filter(asoc_name=request.user.association).values('administrator__association')
+        # association = Association.objects.filter(administrator=request.user.id).values('asoc_name')
+        # association = Association.objects.filter(administrator=request.user.id).filter(asoc_name=request.user.association)
+        # association = Association.objects.filter(asoc_name=request.user.association)
+        # association = Event.objects.filter(association__user__id=request.user.id)
+        association = Administrator.objects.filter(id=request.user.id).values('association__asoc_name')
+        asoc = Association.objects.get(asoc_name=association)
+        # association = Association.objects.filter(asoc_name=request.user.association)
+        # asoc = Event.objects.get(association=association)
+        # asoc = Association.objects.filter(asoc_name=request.user.association)
+        # association = Event.objects.get(association_id=asoc)
+        # if association == asoc:
+        # user = Administrator.objects.filter(username=request.user)
+        # asoc = Administrator.objects.get(id=user)
+        # association = form.request.POST['association']
         # asoc_pk = form.request.POST['association']
-        # asoc_pk = form.cleaned_data.get('association')
-        # asoc = Association.objects.get(id=asoc_pk.pk)
+        # association = Association.objects.get(id=asoc_pk.pk)
+        # print(association)
+        # asoc_id = request.POST.get('association')
+        # association = Association.objects.get(pk=asoc_id)
+
+        # if paramMissing(request.POST, 'name', res) \
+        #         or paramMissing(request.POST, 'location', res) \
+        #         or paramMissing(request.POST, 'start', res) \
+        #         or paramMissing(request.POST, 'end', res) \
+        #         or paramMissing(request.POST, 'allday', res) \
+        #         or paramMissing(request.POST, 'description', res) \
+        #         or paramMissing(request.POST, 'action', res) \
+        #         or paramMissing(request.POST, 'synced', res):
+        #     return JsonResponse(res)
 
         if action == 'add':
             Event.objects.create(
@@ -110,14 +198,17 @@ def event_add_edit(request):
                 description=description,
                 synced=synced,
                 gid=gid,
-                # association=asoc
+                association=asoc
             )
 
+            # res['association'] = association
             res['success'] = True
             res['message'] = 'added'
             eid = Event.objects.latest('id').id
             res['eid'] = eid
             res['data'] = Event.objects.values().get(id=eid)
+
+            # return JsonResponse(res,  {'form': CalForm(request.user)})
         elif action == 'edit':
 
             if paramMissing(request.POST, 'eid', res):
@@ -139,6 +230,7 @@ def event_add_edit(request):
             res['eid'] = eid
             res['data'] = Event.objects.values().get(id=eid)
 
+        # return JsonResponse(res,  {'form': CalForm(request.user)})
         return JsonResponse(res)
     else:
         raise Http404

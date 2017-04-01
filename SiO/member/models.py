@@ -66,6 +66,32 @@ class Association(models.Model):
     def __str__(self):
         return self.asoc_name
 
+    def __unicode__(self):
+        return self.asoc_name
+
+
+# class Event(models.Model):
+#         name = models.CharField(max_length=50)
+#         location = models.CharField(max_length=100)
+#         start = models.DateTimeField(blank=False)
+#         end = models.DateTimeField(blank=False)
+#         allday = models.BooleanField()
+#         description = models.TextField(max_length=200)
+#         synced = models.BooleanField(default=False)
+#         gid = models.CharField(default='', max_length=100)
+#         association = models.ForeignKey(Association)
+#
+#         # user = models.ForeignKey(Administrator)
+#
+#         class Meta:
+#             db_table = 'Event'
+#
+#         def __str__(self):
+#             return self.name
+#
+#         def __unicode__(self):
+#             return self.name
+
 
 # def create_asoc_id(sender, instance, created, **kwargs):
 #         if created:

@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from SiO.CoAdmin.models import Administrator
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth import get_user_model
+
 
 from SiO.core.forms import ChangePasswordForm, ProfileForm
 
@@ -18,6 +20,19 @@ def home(request):
         return render(request, 'core/dashboard.html')
     else:
         return render(request, 'core/cover.html')
+
+
+# class EmailBackend(object):
+#     def authenticate(self, username=None, password=None, **kwargs):
+#         Administrator = get_user_model()
+#         try:
+#             user = Administrator.objects.get(email=username)
+#         except Administrator.DoesNotExist:
+#             return None
+#         else:
+#             if getattr(user, 'is_active', False) and  user.check_password(password):
+#                 return user
+#         return None
 
 
 @login_required

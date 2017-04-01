@@ -1,7 +1,8 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from django.shortcuts import redirect, render
-from .models import Administrator, Association
+from .models import Administrator
 from django.shortcuts import get_object_or_404
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
 from django.urls import reverse_lazy
@@ -9,6 +10,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
+from SiO.member.models import Association
 
 
 from SiO.CoAdmin.forms import SignUpForm, EditSignUpForm, ChangePasswordForm, InnsideSignUpForm
@@ -68,6 +70,17 @@ class admin_delete(DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(admin_delete, self).delete(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        """ Hook to ensure object is owned by request.user. """
+        owner = Administrator.objects.filter(association=self.request.user.association)
+        obj = super(admin_delete, self).get_object(owner)
+        if obj == self.request.user:
+            raise Http404
+        return obj
+    # def get_queryset(self):
+    #     qs = super(admin_delete, self).get_queryset()
+    #     return qs.filter(username=self.request.user)
 
 
 def signup(request):

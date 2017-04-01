@@ -263,7 +263,7 @@
 
 
 	<div class="form-wrapper" id="add-event-form">
-		<form  method="POST" role="form">
+		<form action="" method="POST" role="form">
 			{% csrf_token %}
 			<input type="hidden" name="action" id="add-event-action" value="add">
 			<input type="hidden" name="eid" id="add-event-eid" value="">
@@ -298,16 +298,33 @@
                         <input id="add-event-edate" name="end_date" type="date" ><input id="add-event-etime" name="end_time" type="time" required>
                     </span>
 				</li>
+{#            {% for field in form.visible_fields %}#}
+{#                <li class="form-group {% if field.errors %} has-error{% endif %}">#}
 {#                <li class="form-li">#}
-{#					<label for="add-event-asoc" class="input-name"> Association</label>#}
+{##}
+{#                     {% for field in form.visible_fields %}#}
+{#          <label {{ field.label }}>{{ field.label }}</label>#}
+{#          {{ field }}#}
+{#          {% if field.help_text %}#}
+{#            <span class="help-block">{{ field.help_text|safe }}</span>#}
+{#          {% endif %}#}
+{#          {% for error in field.errors %}#}
+{#            <label class="control-label">{{ error }}</label>#}
+{#          {% endfor %}#}
+{#      {% endfor %}#}
+{##}
+{#					<label for="association" class="input-name"> Association</label>#}
 {#                    {{ association.id }}#}
 {#                    <select id="add-event-asoc" name="association"><option value="1">name 1 </option>  </select>#}
-{#                <select id="add-event-asoc" name="association">#}
-{#                    {% for asoc in association %}#}
-{#                    <select id="add-event-asoc" name="association"><option value="{{ asoc.id }}">{{ asoc.asoc_name }} </option>  </select>#}
-{#                        <option value="{{ asoc.id }}">{{ asoc.asoc_name }} </option>#}
-{#                     {% endfor %}#}
-{#                 </select>#}
+{#                    <select id="add-event-asoc" name="association" onChange="CalForm.submit();">#}
+{#                    <select id="association" >#}
+{#                        {% for asoc in object_list %}#}
+    {#                    <select id="add-event-asoc" name="association"><option value="{{ asoc.id }}">{{ asoc.asoc_name }} </option>  </select>#}
+{#                            <option value="{{ association.id }}">{{ association.asoc_name }} </option>#}
+{#                            <option value="{{ association.id }}"> {{ association.asoc_name }} </option>#}
+{#                            {{ field }}#}
+{#                         {% endfor %}#}
+{#                     </select>#}
 {#                </li>#}
 				<li class="form-li">
 					<input id="add-event-allday" type="checkbox" name="allday">

@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 
 from SiO.member.models import Member, Association
+# from SiO.CoAdmin.models import Member, Association
+
 from SiO.CoAdmin.models import Administrator
 from django.core import serializers
 from django.contrib.auth.decorators import login_required

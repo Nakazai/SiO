@@ -1,5 +1,7 @@
 from django.contrib.auth.admin import UserAdmin, admin
 from SiO.member.models import Member, Association
+# from SiO.CoAdmin.models import Member, Association
+
 
 
 class MemberAdmin(admin.ModelAdmin):

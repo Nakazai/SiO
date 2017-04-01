@@ -1,4 +1,6 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponseRedirect
 from .models import Member, Association
@@ -208,6 +210,7 @@ class member_overview(ListView):
 #     form = RegForm(instance=member)
 #     return render(request, 'member/member_edit.html', {'form': form, 'member': member})
 
+# @login_required
 class member_edit(SuccessMessageMixin, UpdateView):
     model = Member
     form_class = EditRegForm
@@ -216,6 +219,23 @@ class member_edit(SuccessMessageMixin, UpdateView):
     template_name = 'member/member_edit.html'
     # success_message = 'Member "%(first_name)s %(last_name)s" successfully edited'
     success_message = 'Member successfully edited'
+
+    def get_queryset(self):
+            queryset = Member.objects.filter(association=self.request.user.association)
+            return queryset
+
+
+# def get_object(request):
+#     return Member.objects.get(pk=request.GET.get('pk'))
+
+    # def some_view(self, request, pk=None):
+    #     obj = get_object_or_404(Member, pk=pk, user=request.user.association)
+    #     return render(request, 'member/member_edit.html', {'object': obj})
+
+    # def view_bar(self, request, pk):
+    #     bar = Member.objects.get(pk=pk)
+    #     if not bar.user.association == request.user.association:
+    #         return HttpResponseForbidden("You can't view this Bar.")
 
 
 class member_delete(SuccessMessageMixin, DeleteView):
@@ -227,6 +247,10 @@ class member_delete(SuccessMessageMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(member_delete, self).delete(request, *args, **kwargs)
+
+    def get_queryset(self):
+        queryset = Member.objects.filter(association=self.request.user.association)
+        return queryset
 
     # This one has SuccessMessageMixin in member_delete parameter
     # def delete(self, request, *args, **kwargs):
@@ -246,9 +270,10 @@ def member_signup(request):
             first_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
             email = form.cleaned_data.get('email')
-            # asoc_name = form.cleaned_data.get('asoc_name')
-            asoc = form.cleaned_data.get('association')
-            # asoc = Association.objects.get(id=asoc_pk.pk)
+            # asoc_pk = form.cleaned_data.get('asoc_name')
+            asoc_pk = Association.objects.filter(asoc_name=request.user.association)
+            # asoc = form.cleaned_data.get('association')
+            asoc = Association.objects.get(id=asoc_pk)
             student_status = form.cleaned_data.get('student_status')
             reg_date = form.cleaned_data.get('reg_date')
             gender = form.cleaned_data.get('gender')
@@ -274,20 +299,22 @@ def member_signup(request):
 
 def asoc_signup(request):
     if request.method == 'POST':
-        form = RegAsoc(request.POST)
+        form = RegAsoc(request.user, request.POST)
         if not form.is_valid():
             return render(request, 'member/asoc_signup.html',
                           {'form': form})
 
         else:
             asoc_name = form.cleaned_data.get('asoc_name')
+            # administrator = Administrator.objects.filter(id=request.user.id)
+            # admin = Administrator.objects.get(id=administrator)
             Association.objects.create(asoc_name=asoc_name)
             # login(request, user) TODO:Denne linjen logger inn ny member øyeblikkelig etter registrering
             return redirect('/')
 
     else:
         return render(request, 'member/asoc_signup.html',
-                      {'form': RegAsoc()})
+                      {'form': RegAsoc(request.user)})
 
 # class member_delete(DeleteView):
 #     def post(self, request, *args, **kwargs):

@@ -4,6 +4,8 @@ from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
 from django.core.exceptions import ValidationError
 # from django.contrib.auth.models import AbstractUser as Admin
 from .models import Member, Association
+# from SiO.CoAdmin.models import Member, Association
+
 from SiO.settings import ALLOWED_SIGNUP_DOMAINS
 from SiO.CoAdmin.models import Administrator
 
@@ -79,9 +81,9 @@ class RegForm(forms.ModelForm):
         widget=forms.EmailInput(attrs={'class': 'form-control'}),
         required=True,
         max_length=75)
-    association = forms.ModelChoiceField(queryset=Association.objects.none(),
-                                         widget=forms.Select(attrs={'class': 'form-control'}),
-                                         required=True)
+    # association = forms.ModelChoiceField(queryset=Association.objects.none(),
+    #                                      widget=forms.Select(attrs={'class': 'form-control'}),
+    #                                      required=True)
 
     # association_choices = [(i['asoc_name'], i['asoc_name']) for i in Association.objects.values('asoc_name')]
     # association = forms.ChoiceField(choices=association_choices, widget=forms.Select(attrs={'class': 'form-control'}),
@@ -110,12 +112,12 @@ class RegForm(forms.ModelForm):
     class Meta:
         model = Member
         exclude = ['last_login', 'date_joined']
-        fields = ['first_name', 'last_name', 'email', 'association', 'student_status', 'reg_date', 'gender', 'end_date']
+        fields = ['first_name', 'last_name', 'email', 'student_status', 'reg_date', 'gender', 'end_date']
         # fields = ['first_name', 'last_name', 'email', 'reg_date', ]
 
     def __init__(self, user, *args, **kwargs):
         super(RegForm, self).__init__(*args, **kwargs)
-        self.fields['association'].queryset = Association.objects.filter(asoc_name=user.association)
+        # self.fields['association'].queryset = Association.objects.filter(asoc_name=user.association)
 
         # association = kwargs.pop('association', None)
         # self.fields['username'].validators.append(ForbiddenUsernamesValidator)
@@ -182,13 +184,18 @@ class RegAsoc(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
         required=True)
+    # user = forms.ModelChoiceField(queryset=Administrator.objects.all(),
+    #                                        widget=forms.Select(attrs={'class': 'form-control'}),
+    #                                        required=True)
 
     class Meta:
         model = Association
         fields = ['asoc_name', ]
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, user, *args, **kwargs):
         super(RegAsoc, self).__init__(*args, **kwargs)
+        # self.fields['administrator'].queryset = Member.objects.filter(member=user.association)
+
 
 
     # def clean(self):
