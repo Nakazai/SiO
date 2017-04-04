@@ -38,11 +38,12 @@
     </div></center>
     <br/>
 
-   <center><div class="col-md-7">
+   <center><div class="col-md-8  col-md-offset-2">
       {% if messages %}
         {% for message in messages %}
           <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
             {{ message }}
           </div>
         {% endfor %}

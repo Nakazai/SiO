@@ -4,9 +4,11 @@ from django.conf import settings as django_settings
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
+
 from SiO.CoAdmin.models import Administrator
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect, render, render_to_response
 from django.contrib.auth import get_user_model
 
 
@@ -20,6 +22,13 @@ def home(request):
         return render(request, 'core/dashboard.html')
     else:
         return render(request, 'core/cover.html')
+
+
+# def handler404(request):
+#     response = render_to_response('404.html', {},
+#                                   status=404)
+#     response.status_code = 404
+#     return response
 
 
 # class EmailBackend(object):

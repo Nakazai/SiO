@@ -70,6 +70,13 @@ class Association(models.Model):
         return self.asoc_name
 
 
+class AssociationSummary(Association):
+    class Meta:
+        proxy = True
+        verbose_name = 'Association Summary'
+        verbose_name_plural = 'Association Summary'
+
+
 # class Event(models.Model):
 #         name = models.CharField(max_length=50)
 #         location = models.CharField(max_length=100)

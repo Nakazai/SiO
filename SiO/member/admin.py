@@ -3,7 +3,6 @@ from SiO.member.models import Member, Association
 # from SiO.CoAdmin.models import Member, Association
 
 
-
 class MemberAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'association')
     search_fields = ['first_name', 'last_name', ]

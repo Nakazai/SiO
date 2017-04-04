@@ -290,7 +290,9 @@ def member_signup(request):
             #                     student_status=student_status, reg_date=reg_date,
             #                     gender=gender, birthday=birthday)
             # login(request, user) TODO:Denne linjen logger inn ny member øyeblikkelig etter registrering
-            return redirect('/')
+            # return redirect('/')
+            return redirect('member_overview')
+
 
     else:
         return render(request, 'member/member_signup.html',
