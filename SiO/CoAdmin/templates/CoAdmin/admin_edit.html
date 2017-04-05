@@ -32,7 +32,7 @@
 {#          </div>#}
 {#        {% endfor %}#}
 {#      {% endif %}#}
-    <h2>{% trans 'Update CoAdmin' %}</h2>
+    <h2>{% trans 'Update admin' %}</h2>
     <form action=""  method="POST" role="form">
         {% csrf_token %}
           {% for field in form.visible_fields %}
@@ -49,7 +49,8 @@
 
             </div>
           {% endfor %}
-      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Update CoAdmin' %}</button></center>
+      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Update admin' %}</button>
+       <a class="btn btn-info btn-lg" href="{% url "admin_overview" %}">Cancel</a></center>
     </form>
   </div>
 {% endblock main %}

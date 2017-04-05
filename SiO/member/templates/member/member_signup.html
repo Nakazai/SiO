@@ -54,10 +54,12 @@
           {% endfor %}
         </div>
       {% endfor %}
-        <br class="space">
-      <button type="submit" class="btn btn-primary btn-lg btnfix">{% trans 'Registrer ny member' %}</button>
+{#        <br class="space">#}
+{#      <button type="submit" class="btn btn-primary btn-lg btnfix">{% trans 'Registrer ny member' %}</button>#}
+          <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Register new member' %}</button>
+        <a class="btn btn-info btn-lg" href="{% url "member_overview" %}">Cancel</a></center>
     </form>
-  <div class="hidden">Ibsum Lorem</div>
+{#  <div class="hidden">Ibsum Lorem</div>#}
   </div>
 {% endblock main %}
 
