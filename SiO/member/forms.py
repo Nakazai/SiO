@@ -4,6 +4,8 @@ from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
 from django.core.exceptions import ValidationError
 # from django.contrib.auth.models import AbstractUser as Admin
 from .models import Member, Association
+# from SiO.CoAdmin.models import Member, Association
+
 from SiO.settings import ALLOWED_SIGNUP_DOMAINS
 from SiO.CoAdmin.models import Administrator
 
@@ -64,6 +66,9 @@ def UniqueEmailValidator(value):
 CHOICES=[('Activ','Activ'),
          ('Not activ','Not activ')]
 
+CHOICES = [('Activ', 'Activ'), ]
+         # ('Not activ','Not activ')]
+
 
 class RegForm(forms.ModelForm):
     first_name = forms.CharField(
@@ -78,9 +83,9 @@ class RegForm(forms.ModelForm):
         widget=forms.EmailInput(attrs={'class': 'form-control'}),
         required=True,
         max_length=75)
-    association = forms.ModelChoiceField(queryset=Association.objects.none(),
-                                         widget=forms.Select(attrs={'class': 'form-control'}),
-                                         required=True)
+    # association = forms.ModelChoiceField(queryset=Association.objects.none(),
+    #                                      widget=forms.Select(attrs={'class': 'form-control'}),
+    #                                      required=True)
 
     # association_choices = [(i['asoc_name'], i['asoc_name']) for i in Association.objects.values('asoc_name')]
     # association = forms.ChoiceField(choices=association_choices, widget=forms.Select(attrs={'class': 'form-control'}),
@@ -98,7 +103,7 @@ class RegForm(forms.ModelForm):
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
     #     max_length=30,
     #     required=True)
-    student_status = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
+    student_status = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'id': 'value'}))
     reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
     gender = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
@@ -109,19 +114,19 @@ class RegForm(forms.ModelForm):
     class Meta:
         model = Member
         exclude = ['last_login', 'date_joined']
-        fields = ['first_name', 'last_name', 'email', 'association', 'student_status', 'reg_date', 'gender', 'end_date', ]
+        fields = ['first_name', 'last_name', 'email', 'student_status', 'reg_date', 'gender', 'end_date']
         # fields = ['first_name', 'last_name', 'email', 'reg_date', ]
 
     def __init__(self, user, *args, **kwargs):
         super(RegForm, self).__init__(*args, **kwargs)
-        self.fields['association'].queryset = Association.objects.filter(asoc_name=user.association)
+        # self.fields['association'].queryset = Association.objects.filter(asoc_name=user.association)
 
         # association = kwargs.pop('association', None)
         # self.fields['username'].validators.append(ForbiddenUsernamesValidator)
         # self.fields['username'].validators.append(InvalidUsernameValidator)
         # self.fields['username'].validators.append(
         #     UniqueUsernameIgnoreCaseValidator)
-        # self.fields['email'].validators.append(UniqueEmailValidator)
+        self.fields['email'].validators.append(UniqueEmailValidator)
         self.fields['email'].validators.append(SignupDomainValidator)
         # self.fields['association'].validators.append(get_queryset)
         # self.fields['association'].queryset = Association.objects.filter(asoc_name='asoc_name')
@@ -142,24 +147,28 @@ class EditRegForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
         required=True)
+    # email = forms.CharField(
+    #     widget=forms.EmailInput(attrs={'class': 'form-control'}),
+    #     required=True,
+    #     max_length=75)
     # association = forms.ModelChoiceField(queryset=Association.objects.all(),
     #                                      widget=forms.Select(attrs={'class': 'form-control'}),
     #                                      required=True)
-    student_status = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
-        max_length=30,
-        required=True)
+    # student_status = forms.CharField(
+    #     widget=forms.TextInput(attrs={'class': 'form-control'}),
+    #     max_length=30,
+    #     required=True)
     reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
     gender = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
         required=False)
-    birthday = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
 
     class Meta:
-        model = Administrator
+        model = Member
         exclude = ['last_login', 'date_joined']
-        fields = ['first_name', 'last_name', 'student_status', 'reg_date', 'gender', 'birthday' ]
+        fields = ['first_name', 'last_name', 'reg_date', 'gender', 'end_date']
 
     def __init__(self, *args, **kwargs):
         super(EditRegForm, self).__init__(*args, **kwargs)
@@ -177,13 +186,18 @@ class RegAsoc(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
         required=True)
+    # user = forms.ModelChoiceField(queryset=Administrator.objects.all(),
+    #                                        widget=forms.Select(attrs={'class': 'form-control'}),
+    #                                        required=True)
 
     class Meta:
         model = Association
         fields = ['asoc_name', ]
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, user, *args, **kwargs):
         super(RegAsoc, self).__init__(*args, **kwargs)
+        # self.fields['administrator'].queryset = Member.objects.filter(member=user.association)
+
 
 
     # def clean(self):

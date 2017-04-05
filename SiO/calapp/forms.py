@@ -12,12 +12,13 @@
 #
 #     class Meta:
 #         model = Event
-#         exclude = ['last_login', 'date_joined']
+#     #     exclude = ['last_login', 'date_joined']
 #         fields = ['association', ]
-#         # fields = ['first_name', 'last_name', 'email', 'reg_date', ]
+#     #     # fields = ['first_name', 'last_name', 'email', 'reg_date', ]
 #
 #     def __init__(self, user, *args, **kwargs):
+#         # self.user = kwargs.pop('user', None)
 #         super(CalForm, self).__init__(*args, **kwargs)
 #         self.fields['association'].queryset = Association.objects.filter(asoc_name=user.association)
-#
+
 

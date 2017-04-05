@@ -11,7 +11,9 @@ from django.db.models.signals import post_save
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.auth.models import AbstractUser
 # from SiO.member.models import Member
+# from SiO.member.models import Association
 from SiO.member.models import Association
+
 
 # TODO: Her lages det database modeller Admin, Mail og Events
 
@@ -23,6 +25,7 @@ class Administrator(AbstractUser):
     union_position = models.CharField(max_length=100)
 
     # asoc_name = models.CharField(max_length=100)
+    # TODO: association var som før og husk denne
     association = models.ForeignKey(Association)
 
     # member_no = models.ForeignKey(Member)
@@ -62,12 +65,16 @@ class Event(models.Model):
     description = models.TextField(max_length=200)
     synced = models.BooleanField(default=False)
     gid = models.CharField(default='', max_length=100)
-    # association = models.ForeignKey(Association)
+    association = models.ForeignKey(Association)
+    # user = models.ForeignKey(Administrator)
 
     class Meta:
         db_table = 'Event'
 
     def __str__(self):
+        return self.name
+
+    def __unicode__(self):
         return self.name
 
     # def has_perm(self, perm, obj=None):

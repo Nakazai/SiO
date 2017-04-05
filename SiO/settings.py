@@ -51,6 +51,9 @@ INSTALLED_APPS = [
 # TODO: Dette må til slik at db-table får navnet Administrator
 AUTH_USER_MODEL = 'CoAdmin.Administrator'
 
+# AUTHENTICATION_BACKENDS = ['SiO.core.views.EmailBackend']
+
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         # 'rest_framework.permissions.IsAuthenticated',
@@ -60,7 +63,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
-        #'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
 

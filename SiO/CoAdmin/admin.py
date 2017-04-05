@@ -5,7 +5,10 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 # from django.contrib import CoAdmin
 
-from SiO.CoAdmin.models import Administrator, Association
+from SiO.CoAdmin.models import Administrator
+# from SiO.member.models import Association
+from SiO.CoAdmin.models import Association
+
 
 # TODO: UserAdmin gir en fin grensesnitt med change password osv
 
@@ -54,7 +57,7 @@ class AdministratorAdmin(UserAdmin):
 admin.site.register(Administrator, AdministratorAdmin)
 
 
-admin.site.register(Association)
+# admin.site.register(Association)
 
 admin.site.unregister(Group)
 

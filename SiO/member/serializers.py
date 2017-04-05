@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from SiO.member.models import Member, Association
+# from SiO.CoAdmin.models import Member, Association
 
 
 class MemberSerializer(serializers.ModelSerializer):

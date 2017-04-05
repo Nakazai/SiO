@@ -117,9 +117,11 @@ var cal = {
 
 		var $dayno = $("<span class='cell-dayno'>");
 		$dayno.text(date.getDate());
+		// $dayno.click(cal.showAddForm);
 		$litop.append($dayno);
 
 		var $weather = $("<span class='cell-weather'>");
+		// $weather.append(cal.getWeatherfaicon);
 		$litop.append($weather);
 
 		var $addevent = $("<span class='btn-fa btn-add'>");
@@ -151,6 +153,8 @@ var cal = {
 			ico = "fa-cloud";
 		else if (weatherid >= 200 && weatherid < 300)
 			ico = "fa-bolt";
+		else if (weatherid >= 500 && weatherid < 600)
+			ico = "fa-umbrella";
 
 		return $("<i>", {
 			class: "fa " + ico
@@ -205,6 +209,9 @@ var cal = {
 
 		var $ename = $("<span class='event-li-name'>");
 		$ename.text(event.name);
+		// var dataDjango = '{{ event.name|escapejs  }}';
+		// $ename.text(dataDjango);
+
 		$li.append($ename);
 
 		var $etime = $("<span class='event-li-time'>");
@@ -222,6 +229,34 @@ var cal = {
 
 		return $li;
 	},
+    //
+	// getEventli: function (event) {
+	// 	var $li = $("<li class='event-li'>");
+    //
+	// 	var $ename = $("<span class='event-li-name'>");
+	// 	$ename.text(event.name);
+	// 	// var dataDjango = '{{ event.name|escapejs  }}';
+	// 	// $ename.text(dataDjango);
+    //
+	// 	$li.append($ename);
+    //
+	// 	var $etime = $("<span class='event-li-time'>");
+	// 	var start = new Date(event.start),
+	// 		h = cal.getHourStr(start.getHours());
+    //
+	// 	$etime.text(h);
+	// 	$li.append($etime);
+    //
+	// 	// add data-eid attribute for detail show
+	// 	$li.data("eid", event.id);
+	// 	$li.click(cal.showDetailForm);
+    //
+	// 	cal.eventsById[event.id].eventli.push($li);
+    //
+	// 	return $li;
+	// },
+
+
 	//hour string format: (hour)(a/p), change from 12 to 24 format
 	getHourStr: function (h) {
 		return (h < 24 ? '0' + h : h - 12).slice(-2) + (h < 12 ?  '' : '');
@@ -239,10 +274,12 @@ var cal = {
 		for (var x = new Date(start.getTime()), i = 0; i < 5; ++i) {
 			var h=x.getHours(),
 				hstr = cal.getHourStr(h),
-				$li = $("<li>" + hstr + "</li>");
-			
-			$ul.append($li);
-			$lis[h] = $li;
+				$lili = $("<li class='events-today'>" + hstr + "</li>");
+				// $lili = $("<li class='events-today'> + hstr +  ");
+
+
+			$ul.append($lili);
+			$lis[h] = $lili;
 
 			x.shiftHour(1);
 		}
@@ -252,7 +289,29 @@ var cal = {
 				console.log("today events", response);
 				response.data.forEach(function(event){
 					var h = new Date(event.start).getHours();
+					// var $ename = $("<span class='events-today-name'>");
+					// var $enamE = $ename.text(event.name);
+					// $lis[h].append(" - "+$enamE);
+					// $lis[h].append(" - "+event.name);
 					$lis[h].append(" - "+event.name);
+					// $lis[h].append(event.name);
+					//this we let the user see full details of event time during current day
+					$lis[h].data("eid", event.id);
+					$lis[h].click(cal.showDetailForm);
+
+					// if ($lis[h].click(cal.showDetailForm) == cal.$btnEdit.data("eid", event.id)) {
+					// 	$lis[h].click(cal.$btnEdit);
+					// }
+
+					// cal.addEventLi(event);
+					// if(cal.$btnDelete){
+					// 	cal.eventsById[event.id].eventli.push($lis[h]);
+					// 	return $lis[h];
+					// }
+
+					// cal.eventsById[event.id].eventli.push($lis[h]);
+                    //
+					// return $lis[h];
 				})
 			}
 		});
@@ -332,7 +391,7 @@ var cal = {
 	$addEventEtime: $("#add-event-etime"),
 	$addEventAllday: $("#add-event-allday"),
 	$addEventDesc: $("#add-event-desc"),
-	$addEventAsoc: $("#add-event-asoc"),
+	// $addEventAsoc: $("#association"),
 
 	$detailEventForm: $("#detail-event-form"),
 	$detailEventName: $("#detail-event-name"),
@@ -353,40 +412,80 @@ var cal = {
 		cal.$addEventAllday[0].checked = false;
 		cal.$addEventDesc.val("");
 
+		// var options = '';
+		// // var data = ('$addEventAsoc');
+		// // $(document).ready(function(){
+		// 	$('select[id=association]').change(function(){
+		// 		 $.ajax({
+		// 			 type: "GET",
+		// 			 // url: '/calendar/',
+		// 			success: function(data){
+		// 				$.each(data, function(key, value) {
+		// 					// options += '<option value="' + value.association + '" text="' + value.association + '" />';
+		// 					options += '<option value="' + key + '">' + value +'</option>';
+		// 				});
+		// 			}
+		// 		})
+		// 	});
+		// });
+        //
+		// $('#association').append(options);
+
+		// $('#association').append('<option>' + data[0].association  + '</option>');
+
 		// cal.$addEventAsoc.val('{{ asoc.id }}');
 		// alert (cal.$addEventAsoc.val('{{ asoc.id }}'));
 
-		// var association = $(this).val("association");
+		 // $("#association").data(function (e) {
+		 // 	e.preventDefault();
+		// var association = $(this).val('id');
+		// $association_id = $(this).attr('id');
 		// var dataString = "name=" + association;
 		// var association = document.getElementById("add-event-asoc").value;
+		// var $addEventAsoc = $(this).val();
 
-
-		// alert (association);
-		// console.log(association);
+        // var asoc = $('#association').val();
+        //
+        // // alert ($association_id);
+        // // console.log(association);
         // $.ajax ({
-         //    type: "POST",
-		// 	url: '/calendar/event/addedit/',
-         //    data: {
-         //    	association: $('#add-event-asoc').val(),
-		// 		csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+        //     // type: "GET",
+        //     // url: "http://localhost:8000/calendar/",
+        //     // type: $(this).attr('method'),
+        //     // url: this.action,
+			// // data: $addEventAsoc,
+			// res: {
+			// 	csrfmiddlewaretoken: "{{ csrf_token }}"
+			// },
+        //     // data: {
+        //     //     // 'association': $('#add-event-asoc').val()
+			// 	// association: association
+        //     //     // id: $association_id ,
+        //     //     // 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+        //     //
+        //     // },
+        //     // data: association,
+        //     // dataType: 'json',
+        //     success: function () {
+        //         // $('#association').val(data);
+        //         cal.$addEventAsoc.val(asoc.id);
+        //         // window.open(data.association);
+        //         // alert(data.result);
         //
-		// 	},
-		// 	// data: association,
-         //    // dataType: 'json',
-         //    success: function(data) {
-         //        // $('#association').val(data);
-         //        cal.$addEventAsoc.val(data);
-		// 		alert("Added asoc");
+        //         // association = data.association;
         //
-		// 			// association = data.association;
+        //     },
+        //     error: function (rs, e) {
+        //         // console.log("error");
+        //         // alert(data.result);
+        //         // console.log('Error:', data)
+			// 	alert('Sorry, try again.');
+        //     }
         //
-         //    },
-		// 	error: function (data) {
-         //        // console.log("error");
-		// 		alert("Something wrong");
-         //        console.log('Error:', data)
-         //    }
+        //   });
 		// });
+
+		// cal.$addEventAsoc.val('association');
 
 
 		var date = new Date($(this).data("date"));
@@ -446,7 +545,7 @@ var cal = {
 			end: end.toISOString(),
 			allday: cal.$addEventAllday[0].checked,
 			description: cal.$addEventDesc.val(),
-			association: cal.$addEventAsoc.val(),
+			// association: cal.$addEventAsoc.val(),
 			csrfmiddlewaretoken: csrf_token
 		};
 

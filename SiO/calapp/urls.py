@@ -14,5 +14,6 @@ urlpatterns = [
 	# url(r'^calendar/', views.calendar, name='calendar'),
 	url(r'^calendar/', views.calendar.as_view(), name='calendar'),
 	# url(r'^', RedirectView.as_view(url='calendar/')),
+	# url(r'^form_ajax/', views.form_ajax),
 ]
 
