@@ -46,8 +46,12 @@ INSTALLED_APPS = [
     'SiO.core',
     # 'SiO.member',
     'SiO.calapp',
-    'SiO.post'
+    'SiO.post',
+    # email 
+    'anymail',
+
 ]
+
 
 # TODO: Dette må til slik at db-table får navnet Administrator
 AUTH_USER_MODEL = 'CoAdmin.Administrator'
@@ -173,3 +177,11 @@ ALLOWED_SIGNUP_DOMAINS = ['*']
 
 FILE_UPLOAD_TEMP_DIR = '/tmp/'
 FILE_UPLOAD_PERMISSIONS = 0o644
+
+ANYMAIL = {
+    # (exact settings here depend on your ESP...)
+    "MAILGUN_API_KEY": "key-197955abc889708dd670fb2c8b24b586",
+    "MAILGUN_SENDER_DOMAIN": 'test.sioforeninger.no',  # your Mailgun domain, if needed
+}
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
+DEFAULT_FROM_EMAIL = "test@sioforeninger.no"  # if you don't already have this in settin

@@ -6,16 +6,21 @@
 {#css her#}
 	<script>
 		var csrf_token = '{{ csrf_token }}';
-
 	</script>
 {% endblock head %}
 {% block main %}
 		{% csrf_token %}
  <form>
+ <div class="container">
+     <div class="form-group">
+         <label for="toPost">Send email to:</label>
+         <input type="email" class="form-control" id="toPost">
+     </div>
     <div class="form-group">
       <label for="email">Write your email text here</label>
       <textarea class="form-control" rows="5" id="email"></textarea>
     </div>
+ <button type="submit" class="btn btn-danger">Send email</button>
+     </div>
   </form>
-    <h1>test</h1>
 {% endblock main %}
