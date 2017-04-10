@@ -1,4 +1,21 @@
 {% extends 'base.html' %}
 
 {% load staticfiles i18n %}
-<h1> Test </h1> 
+
+{% block head %}
+{#css her#}
+	<script>
+		var csrf_token = '{{ csrf_token }}';
+
+	</script>
+{% endblock head %}
+{% block main %}
+		{% csrf_token %}
+ <form>
+    <div class="form-group">
+      <label for="email">Write your email text here</label>
+      <textarea class="form-control" rows="5" id="email"></textarea>
+    </div>
+  </form>
+    <h1>test</h1>
+{% endblock main %}
