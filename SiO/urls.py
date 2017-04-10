@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'', include('SiO.CoAdmin.urls')),
     url(r'', include('SiO.calapp.urls')),
     url(r'', include('SiO.chart.urls')),
+    url(r'', include('SiO.post.urls')),
     url(r'^login', auth_views.login, {'template_name': 'core/cover.html'},
         name='login'),
     url(r'^logout', auth_views.logout, {'next_page': '/'}, name='logout'),

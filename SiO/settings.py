@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'SiO.core',
     # 'SiO.member',
     'SiO.calapp',
+    'SiO.post'
 ]
 
 # TODO: Dette må til slik at db-table får navnet Administrator
