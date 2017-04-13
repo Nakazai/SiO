@@ -3,8 +3,7 @@ from SiO.member.models import Association
 from SiO.member.models import Member
 # Create your models here.
 from SiO.member.models import Association
-1import datetime
-import re
+
 
 class Meta:
     db_table = 'email'
