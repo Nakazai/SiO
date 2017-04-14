@@ -40,6 +40,10 @@ class admin_edit(SuccessMessageMixin, UpdateView):
     template_name = 'CoAdmin/admin_edit.html'
     success_message = 'Admin successful edited'
 
+    def get_queryset(self):
+        queryset = Administrator.objects.filter(association=self.request.user.association)
+        return queryset
+
 
 # @login_required
 def ChangePassword(request):

@@ -68,6 +68,8 @@ def UniqueEmailValidator(value):
 
 CHOICES = [('Activ', 'Activ'), ]
          # ('Not activ','Not activ')]
+CHOICESgender = [('Female', 'Female'),
+                 ('Male', 'Male')]
 
 
 class RegForm(forms.ModelForm):
@@ -103,9 +105,10 @@ class RegForm(forms.ModelForm):
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
     #     max_length=30,
     #     required=True)
-    student_status = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'id': 'value'}))
+    # student_status = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'id': 'value'}))
     reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
     date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+    gender = forms.ChoiceField(choices=CHOICESgender, widget=forms.RadioSelect(attrs={'id': 'value'}))
     # gender = forms.CharField(
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
     #     max_length=30,
@@ -115,7 +118,7 @@ class RegForm(forms.ModelForm):
     class Meta:
         model = Member
         exclude = ['last_login', 'date_joined']
-        fields = ['first_name', 'last_name', 'email', 'student_status', 'date_of_birth', 'reg_date', 'end_date']
+        fields = ['first_name', 'last_name', 'email', 'gender', 'date_of_birth', 'reg_date', 'end_date']
         # fields = ['first_name', 'last_name', 'email', 'reg_date', ]
 
     def __init__(self, user, *args, **kwargs):

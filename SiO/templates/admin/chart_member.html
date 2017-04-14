@@ -3,7 +3,7 @@
 
 
 {% block content_title %}
-    <h1> Association Summary </h1>
+    <h1> Member Summary </h1>
 {% endblock %}
 
 {% block result_list %}
@@ -17,21 +17,21 @@
             <span>Association</span>
           </div>
         </th>
-        <th>
+{#        <th>#}
+{#          <div class=”text”>#}
+{#            <span>Total Members</span>#}
+{#          </div>#}
+{#        </th>#}
+           <th>
           <div class=”text”>
-            <span>Members</span>
+            <span>Total Female</span>
           </div>
         </th>
-{#           <th>#}
-{#          <div class=”text”>#}
-{#            <span>Total Female</span>#}
-{#          </div>#}
-{#        </th>#}
-{#           <th>#}
-{#          <div class=”text”>#}
-{#            <span>Total Male</span>#}
-{#          </div>#}
-{#        </th>#}
+           <th>
+          <div class=”text”>
+            <span>Total Male</span>
+          </div>
+        </th>
 {#        <th>#}
 {#          <div class="text">#}
 {#            <a href="#">#}
@@ -45,9 +45,9 @@
       {% for row in summary %}
       <tr class="{% cycle 'row1' 'row2' %}">
         <td> {{ row.asoc_name }} </td>
-        <td> {{ row.total }} </td>
-{#          <td> {{ row.female }} </td>#}
-{#          <td> {{ row.male }} </td>#}
+{#        <td> {{ row.member }} </td>#}
+          <td> {{ row.female }} </td>
+          <td> {{ row.male }} </td>
 {#        <td> {{ row.member_no }} </td>#}
 {#        <td> {{ row.total_sales | default:0 | intcomma }}$ </td>#}
 {#        <td>#}
@@ -58,7 +58,7 @@
       {% endfor %}
       </tr>
             <tr style="font-weight:bold; border-top:2px solid #DDDDDD;">
-            <td> Total Members </td>
+            <td> Total </td>
             <td> {{ summary_total.total }} </td>
       </tr>
     </tbody>

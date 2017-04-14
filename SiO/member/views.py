@@ -274,12 +274,12 @@ def member_signup(request):
             asoc_pk = Association.objects.filter(asoc_name=request.user.association)
             # asoc = form.cleaned_data.get('association')
             asoc = Association.objects.get(id=asoc_pk)
-            student_status = form.cleaned_data.get('student_status')
+            gender = form.cleaned_data.get('gender')
             reg_date = form.cleaned_data.get('reg_date')
             date_of_birth = form.cleaned_data.get('date_of_birth')
             end_date = form.cleaned_data.get('end_date')
             Member.objects.create(first_name=first_name, last_name=last_name, email=email,
-                                  student_status=student_status, association=asoc,
+                                  gender=gender, association=asoc,
                                   reg_date=reg_date, date_of_birth=date_of_birth, end_date=end_date)
             messages.add_message(request, messages.SUCCESS,
                                  'Member successfully added')
