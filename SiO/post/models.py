@@ -1,7 +1,7 @@
 from django.db import models
 from SiO.member.models import Association
 from SiO.member.models import Member
-# Create your models here.
+ # Create your models here.
 
 
 class Meta:
