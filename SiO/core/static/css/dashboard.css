@@ -222,3 +222,7 @@ ul.stream li div.post div.interaction a {
     border-radius: 0 0 15px 15px;
     border-top: 1px solid #7B1801;
 }
+.col-md-3{
+    padding-right: 30px;
+    width: 30%;
+}

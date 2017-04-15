@@ -3,6 +3,8 @@
 {% load staticfiles i18n %}
 
 {% block head %}
+    <link href="{% static 'css/post.css' %}" rel="stylesheet">
+    <link href="{% static 'javascript/post.js' %}" rel="stylesheet">
 {#css her#}
 	<script>
 		var csrf_token = '{{ csrf_token }}';
@@ -20,7 +22,7 @@
       <label for="email">Write your email text here</label>
       <textarea class="form-control" rows="5" id="email"></textarea>
     </div>
- <button type="submit" class="btn btn-danger">Send email</button>
+ <button onclick="warning()" type="submit" class="btn btn-danger">Send email</button>
      </div>
   </form>
 {% endblock main %}

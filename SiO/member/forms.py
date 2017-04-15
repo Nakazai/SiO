@@ -159,8 +159,9 @@ class EditRegForm(forms.ModelForm):
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
     #     max_length=30,
     #     required=True)
-    reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+
     date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+    reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
     # gender = forms.CharField(
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
     #     max_length=30,
