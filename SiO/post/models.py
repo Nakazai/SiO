@@ -13,6 +13,5 @@ class Email(models.Model):
     sentTime = models.DateTimeField(auto_now_add=True, blank=False)
 
     receiver = models.CharField(max_length=254)
-    sendStatus = models.BooleanField()
     message = models.TextField()
     asocNumber = models.OneToOneField(Association)
