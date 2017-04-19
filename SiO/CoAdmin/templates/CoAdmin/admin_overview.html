@@ -11,12 +11,29 @@
 {% block main %}
     <h1 class="logo"><a href="{% url 'home' %}">Admins</a></h1>
 
-    <div class="container">
+      <div class="row">
+{#    <div class="col-md-2 col-md-offset-1">#}
+{#            <div class="col-md-3 col-md-offset-2">#}
+                    <div class="col-md-1 col-md-offset-1">
+
+
         <a class="btn btn-primary btn-lg" href="{% url 'InnsideSignUp' %}">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             {% trans 'New Admin' %}
                         </a>
 {#        <h2><a href="{% url 'member_signup' %}" class="btn btn-link">{% trans 'Ny Medlem' %}</a></h2>#}
+    </div>
+        <div class="col-md-2 col-md-offset-2"></div>
+{#        <div class="col-md-3 col-md-offset-6">#}
+{#                <div class="col-md-2 col-md-offset-2">#}
+                        <div class="col-md-2 col-md-offset-3">
+
+
+        <a class="btn btn-primary btn-lg" href="{% url 'home' %}">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            {% trans 'Return Home' %}
+                        </a>
+    </div>
     </div>
     <br>
 
@@ -41,7 +58,7 @@
                     <th>Email</th>
                     <th>Association</th>
 {#                    <th>student_status</th>#}
-                    <th>Union_position</th>
+                    <th>Union position</th>
                     <th>Username</th>
 {#                    <th>password</th>#}
                 </tr>

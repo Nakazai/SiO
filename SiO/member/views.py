@@ -293,7 +293,6 @@ def member_signup(request):
             # return redirect('/')
             return redirect('member_overview')
 
-
     else:
         return render(request, 'member/member_signup.html',
                       {'form': RegForm(request.user)})

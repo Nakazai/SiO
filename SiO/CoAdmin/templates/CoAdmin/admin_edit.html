@@ -49,8 +49,8 @@
 
             </div>
           {% endfor %}
-      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Update admin' %}</button>
-       <a class="btn btn-info btn-lg" href="{% url "admin_overview" %}">Cancel</a></center>
+      <center><button type="submit" name="submit" class="btn btn-primary btn-lg">{% trans 'Update admin' %}</button>
+       <a class="btn btn-info btn-lg" name="cancel" href="{% url "admin_overview" %}">Cancel</a></center>
     </form>
   </div>
 {% endblock main %}

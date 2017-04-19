@@ -66,23 +66,23 @@ def UniqueEmailValidator(value):
 # CHOICES=[('Activ','Activ'),
 #          ('Not activ','Not activ')]
 
-CHOICES = [('Activ', 'Activ'), ]
+# CHOICES = [('Activ', 'Activ'), ]
          # ('Not activ','Not activ')]
-CHOICESgender = [('Female', 'Female'),
-                 ('Male', 'Male')]
+CHOICES = [('Female', 'Female'),
+           ('Male', 'Male')]
 
 
 class RegForm(forms.ModelForm):
     first_name = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'firstname', 'id': 'firstname'}),
         max_length=30,
         required=True)
     last_name = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'lastname', 'id': 'lastname'}),
         max_length=30,
         required=True)
     email = forms.CharField(
-        widget=forms.EmailInput(attrs={'class': 'form-control'}),
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'name': 'email', 'id': 'email'}),
         required=True,
         max_length=75)
     # association = forms.ModelChoiceField(queryset=Association.objects.none(),
@@ -106,14 +106,14 @@ class RegForm(forms.ModelForm):
     #     max_length=30,
     #     required=True)
     # student_status = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'id': 'value'}))
-    reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
-    date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
-    gender = forms.ChoiceField(choices=CHOICESgender, widget=forms.RadioSelect(attrs={'id': 'value'}))
+    reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'reg_date'}))
+    date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'date_of_birth'}))
+    gender = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'name': 'gender'}))
     # gender = forms.CharField(
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
     #     max_length=30,
     #     required=False)
-    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'end_date'}))
 
     class Meta:
         model = Member
@@ -151,10 +151,10 @@ class EditRegForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
         required=True)
-    # email = forms.CharField(
-    #     widget=forms.EmailInput(attrs={'class': 'form-control'}),
-    #     required=True,
-    #     max_length=75)
+    email = forms.CharField(
+        widget=forms.EmailInput(attrs={'class': 'form-control'}),
+        required=True,
+        max_length=75)
     # association = forms.ModelChoiceField(queryset=Association.objects.all(),
     #                                      widget=forms.Select(attrs={'class': 'form-control'}),
     #                                      required=True)
@@ -162,18 +162,18 @@ class EditRegForm(forms.ModelForm):
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
     #     max_length=30,
     #     required=True)
-    reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
-    date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+    reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'reg_date'}))
+    date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'date_of_birth'}))
     # gender = forms.CharField(
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
     #     max_length=30,
     #     required=False)
-    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'end_date'}))
 
     class Meta:
         model = Member
         exclude = ['last_login', 'date_joined']
-        fields = ['first_name', 'last_name', 'date_of_birth', 'reg_date', 'end_date']
+        fields = ['first_name', 'last_name', 'email', 'date_of_birth', 'reg_date', 'end_date']
 
     def __init__(self, *args, **kwargs):
         super(EditRegForm, self).__init__(*args, **kwargs)

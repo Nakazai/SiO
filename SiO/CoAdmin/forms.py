@@ -217,9 +217,9 @@ class InnsideSignUpForm(forms.ModelForm):
         required=True)
     # association = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
-    association = forms.ModelChoiceField(queryset=Association.objects.none(),
-                                         widget=forms.Select(attrs={'class': 'form-control'}),
-                                         required=True)
+    # association = forms.ModelChoiceField(queryset=Association.objects.none(),
+    #                                      widget=forms.Select(attrs={'class': 'form-control'}),
+    #                                      required=True)
     union_position = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
@@ -243,11 +243,11 @@ class InnsideSignUpForm(forms.ModelForm):
     class Meta:
         model = Administrator
         exclude = ['last_login', 'date_joined']
-        fields = ['first_name', 'last_name', 'association', 'union_position', 'username', 'email', 'password', 'confirm_password', ]
+        fields = ['first_name', 'last_name', 'union_position', 'username', 'email', 'password', 'confirm_password', ]
 
     def __init__(self, user, *args, **kwargs):
         super(InnsideSignUpForm, self).__init__(*args, **kwargs)
-        self.fields['association'].queryset = Association.objects.filter(asoc_name=user.association)
+        # self.fields['association'].queryset = Association.objects.filter(asoc_name=user.association)
 
         # self.fields['username'].validators.append(ForbiddenUsernamesValidator)
         # self.fields['username'].validators.append(InvalidUsernameValidator)

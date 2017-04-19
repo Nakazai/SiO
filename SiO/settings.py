@@ -20,8 +20,9 @@ SECRET_KEY = '55ib3m14rm=g(aqcp_k63gcuzp_$hq^@9tc6v_))h0f%u0&c^5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+# TEST_RUNNER = 'django_behave.runner.DjangoBehaveTestSuiteRunner'
 
 # Application definition
 # TODO: For vær ny app som blir laget må det dannes PATH her
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'datetimewidget',
     'dedal',
     # 'bootstrapform',
+    # 'behave',
+    'behave_django',
 
     'SiO.member',
     'SiO.CoAdmin',

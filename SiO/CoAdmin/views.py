@@ -81,6 +81,8 @@ class admin_delete(DeleteView):
         obj = super(admin_delete, self).get_object(owner)
         if obj == self.request.user:
             raise Http404
+            # return render('myapp/login_error.html')
+            # raise 'SiO/404.html'
         return obj
     # def get_queryset(self):
     #     qs = super(admin_delete, self).get_queryset()
@@ -161,8 +163,10 @@ def InnsideSignUp(request):
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-            asoc_pk = form.cleaned_data.get('association')
-            asoc = Association.objects.get(id=asoc_pk.pk)
+            asoc_pk = Association.objects.filter(asoc_name=request.user.association)
+            # asoc_pk = form.cleaned_data.get('association')
+            # asoc = Association.objects.get(id=asoc_pk.pk)
+            asoc = Association.objects.get(id=asoc_pk)
             # asoc_name = form.cleaned_data.get('asoc_name')
             # asoc_name = Association.asoc_name
             union_position = form.cleaned_data.get('union_position')
@@ -178,7 +182,8 @@ def InnsideSignUp(request):
             messages.add_message(request, messages.SUCCESS,
                                  'Admin successfully added.')
             # login(request, user) TODO:Denne linjen logger inn ny member øyeblikkelig etter registrering
-            return redirect('/')
+            # return redirect('/')
+            return redirect('admin_overview')
 
     else:
         return render(request, 'CoAdmin/InnsideSignup.html',

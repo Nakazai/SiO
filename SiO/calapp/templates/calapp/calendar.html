@@ -24,6 +24,13 @@
 {#<body>#}
 {#    <h1 class="logo"><a href="{% url 'home' %}">Calendar</a></h1>#}
 
+        <div class="col-md-1">
+        <a class="btn btn-primary btn-lg" href="{% url 'home' %}">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            {% trans 'Return Home' %}
+                        </a>
+    </div>
+
 	<div id="container">
 		<div id="cal-side-bar">
 			<div id="cal-side-bar-top">

@@ -16,7 +16,7 @@ class Member(models.Model):
     member_no = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
-    email = models.CharField(max_length=50, null=True, blank=True)
+    email = models.CharField(max_length=50, null=True, blank=True, unique=True)
 
     # asoc_name = models.CharField(max_length=50)
     association = models.ForeignKey('Association')
