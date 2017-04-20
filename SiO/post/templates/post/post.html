@@ -6,9 +6,7 @@
     <link href="{% static 'css/post.css' %}" rel="stylesheet">
     <link href="{% static 'javascript/post.js' %}" rel="stylesheet">
 {#css her#}
-	<script>
-		var csrf_token = '{{ csrf_token }}';
-	</script>
+	
 {% endblock head %}
 {% block main %}
 		{% csrf_token %}
