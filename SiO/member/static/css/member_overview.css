@@ -1,0 +1,116 @@
+body {
+  background-color: #d84545;
+}
+
+.logo {
+  margin: 0;
+  font-size: 3em;
+  font-weight: 200;
+  font-family: "Audiowide", cursive;
+  text-align: center;
+  text-shadow: 1px 1px 0 #333333;
+  line-height: 70px;
+}
+
+.logo a {
+  color: #f6f6f6;
+}
+
+.logo a:hover, .logo a:focus {
+  color: #0000FF;
+  text-decoration: none;
+}
+
+.signup {
+  background-color: #f6f6f6;
+  width: 100%;
+  border-radius: 7px;
+  margin: 10px auto 0;
+}
+
+.signup {
+  padding: 30px 20px;
+}
+
+.signup form {
+  margin-top: 20px;
+}
+
+.signup h2 {
+  margin: 0;
+}
+th {
+  background-color: #eee;
+}
+
+
+
+
+
+
+/*.input[type=text] {*/
+    /*width: 130px;*/
+    /*-webkit-transition: width 0.4s ease-in-out;*/
+    /*transition: width 0.4s ease-in-out;*/
+/*}*/
+
+/*!* When the input field gets focus, change its width to 100% *!*/
+/*input[type=text]:focus {*/
+    /*width: 100%;*/
+/*}*/
+
+
+
+/*.search-form .form-group {*/
+  /*float: right !important;*/
+  /*transition: all 0.35s, border-radius 0s;*/
+  /*width: 32px;*/
+  /*height: 32px;*/
+  /*background-color: #fff;*/
+  /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;*/
+  /*border-radius: 25px;*/
+  /*border: 1px solid #ccc;*/
+/*}*/
+/*.search-form .form-group input.form-control {*/
+  /*padding-right: 20px;*/
+  /*border: 0 none;*/
+  /*background: transparent;*/
+  /*box-shadow: none;*/
+  /*display:block;*/
+/*}*/
+/*.search-form .form-group input.form-control::-webkit-input-placeholder {*/
+  /*display: none;*/
+/*}*/
+/*.search-form .form-group input.form-control:-moz-placeholder {*/
+  /*!* Firefox 18- *!*/
+  /*display: none;*/
+/*}*/
+/*.search-form .form-group input.form-control::-moz-placeholder {*/
+  /*!* Firefox 19+ *!*/
+  /*display: none;*/
+/*}*/
+/*.search-form .form-group input.form-control:-ms-input-placeholder {*/
+  /*display: none;*/
+/*}*/
+/*.search-form .form-group:hover,*/
+/*.search-form .form-group.hover {*/
+  /*width: 100%;*/
+  /*border-radius: 4px 25px 25px 4px;*/
+/*}*/
+/*.search-form .form-group span.form-control-feedback {*/
+  /*position: absolute;*/
+  /*top: -1px;*/
+  /*right: -2px;*/
+  /*z-index: 2;*/
+  /*display: block;*/
+  /*width: 34px;*/
+  /*height: 34px;*/
+  /*line-height: 34px;*/
+  /*text-align: center;*/
+  /*color: #3596e0;*/
+  /*left: initial;*/
+  /*font-size: 14px;*/
+/*}*/
+
+
+

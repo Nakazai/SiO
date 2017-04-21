@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% load staticfiles i18n %}
+
+{% block head %}
+  <link href="{% static 'css/chart.css' %}" rel="stylesheet">
+    {{ form.media }}
+{% endblock head %}
+
+{#<script>#}
+{#    {% block jquery %}#}
+{#    var endpoint = '/api/chart/data/';#}
+{#    var defaultData = [];#}
+{#    var labels = [];#}
+{##}
+{#    $.ajax({#}
+{#        method: "GET",#}
+{#        url: endpoint,#}
+{#        success: function (data) {#}
+{#            labels = data.labels;#}
+{#            defaultData = data.default;#}
+{#            setChart()#}
+{#            },#}
+{#            error: function (error_data) {#}
+{#                console.log("error");#}
+{#                console.log(error_data)#}
+{#            }#}
+{#        });#}
+{##}
+{#    function setChart(){#}
+{#         var ctx = document.getElementById("myChart");#}
+{#            var myChart = new Chart(ctx, {#}
+{#                type: 'bar',#}
+{#                data: {#}
+{#                    labels: labels,#}
+{#                    datasets: [{#}
+{#                        label: 'Total',#}
+{#                        data: defaultData,#}
+{#                        backgroundColor: [#}
+{#                            'rgba(255, 99, 132, 0.2)',#}
+{#                            'rgba(54, 162, 235, 0.2)',#}
+{#                            'rgba(255, 206, 86, 0.2)',#}
+{#                            'rgba(75, 192, 192, 0.2)',#}
+{#                            'rgba(153, 102, 255, 0.2)',#}
+{#                            'rgba(255, 159, 64, 0.2)'#}
+{#                        ],#}
+{#                        borderColor: [#}
+{#                            'rgba(255,99,132,1)',#}
+{#                            'rgba(54, 162, 235, 1)',#}
+{#                            'rgba(255, 206, 86, 1)',#}
+{#                            'rgba(75, 192, 192, 1)',#}
+{#                            'rgba(153, 102, 255, 1)',#}
+{#                            'rgba(255, 159, 64, 1)'#}
+{#                        ],#}
+{#                        borderWidth: 1#}
+{#                    }]#}
+{#                },#}
+{#                options: {#}
+{#                    scales: {#}
+{#                        yAxes: [{#}
+{#                            ticks: {#}
+{#                                beginAtZero:true,#}
+{#                                callback: function(value) {if (value % 1 === 0) {return value;}}#}
+{#                            }#}
+{#                        }]#}
+{#                    }#}
+{#                }#}
+{#            });#}
+{#    }#}
+
+{#    {% endblock %}#}
+{#</script>#}
+
+{% block main %}
+<h1 class="logo"><a href="{% url 'home' %}">Charts</a></h1>
+    <script>
+          $(function(){
+    $(".dropdown-menu").on('click', 'li a', function(){
+      $(".btn:first-child").text($(this).text());
+      $(".btn:first-child").val($(this).text());
+   });
+});
+    </script>
+<div class="chart">
+<!-- Bruk denne dropdownen til å bestemme ulike statestikk -->
+
+  <div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-labelledby="dropdownMenu" aria-haspopup="true" aria-expanded="true">
+    Select statistic
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a tabindex="-1" href="#">Admin/member</a></li>
+        <li><a tabindex="-1" href="#">Gender</a></li>
+        <li><a tabindex="-1" href="#">Monthly registrations</a></li>
+        <li><a tabindex="-1" href="#">Something else here</a></li>
+  </ul>
+</div>
+    </div>
+
+<div class="container">
+ <div class="row">
+    <div class="col-sm-6 col-md-6">
+        <div class="chart1">
+        {#    <div class="col-sm-12">#}
+        {#        <h1>Hello World</h1>#}
+                <canvas id="myChart1" width="400" height="400"></canvas>
+        {#    </div>#}
+        </div>
+    </div>
+
+     <div class="col-sm-6 col-md-6">
+        <div class="chart1">
+        {#    <div class="col-sm-12">#}
+        {#        <h1>Hello World</h1>#}
+                <canvas id="myChart2" width="400" height="400"></canvas>
+        {#    </div>#}
+        </div>
+    </div>
+
+</div>
+</div>
+
+
+<div class="container">
+ <div class="row">
+    <div class="col-sm-6 col-md-6">
+        <div class="chart1">
+        {#    <div class="col-sm-12">#}
+        {#        <h1>Hello World</h1>#}
+                <canvas id="myChart3" width="400" height="400"></canvas>
+        {#    </div>#}
+        </div>
+    </div>
+
+     <div class="col-sm-6 col-md-6">
+        <div class="chart1">
+        {#    <div class="col-sm-12">#}
+        {#        <h1>Hello World</h1>#}
+                <canvas id="myChart4" width="400" height="400"></canvas>
+        {#    </div>#}
+        </div>
+    </div>
+
+</div>
+</div>
+
+
+	<script src="{% static 'js/chart.js' %}"></script>
+
+{% endblock main %}
+
+

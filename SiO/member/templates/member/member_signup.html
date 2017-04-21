@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% load staticfiles i18n %}
+
+{% block head %}
+  <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
+    {{ form.media }}
+{% endblock head %}
+
+{% block main %}
+  <h1 class="logo"><a href="{% url 'home' %}">Members</a></h1>
+  <div class="signup">
+    <h2>{% trans 'Add member' %}</h2>
+    <form action="{% url 'member_signup' %}" method="post" role="form">
+      {% csrf_token %}
+{#        {{ form.non_field_errors }}#}
+{#            <div class="fieldWrapper">#}
+{#                {{ form.subject.errors }}#}
+{#                <label> first_name:</label>#}
+{#                {{ form.first_name }}#}
+{#            </div>#}
+{#            <div class="fieldWrapper">#}
+{#                {{ form.subject.errors }}#}
+{#                <label> last_name:</label>#}
+{#                {{ form.last_name }}#}
+{#            </div>#}
+{#            <div class="fieldWrapper">#}
+{#                {{ form.subject.errors }}#}
+{#                <label> email:</label>#}
+{#                {{ form.email }}#}
+{#            </div>#}
+{#            <div class="fieldWrapper">#}
+{#                {{ form.subject.errors }}#}
+{#            <label> association:</label>#}
+{#                        {% for choice in form.association.field.queryset %}#}
+{#                             {{ choice.asoc_name }}#}
+{#                        {% endfor %}#}
+{#            </div>#}
+{#             <div class="fieldWrapper">#}
+{#                {{ form.subject.errors }}#}
+{#                <label> student_status:</label>#}
+{#                {{ form.student_status }}#}
+{#            </div>#}
+
+      {% for field in form.visible_fields %}
+        <div class="form-group{% if field.errors %} has-error{% endif %}">
+          <label {{ field.label }}>{{ field.label }}</label>
+          {{ field }}
+          {% if field.help_text %}
+            <span class="help-block">{{ field.help_text|safe }}</span>
+          {% endif %}
+          {% for error in field.errors %}
+            <label class="control-label">{{ error }}</label>
+          {% endfor %}
+        </div>
+      {% endfor %}
+{#        <br class="space">#}
+{#      <button type="submit" class="btn btn-primary btn-lg btnfix">{% trans 'Registrer ny member' %}</button>#}
+          <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Register new member' %}</button>
+        <a class="btn btn-info btn-lg" href="{% url "member_overview" %}">Cancel</a></center>
+    </form>
+{#  <div class="hidden">Ibsum Lorem</div>#}
+  </div>
+{% endblock main %}
+
+
+{#            {% for choice in form.association.field.queryset %}#}
+{#                {{ choice.asoc_name }}#}
+{#            {% endfor %}#}

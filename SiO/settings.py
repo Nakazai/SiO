@@ -26,21 +26,53 @@ ALLOWED_HOSTS = []
 # Application definition
 # TODO: For vær ny app som blir laget må det dannes PATH her
 INSTALLED_APPS = [
-    # 'django.contrib.admin',
+    # 'django.contrib.member',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 
-    'SiO.admin',
-    'SiO.core',
+    'bootstrap3',
+    'datetimewidget',
+    'dedal',
+    # 'bootstrapform',
+
     'SiO.member',
-    # 'SiO.feeds',
+    'SiO.CoAdmin',
+    'SiO.chart',
+    'SiO.core',
+    # 'SiO.member',
+    'SiO.calapp',
+    'SiO.post',
+    # email 
+    'anymail',
+
 ]
-# TODO: Her ble det custom-made db-table slik at det ble Administrator istedenfor User som django oppretter default
+
+
 # TODO: Dette må til slik at db-table får navnet Administrator
-AUTH_USER_MODEL = 'admin.Administrator'
+AUTH_USER_MODEL = 'CoAdmin.Administrator'
+
+# AUTHENTICATION_BACKENDS = ['SiO.core.views.EmailBackend']
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        # 'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.AllowAny',
+        # 'rest_framework.permissions.IsAdminUser',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+
+# MIDDLEWARE_CLASSES = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -84,7 +116,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'db_test',
         'USER': 'postgres',
-        'PASSWORD': '',
+        'PASSWORD': 'illievski',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -145,3 +177,11 @@ ALLOWED_SIGNUP_DOMAINS = ['*']
 
 FILE_UPLOAD_TEMP_DIR = '/tmp/'
 FILE_UPLOAD_PERMISSIONS = 0o644
+
+ANYMAIL = {
+    # (exact settings here depend on your ESP...)
+    "MAILGUN_API_KEY": "key-197955abc889708dd670fb2c8b24b586",
+    "MAILGUN_SENDER_DOMAIN": 'test.sioforeninger.no',  # your Mailgun domain, if needed
+}
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
+DEFAULT_FROM_EMAIL = "test@sioforeninger.no"  # if you don't already have this in settin

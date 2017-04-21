@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load staticfiles i18n %}
+
+{% block head %}
+  <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
+    {{ form.media }}
+{% endblock head %}
+
+{% block main %}
+{#{% block content %}#}
+
+{#    <p>Are you sure you want to delete "{{ member_no }}"?</p>#}
+ <div class="signup">
+    <form action="" method="POST">
+{#    <form action="" method="POST">#}
+        {% csrf_token %}
+{#        <p>Are you sure you want to delete following member: {{ member.first_name }}?</p>#}
+         <center><p>Are you sure you want to delete following member ?</p></center>
+         <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Student status</th>
+                    <th>Date of Birth</th>
+                    <th>Reg date</th>
+{#                    <th>gender</th>#}
+                    <th>End date</th>
+                </tr>
+             </thead>
+              <tbody>
+                <tr>
+                    <td>{{ member.first_name }}</td>
+                    <td>{{ member.last_name }}</td>
+                    <td>{{ member.email }}</td>
+                    <td>{{ member.student_status }}</td>
+                    <td>{{ member.date_of_birth }}</td>
+                    <td>{{ member.reg_date }}</td>
+{#                    <td>{{ member.gender }}</td>#}
+                    <td>{{ member.end_date }}</td>
+                </tr>
+              </tbody>
+         </table>
+         <center><input type="submit" class="btn btn-danger btn-m"  value="Yes, delete" />
+        <a class="btn btn-info btn-m" href="{% url "member_overview" %}">No, cancel.</a></center>
+    </form>
+ </div>
+
+
+{#    <div class="confirmation-box">#}
+{#        <p>{{ messages }}</p>#}
+{#        <div>#}
+{#            <a href="{{ member_overview }}">Cancel</a>#}
+{#            <form action="{{ member_delete }}" method="post">#}
+{#                <input type="hidden" name="next" value="{{ member_overview }}" />#}
+{#                <input type="submit" value="Send" />#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
+
+{% endblock main %}
