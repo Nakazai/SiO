@@ -144,15 +144,15 @@ class RegForm(forms.ModelForm):
 
 class EditRegForm(forms.ModelForm):
     first_name = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'firstname'}),
         max_length=30,
         required=True)
     last_name = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'lastname'}),
         max_length=30,
         required=True)
     email = forms.CharField(
-        widget=forms.EmailInput(attrs={'class': 'form-control'}),
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'name': 'email'}),
         required=True,
         max_length=75)
     # association = forms.ModelChoiceField(queryset=Association.objects.all(),

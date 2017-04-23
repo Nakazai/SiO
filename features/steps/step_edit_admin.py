@@ -1,17 +1,17 @@
-# file:features/steps/step_add_member.py
+# file:features/steps/step_edit_admin.py
 # ----------------------------------------------------------------------------
 # STEPS:
 # ----------------------------------------------------------------------------
 from behave import given, when, then
 
 
-@given('a member form')
+@given('a overview of admins')
 def step_impl(context):
     br = context.browser
-    br.get(context.base_url + '/member_signup/')
+    br.get(context.base_url + '/InnsideSignUp/')
 
 
-@when('i fill in "foo","bar","fb@gmail.com","female","1990-02-01","2017-01-01","2017-06-03"')
+@when('i edit in "sara","bara","fb@gmail.com","leader","sara"')
 # @when('i fill in and register the form')
 def step_impl(context):
     # br = context.browser
@@ -30,35 +30,43 @@ def step_impl(context):
     # submit_button.click()
 
     br = context.browser
-    br.get(context.base_url + '/member_signup/')
+    br.get(context.base_url + '/InnsideSignUp/')
 
     # Checks for Cross-Site Request Forgery protection input
     # assert br.find_element_by_name('csrfmiddlewaretoken').is_enabled()
 
     # Fill login form and submit it (valid version)
-    br.find_element_by_name('first_name').send_keys('foo')
-    br.find_element_by_name('last_name').send_keys('bar')
+    br.find_element_by_name('first_name').send_keys('sara')
+    br.find_element_by_name('last_name').send_keys('bara')
     br.find_element_by_name('email').send_keys('fb@gmail.com')
-    br.find_element_by_name('gender').send_keys('female')
-    br.find_element_by_name('date_of_birth').send_keys('1990-02-01')
-    br.find_element_by_name('reg_date').send_keys('2017-01-01')
-    br.find_element_by_name('end_date').send_keys('2017-06-03')
+    # br.find_element_by_name('association').send_keys('HiOA Salsa')
+    br.find_element_by_name('union_position').send_keys('leader')
+    br.find_element_by_name('username').send_keys('sara')
 
 
-@when('register the member form')
+@when('i edit in "leader"')
+# @when('i fill in and register the form')
+def step_impl(context):
+    br = context.browser
+    br.get(context.base_url + '/InnsideSignUp/')
+
+    br.find_element_by_name('union_position').send_keys('leader')
+
+
+@when('update the admin form')
 def step_impl(context):
     br = context.browser
     br.find_element_by_name('submit').click()
 
 
-@when('cancel the member form')
-def step_impl(context):
-    br = context.browser
-    br.find_element_by_name('cancel').click()
+# @when('cancel the admin form')
+# def step_impl(context):
+#     br = context.browser
+#     br.find_element_by_name('cancel').click()
 
 
 # @then('i will see a success message')
-@then('i will see the new member added')
+@then('i will see the new admin added with correct information')
 def step_impl(context):
     # br = context.browser
     # response = br.response()
@@ -72,15 +80,11 @@ def step_impl(context):
 
     # Checks success status
     # assert br.current_url.endswith('/dashboard/')
-    br.get(context.base_url + '/member_overview/')
+    br.get(context.base_url + '/admin_overview/')
     # br.find_element_by_name('message')
 
 
-@then('i will be redirected to overview of all members')
-def step_impl(context):
-    br = context.browser
-    br.get(context.base_url + '/member_overview/')
-
-
-
-
+# @then('i will be redirected to overview of all admins')
+# def step_impl(context):
+#     br = context.browser
+#     br.get(context.base_url + '/admin_overview/')

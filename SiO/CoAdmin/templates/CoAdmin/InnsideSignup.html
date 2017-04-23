@@ -24,8 +24,8 @@
           {% endfor %}
         </div>
       {% endfor %}
-      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Register new admin' %}</button>
-       <a class="btn btn-info btn-lg" href="{% url "admin_overview" %}">Cancel</a></center>
+      <center><button name="submit" type="submit" class="btn btn-primary btn-lg">{% trans 'Register new admin' %}</button>
+       <a name="cancel" class="btn btn-info btn-lg" href="{% url "admin_overview" %}">Cancel</a></center>
     </form>
   </div>
 {% endblock main %}

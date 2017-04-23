@@ -1,4 +1,4 @@
-# Created by Jamal at 16.04.2017
+# Created by Jamal
 Feature: Login to site
   # Enter feature description here
 

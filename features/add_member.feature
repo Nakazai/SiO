@@ -1,11 +1,11 @@
-# Created by Jamal at 18.04.2017
+# Created by Jamal
 Feature: Add member
   # Enter feature description here
 
   Scenario Outline: Member succesfully added
-    Given a form
+    Given a member form
     When i fill in "<firstname>","<lastname>","<email>","<gender>","<date_of_birth>","<reg_date>","<end_date>"
-    And  register the form
+    And  register the member form
     Then i will see the new member added
 
     Examples: Members
@@ -14,9 +14,9 @@ Feature: Add member
 
 
    Scenario Outline: Member not added
-    Given a form
+    Given a member form
     When i fill in "<firstname>","<lastname>","<email>","<gender>","<date_of_birth>","<reg_date>","<end_date>"
-    And  cancel the form
+    And  cancel the member form
     Then i will be redirected to overview of all members
 
     Examples: Members
