@@ -17,7 +17,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-
+{% include 'session_security/all.html' %}
   	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
 
@@ -32,6 +32,67 @@
 {#          {% block jquery %}{% endblock %}#}
 {#      })#}
 {#  </script>#}
+  <script>
+{#     $(function() {#}
+{#        $('nav ul li a').click(function() {#}
+{#           $('nav ul li a').removeClass();#}
+{#           $($(this).attr('href')).addClass('active');#}
+{#        });#}
+{#     });#}
+
+{#var selector = '.nav li';#}
+{##}
+{#$(selector).on('click', function(){#}
+{#    $(selector).removeClass('active');#}
+{#    $(this).addClass('active');#}
+{#{);#}
+
+{#$(".nav a").on("click", function(){#}
+{#   $(".nav").find("active").removeClass("active");#}
+{#   $(this).parent().addClass("active");#}
+{#{);#}
+
+// TODO: This works but it is slightely lagging
+$(document).ready(function() {
+    $('li.active').removeClass('active');
+    $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+{#    console.log([location.pathname])#}
+    if (location.pathname === '{% url 'member_signup' %}') {
+       $('a[href="{% url 'member_overview' %}"]').closest('li').addClass('active');
+    }
+
+{#    if (location.pathname === '{% url "member_edit" pk=member.member_no  %}') {#}
+{#       $('a[href="{% url 'member_overview' %}"]').closest('li').addClass('active');#}
+{#    }#}
+
+    if (location.pathname === '{% url 'InnsideSignUp' %}') {
+       $('a[href="{% url 'admin_overview' %}"]').closest('li').addClass('active');
+    }
+});
+
+{#$('a').each(function () {#}
+{#var $this = $(this);#}
+{#var loc = location.#}
+{#if (location.pathname.replace(/\/[^\/]*\.html$/, '').startsWith($this.attr('href').replace(/\.html$/, '')))#}
+{#{#}
+{#  $this.parent().addClass('active');}#}
+{#{);#}
+
+// TODO: This will make the navbar dark in the background when clicked on
+{#$(document).ready(function() {#}
+{#    $(document).on('click', 'nav ul li a', function () {#}
+{#        $(this).parent().addClass('active');#}
+{#    });#}
+{#{);#}
+
+{#      $(document).ready(function () {#}
+{#        $('nav ul li a').click(function (e) {#}
+{#            e.preventDefault();#}
+{#            $('nav ul li a').removeClass('active');#}
+{#            $($(this).attr('href')).addClass('active');#}
+{#        });#}
+{#    });#}
+  </script>
     {% block body %}
       <header>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -46,7 +107,7 @@
               <a class="navbar-brand" href="{% url 'dashboard' %}">Association</a>
 
                   <a class="navbar-brand" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
-                    <span class="glyphicon glyphicon-bell"></span>
+                    <span class="glyphicon glyphicon-home"></span>
                   </a>
 
             </div>
@@ -66,7 +127,13 @@
 {#                    <span class="fa fa-users"></span>{% trans 'Administrator' %}</a></li>#}
 {#                <li><a href="{% url 'calendar' %}">#}
 {#                    <span class="glyphicon glyphicon-calendar"></span>{% trans 'Kalender' %}</a></li>#}
-                <li><a href="{% url 'member_overview' %}">
+                <li><a>
+                     {% trans '       ' %}</a></li>
+                <li><a>
+                     {% trans '       ' %}</a></li>
+                <li><a>
+                     {% trans '       ' %}</a></li>
+                <li  class="active"><a href="{% url 'member_overview' %}">
                      {% trans 'Members' %}</a></li>
                 <li><a href="{% url 'ChartView' %}">
                     {% trans 'Statistics' %}</a></li>

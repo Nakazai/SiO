@@ -18,6 +18,7 @@ from rest_framework import authentication, permissions
 from rest_framework import generics
 from rest_framework.authentication import BasicAuthentication
 # from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+import datetime
 
 
 User = get_user_model()
@@ -27,6 +28,11 @@ User = get_user_model()
 class ChartView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'chart/ChartView.html', {})
+
+
+class ChartViewMonth(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'chart/ChartView/month.html', {})
 
 
 # def get_data(request, *args, **kwargs):
@@ -41,13 +47,13 @@ class ChartView(View):
 class ChartData(APIView):
 
     # serializer_class = AdministratorSerializer, MemberSerializer
-
     # authentication_classes = ([])
     # # authentication_classes = (authentication.TokenAuthentication,)
     # permission_classes = ([permissions.IsAdminUser])
 
     # @login_required
     def get(self, request, format=None):
+        today = datetime.date.today()
     # def get_queryset(self):
         # usernames = [user.username for user in User.objects.all()]
         # qs_count = User.objects.all().count()
@@ -56,12 +62,19 @@ class ChartData(APIView):
         # qs_count1 = Member.objects.all().count()
         qs_count1 = Member.objects.filter(association=self.request.user.association).count()
         # qs_count2 = Association.objects.all().count()
+        # qs_count2 = Member.objects.filter(reg_date__year=today.year,
+        #                                   reg_date__month=today.month).filter(
+        #                                   association=self.request.user.association).count()
         # qs_count2 = Association.objects.filter(association=self.request.user.association).count()
+        # labels2 = ["January"]
+        # default_items2 = [qs_count2, ]
         labels = ["Board", "Members"]
         default_items = [qs_count, qs_count1]
         data = {
             "labels": labels,
             "default": default_items,
+            # "labels2": labels2,
+            # "default2": default_items2,
         }
         return Response(data)
 

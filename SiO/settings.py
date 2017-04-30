@@ -37,11 +37,13 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'bootstrap3',
+    'coverage',
     'datetimewidget',
     'dedal',
     # 'bootstrapform',
     # 'behave',
-    'behave_django',
+    # 'behave_django',
+    'session_security',
 
     'SiO.member',
     'SiO.CoAdmin',
@@ -80,6 +82,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'session_security.middleware.SessionSecurityMiddleware',
+
 ]
 
 ROOT_URLCONF = 'SiO.urls'
@@ -170,6 +174,11 @@ MEDIA_URL = '/media/'
 # TODO: Her velges det ulike PATH for hvor bruker skal dirigeres til
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/dashboard/'
+LOGOUT_URL = '/'
+
+SESSION_SECURITY_EXPIRE_AFTER = 3600
+SESSION_SECURITY_WARN_AFTER = 3000
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 ALLOWED_SIGNUP_DOMAINS = ['*']
 

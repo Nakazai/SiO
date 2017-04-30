@@ -1,5 +1,14 @@
 body {
-  background-color: #d84545;
+  /*background-color: #d84545;*/
+  background-color: #FFFFFF;
+}
+
+a {
+  border-bottom: firebrick;
+}
+
+li.active {
+  border-bottom: 2px solid #ff0000;
 }
 
 .logo {
@@ -13,7 +22,9 @@ body {
 }
 
 .logo a {
-  color: #f6f6f6;
+  /*color: #f6f6f6;*/
+    color: #000000;
+
 }
 
 .logo a:hover, .logo a:focus {
@@ -22,7 +33,8 @@ body {
 }
 
 .signup {
-  background-color: #f6f6f6;
+  /*background-color: #f6f6f6;*/
+    background-color: #DCDCDC;
   width: 100%;
   border-radius: 7px;
   margin: 10px auto 0;
@@ -30,6 +42,17 @@ body {
 
 .signup {
   padding: 30px 20px;
+}
+
+@media (max-width:980px) {
+	.signup {
+		    width: auto;
+  /*height: 300px;*/
+  overflow-y: hidden;
+  overflow-x: scroll;
+  /*transform: rotate(-90deg);*/
+  transform-origin: right top;
+	}
 }
 
 .signup form {
@@ -42,6 +65,15 @@ body {
 th {
   background-color: #eee;
 }
+
+/*.table{*/
+  /*width: auto;*/
+  /*!*height: 300px;*!*/
+  /*overflow-y: scroll;*/
+  /*overflow-x: hidden;*/
+  /*!*transform: rotate(-90deg);*!*/
+  /*transform-origin: right top;*/
+/*}*/
 
 
 
@@ -112,5 +144,31 @@ th {
   /*font-size: 14px;*/
 /*}*/
 
+#progressBar {
+position: fixed;
+z-index: 999999;
+top: 0;
+left: 0;
+width: 0%;
+height: 2px;
+background: #b91f1f;
+border-radius: 10%;
+-moz-transition: width 500ms ease-out,opacity 400ms linear;
+-ms-transition: width 500ms ease-out,opacity 400ms linear;
+-o-transition: width 500ms ease-out,opacity 400ms linear;
+-webkit-transition: width 500ms ease-out,opacity 400ms linear;
+transition: width 500ms ease-out,opacity 400ms linear;
+}
+#progressBar:before {
+position: absolute;
+content: '';
+top: 0;
+opacity: 1;
+width: 10%;
+right: 0px;
+height: 2px;
+box-shadow: #b91f1f 1px 0 6px 2px;
+border-radius: 50%;
+}
 
 

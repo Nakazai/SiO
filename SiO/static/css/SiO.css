@@ -2,6 +2,8 @@
 
 body {
   padding-top: 70px;
+  /*background-color:  #A9A9A9;*/
+  background-color:  #FFFFFF;
 }
 
 header .navbar-brand {
@@ -87,3 +89,23 @@ header .navbar-brand {
 .markdown {
   margin-bottom: .8em;
 }
+
+/*nav  ul  li  a:hover {*/
+/*border-bottom: 2px solid #F117B4;*/
+  /*!*background-color: #122b40;*!*/
+/*!*text-decoration: none;*!*/
+/*}*/
+
+/*nav ul li a:active {*/
+    /*color: red;*/
+/*}*/
+
+li.active {
+  border-bottom: 2px solid #ff0000;
+}
+
+/*.navbar-default .navbar-nav>.active> a,*/
+/*.navbar-default .navbar-nav>.active> a:focus,*/
+/*.navbar-default .navbar-nav>.active> a:hover {*/
+  /*background: red;*/
+/*}*/

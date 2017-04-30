@@ -37,6 +37,12 @@ class Administrator(AbstractUser):
     class Meta:
         db_table = 'Administrator'
 
+    def __str__(self):
+        return self.username
+
+    def __unicode__(self):
+        return self.username
+
 
 # class Mail(models.Model):
 #     domain = models.AutoField(primary_key=True)

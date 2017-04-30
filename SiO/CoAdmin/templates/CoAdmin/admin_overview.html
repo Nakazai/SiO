@@ -4,7 +4,7 @@
 {% load i18n dedal_tags %}
 
 {% block head %}
-  <link href="{% static 'css/member_overview.css' %}" rel="stylesheet">
+  <link href="{% static 'css/admin_overview.css' %}" rel="stylesheet">
     {{ form.media }}
 {% endblock head %}
 
@@ -17,11 +17,12 @@
                     <div class="col-md-1 col-md-offset-1">
 
 
-        <a class="btn btn-primary btn-lg" href="{% url 'InnsideSignUp' %}">
+       <a class="btn btn-primary btn-lg" href="{% url 'InnsideSignUp' %}">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             {% trans 'New Admin' %}
                         </a>
 {#        <h2><a href="{% url 'member_signup' %}" class="btn btn-link">{% trans 'Ny Medlem' %}</a></h2>#}
+{#        <li class="active"><a href="{% url 'InnsideSignUp' %}">{% trans 'Ny Medlem' %}</a></li>#}
     </div>
         <div class="col-md-2 col-md-offset-2"></div>
 {#        <div class="col-md-3 col-md-offset-6">#}
@@ -50,7 +51,7 @@
      </div></center>
 
     <div class="signup">
-        <ul class="list-group">
+{#        <ul class="list-group">#}
 			 <table class="table table-bordered">
                 <tr>
                     <th>First name</th>
@@ -86,12 +87,12 @@
                         </a>
                            {% endif %}
                     </td>
-              </tr>
+                 </tr>
 
                         {% empty %}
                  <p>{% trans 'Nothing to display.' %}</p>
 		        {% endfor %}
 			  </table>
-	</ul>
+{#	</ul>#}
  </div>
 {% endblock main %}

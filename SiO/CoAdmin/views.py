@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import redirect, render
+from django.utils.decorators import method_decorator
+
 from .models import Administrator
 from django.shortcuts import get_object_or_404
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
@@ -31,6 +33,11 @@ class admin_overview(ListView):
         #     administrator__in=Administrator.objects.filter(asoc_name=asoc_name)))
         queryset = Administrator.objects.filter(association=self.request.user.association)
         return queryset
+
+# TODO: When session logsout the user it will not give an error of annonymoususer, thx to this function
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(admin_overview, self).dispatch(request, *args, **kwargs)
 
 
 class admin_edit(SuccessMessageMixin, UpdateView):

@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 
+{#{% include "includes/tabs.html" with active_tab='member_overview' %}#}
+
+{#{% block nav-member_overview %}<a href="{% url 'member_overview' %}">#}
+{#                     {% trans 'Members' %}</a>{% endblock %}#}
+
+{# <li class="active"><a href="{% url 'member_overview' %}"></a></li>#}
+
 {% load staticfiles i18n %}
+{% load i18n dedal_tags %}
+
 
 {% block head %}
   <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">

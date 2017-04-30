@@ -294,6 +294,7 @@ var cal = {
 					// $lis[h].append(" - "+$enamE);
 					// $lis[h].append(" - "+event.name);
 					$lis[h].append(" - "+event.name);
+					// $lis[h].append(" - "+$li);
 					// $lis[h].append(event.name);
 					//this we let the user see full details of event time during current day
 					$lis[h].data("eid", event.id);

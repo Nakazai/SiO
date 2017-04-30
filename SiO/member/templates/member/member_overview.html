@@ -8,7 +8,19 @@
     {{ form.media }}
 {% endblock head %}
 
+<script>
+    $(document).ready(function() {
+        $('li.active').removeClass('active');
+        $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+
+            if (location.pathname === '{% url "member_edit" pk=member.member_no  %}') {
+       $('a[href="{% url 'member_overview' %}"]').closest('li').addClass('active');
+    }
+    });
+</script>
+
 {% block main %}
+    <div id="progressBar" style="width: 100%; opacity: 0;"></div>
     <h1 class="logo"><a href="{% url 'home' %}">Members</a></h1>
 
     <div class="row">
@@ -16,11 +28,15 @@
 {#            <div class="col-md-3 col-md-offset-2">#}
                     <div class="col-md-1 col-md-offset-1">
 
+{#                        {% url '/member_overview/' as url %}#}
+{#<a href="{{url}}"{% if request.path == url %} class="active"{% endif %}><a class="btn btn-primary btn-lg" href="{% url 'member_signup' %}">#}
+{#                          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>#}
+{#    {% trans 'New Member' %}</a></a>#}
 
         <a class="btn btn-primary btn-lg" href="{% url 'member_signup' %}">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             {% trans 'New Member' %}
-                        </a>
+        </a>
 {#        <h2><a href="{% url 'member_signup' %}" class="btn btn-link">{% trans 'Ny Medlem' %}</a></h2>#}
     </div>
 
@@ -60,11 +76,17 @@
          <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form method="GET" action="" class="search-form">
-                <input type="submit" name="submit" class="btn btn-info btn-block" value="Search"/>
-                <div class="form-group has-feedback">
-                    <label for="search" class="sr-only">Search</label>
+{#                <input type="submit" name="submit" class="btn btn-info btn-block" value="Search"/>#}
+{#                <div class="form-group has-feedback">#}
+                <div class="input-group">
+{#                    <label for="search" class="sr-only">Search</label>#}
             		<input type="text" class="form-control" name="q" placeholder="Search members" value="{{ request.GET.q }}"/>
-              		<span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        <div class="input-group-btn">
+                          <button class="btn btn-default" type="submit" name="submit">
+                              <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+{#              		<span class="glyphicon glyphicon-search form-control-feedback"></span>#}
+                        </div>
             	</div>
             </form>
         </div>
@@ -136,13 +158,13 @@
                             {% trans 'Delete' %}
                         </a>
                     </td>
-                        
+
               </tr>
                     {% empty %}
-			        <p><b>{% trans 'Nothing to display.' %}</b></p>
+			        <p>{% trans 'Nothing to display.' %}</p>
 		            {% endfor %}
 {#                 {% if is_paginated %}#}
-{#			  </table>#}
+			  </table>
 {##}
 {#		{% empty %}#}
 {#			<center><p>{% trans 'Nothing to display.' %}</p></center>#}

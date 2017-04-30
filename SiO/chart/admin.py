@@ -8,6 +8,9 @@ from SiO.member.models import Association, AssociationSummary, Member, MemberSum
 
 @admin.register(AssociationSummary)
 class ChartAssociationAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return False
+
     change_list_template = 'admin/chart_association.html'
     # change_list_template = 'admin/SiO/extras/sometemplate_change_form.html'
     # date_hierarchy = 'reg_date'
@@ -63,22 +66,29 @@ class ChartAssociationAdmin(admin.ModelAdmin):
         # ).values('period').annotate(total=Sum('member'))
             # .order_by('period')
         # summary_over_time = qs.values('asoc_name', 'member').annotate(total=Sum('member'))
-        summary_over_time = qs.values('asoc_name',).annotate(total=Sum('member'))
+        # summary_over_time = qs.values('asoc_name',).annotate(total=Sum('member'))
 
-        summary_range = summary_over_time.aggregate(
-            low=Min('total'),
-            high=Max('total'),
-        )
-        high = summary_range.get('high', 0)
-        low = summary_range.get('low', 0)
+        # summary_over_time = qs.values('asoc_name',).annotate(**metrics)
 
-        response.context_data['summary_over_time'] = [{
-                                                          'asoc_name': x['asoc_name'],
-                                                          'total': x['total'] or 0,
-                                                          'pct':\
-                                                              ((x['total'] or 0) - low) / (high - low) * 100
-                                                              if high > low else 0,
-                                                      } for x in summary_over_time]
+        # summary_range = summary_over_time.aggregate(
+        #     low=Min('total'),
+        #     high=Max('total'),
+        # )
+        # high = summary_range.get('high', 0)
+        # low = summary_range.get('low', 0)
+
+        # response.context_data['summary_over_time'] = [{
+        #                                                   'asoc_name': x['asoc_name'],
+        #                                                   'total': x['total'] or 0,
+        #                                                   'pct':\
+        #                                                       ((x['total'] or 0) - low) / (high - low) * 100
+        #                                                       if high > low else 0,
+        #                                               } for x in summary_over_time]
+
+        # response.context_data['summary_over_time'] = [{
+        #                                                   'asoc_name': x['asoc_name'],
+        #                                                   'total': x['total'] or 0,
+        #                                               } for x in summary_over_time]
 
         return response
 
