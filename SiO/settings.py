@@ -20,7 +20,7 @@ SECRET_KEY = '55ib3m14rm=g(aqcp_k63gcuzp_$hq^@9tc6v_))h0f%u0&c^5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['67.207.72.58','sioforeninger.no','www.sioforeninger.no']
 
 
 # Application definition

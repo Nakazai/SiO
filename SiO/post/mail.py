@@ -20,8 +20,8 @@ class mailHandler(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=130,  # max length satt til 130 da denne er max length før truncate på gmail og outlook
         required =False)
-    body = forms.Textarea(
-        widget=forms.Textarea(attrs={'class': 'form-control'}),
+    body = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=1500,
         required=True)
 
