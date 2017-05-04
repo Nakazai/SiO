@@ -369,7 +369,7 @@ ul {
   	width: 100%;
   	/*border-radius: 7px;*/
   	/*margin: 40px auto 0;*/
-	margin: 60px auto 0;
+	margin: 110px auto 0;
 	/*margin: 60px 80px 60px 60px;*/
 	/*padding: 1px;*/
 	/*width: 100%;*/
@@ -387,7 +387,7 @@ ul {
 }
 #cal-content-top {
 	height: 40px;
-	width: 105%;
+	width: 110%;
 	/*line-height: 30px;*/
 	text-align: center;
 	font-size: 1.2rem;
@@ -407,7 +407,7 @@ ul {
 	/*width: 105%;*/
 	height: 105%;
 	padding: 1px 33px 1px 1px;
-	         /*T   R    B    L*/
+	        /* T   R    B    L*/
 	/*border: 30px;*/
 }
 

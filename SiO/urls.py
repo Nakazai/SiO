@@ -27,6 +27,7 @@ urlpatterns = [
         name='login'),
     url(r'^logout', auth_views.logout, {'next_page': '/'}, name='logout'),
     # url(r'^signup/$', admin_auth_views.signup, name='signup'),
+    url(r'session_security/', include('session_security.urls')),
     # url(r'^membersignup/$', member_views.membersignup, name='membersignup'),
     url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
     # url(r'', include('SiO.calapp.urls')),

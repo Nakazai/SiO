@@ -23,7 +23,7 @@ from SiO.member.models import Association
 class Administrator(AbstractUser):
     # admin_id = models.AutoField(primary_key=True)
     union_position = models.CharField(max_length=100)
-
+    email = models.CharField(max_length=255, blank=True, unique=True)
     # asoc_name = models.CharField(max_length=100)
     # TODO: association var som før og husk denne
     association = models.ForeignKey(Association)
@@ -36,6 +36,12 @@ class Administrator(AbstractUser):
 
     class Meta:
         db_table = 'Administrator'
+
+    def __str__(self):
+        return self.username
+
+    def __unicode__(self):
+        return self.username
 
 
 # class Mail(models.Model):

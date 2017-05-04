@@ -22,6 +22,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['67.207.72.58', 'www.sioforeninger.no', 'sioforeninger.no']
 
+# TEST_RUNNER = 'django_behave.runner.DjangoBehaveTestSuiteRunner'
 
 # Application definition
 # TODO: For vær ny app som blir laget må det dannes PATH her
@@ -36,9 +37,13 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'bootstrap3',
+    'coverage',
     'datetimewidget',
     'dedal',
     # 'bootstrapform',
+    # 'behave',
+    'behave_django',
+    'session_security',
 
     'SiO.member',
     'SiO.CoAdmin',
@@ -82,6 +87,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'session_security.middleware.SessionSecurityMiddleware',
+
 ]
 
 ROOT_URLCONF = 'SiO.urls'
@@ -155,6 +162,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+# DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
@@ -172,6 +180,11 @@ MEDIA_URL = '/media/'
 # TODO: Her velges det ulike PATH for hvor bruker skal dirigeres til
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/dashboard/'
+LOGOUT_URL = '/'
+
+SESSION_SECURITY_EXPIRE_AFTER = 3600
+SESSION_SECURITY_WARN_AFTER = 3000
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 ALLOWED_SIGNUP_DOMAINS = ['*']
 

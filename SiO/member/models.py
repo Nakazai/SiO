@@ -16,16 +16,16 @@ class Member(models.Model):
     member_no = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
-    email = models.CharField(max_length=50, null=True, blank=True)
+    email = models.CharField(max_length=50, null=True, blank=True, unique=True)
 
     # asoc_name = models.CharField(max_length=50)
     association = models.ForeignKey('Association')
 
-    student_status = models.CharField(max_length=50, default=False)
+    # student_status = models.CharField(max_length=50, default=False)
     reg_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    # gender = models.CharField(max_length=50, null=True, blank=True)
+    gender = models.CharField(max_length=50, null=True, blank=True)
     # end_date = models.DateField(null=True, blank=True)
     # asocnumber = models.ForeignKey('Association')
     # user = models.OneToOneField(Administrator)
@@ -36,6 +36,13 @@ class Member(models.Model):
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
+
+
+class MemberSummary(Member):
+    class Meta:
+        proxy = True
+        verbose_name = 'Member Summary'
+        verbose_name_plural = 'Member Summary'
 
 
 # def create_user_member(sender, instance, created, **kwargs):
@@ -57,6 +64,7 @@ class Association(models.Model):
     # asoc_stardate = models.DateTimeField(null=True, blank=True)
     # trans_id = models.CharField(max_length=50, null=True, blank=True)
     # user = models.ForeignKey(Administrator, related_name='user')
+    # member = models.ForeignKey('Member')
 
     # user = models.ForeignKey(Administrator)
 

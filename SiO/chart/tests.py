@@ -1,3 +1,6 @@
 from django.test import TestCase
 
-# Create your tests here.
+
+# class MockSuperUser:
+#     def has_perm(self, perm):
+#         return False

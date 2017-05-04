@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import Http404
 from django.http import JsonResponse
+from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
 
 from datetime import datetime
@@ -47,6 +48,10 @@ class calendar(ListView):
     model = Event
     # form_class = CalForm
     template_name = 'calapp/calendar.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(calendar, self).dispatch(request, *args, **kwargs)
 
     # def get_queryset(self):
     #     # queryset = Event.objects.filter(name=self.request.user.association)

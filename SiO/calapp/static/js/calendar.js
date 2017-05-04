@@ -294,6 +294,7 @@ var cal = {
 					// $lis[h].append(" - "+$enamE);
 					// $lis[h].append(" - "+event.name);
 					$lis[h].append(" - "+event.name);
+					// $lis[h].append(" - "+$li);
 					// $lis[h].append(event.name);
 					//this we let the user see full details of event time during current day
 					$lis[h].data("eid", event.id);
@@ -488,8 +489,15 @@ var cal = {
 		// cal.$addEventAsoc.val('association');
 
 
+		// var date = new Date($(this).data("date"));
 		var date = new Date($(this).data("date"));
 		cal.$addEventTop.text(date.toDateString());
+		// cal.$addEventTop.text(date.toUTCString());
+		// var dateString=new Date($(this).data("date"));
+		// dateString=new Date(dateString).toUTCString();
+		// dateString=dateString.split(' ').slice(0, 4).join(' ');
+		// cal.$addEventTop.text(dateString);
+
 
 		date.setHours(cal.currDate.getHours());
 		date.setMinutes(cal.currDate.getMinutes());

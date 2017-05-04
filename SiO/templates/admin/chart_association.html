@@ -19,9 +19,19 @@
         </th>
         <th>
           <div class=”text”>
-            <span>Total Members</span>
+            <span>Members</span>
           </div>
         </th>
+{#           <th>#}
+{#          <div class=”text”>#}
+{#            <span>Total Female</span>#}
+{#          </div>#}
+{#        </th>#}
+{#           <th>#}
+{#          <div class=”text”>#}
+{#            <span>Total Male</span>#}
+{#          </div>#}
+{#        </th>#}
 {#        <th>#}
 {#          <div class="text">#}
 {#            <a href="#">#}
@@ -36,6 +46,8 @@
       <tr class="{% cycle 'row1' 'row2' %}">
         <td> {{ row.asoc_name }} </td>
         <td> {{ row.total }} </td>
+{#          <td> {{ row.female }} </td>#}
+{#          <td> {{ row.male }} </td>#}
 {#        <td> {{ row.member_no }} </td>#}
 {#        <td> {{ row.total_sales | default:0 | intcomma }}$ </td>#}
 {#        <td>#}
@@ -46,7 +58,7 @@
       {% endfor %}
       </tr>
             <tr style="font-weight:bold; border-top:2px solid #DDDDDD;">
-            <td> Total </td>
+            <td> Total Members </td>
             <td> {{ summary_total.total }} </td>
       </tr>
     </tbody>
@@ -95,7 +107,7 @@
 {#      <div class="results">#}
 {#        <div class="bar-chart">#}
 {#        {% for x in summary_over_time %}#}
-{#            <div class="bar" style="height:{{x.pct}}%">#}
+{#            <div class="bar" style="height:{{x.total}}%">#}
 {#                <div class="bar-tooltip">#}
 {#                    {{x.total | default:0 | intcomma }}<br>#}
 {#                    {{ x.total | default:0 }}<br>#}

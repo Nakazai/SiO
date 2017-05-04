@@ -1,6 +1,8 @@
     var endpoint = '/api/chart/data/';
     var defaultData = [];
     var labels = [];
+    var defaultData2 = [];
+    var labels2 = [];
 
     $.ajax({
         method: "GET",
@@ -15,6 +17,63 @@
                 console.log(error_data)
             }
         });
+
+    $.ajax({
+        method: "GET",
+        url: endpoint,
+        success: function (data) {
+            labels2 = data.labels2;
+            defaultData2 = data.default;
+            setChart2()
+            },
+            error: function (error_data) {
+                console.log("error");
+                console.log(error_data)
+            }
+        });
+
+    function setChart2(){
+         var ctx = document.getElementById("myChart5");
+            var myChart5 = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels2: labels2,
+                    datasets: [{
+                        label: 'Total',
+                        // label: 'Board',
+                        // label2: 'Members',
+                        data: defaultData2,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true,
+                                callback: function(value) {if (value % 1 === 0) {return value;}}
+                            }
+                        }]
+                    }
+                }
+            });}
+
 
     function setChart(){
          var ctx = document.getElementById("myChart1");

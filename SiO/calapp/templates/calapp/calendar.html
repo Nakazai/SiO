@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="{% static 'css/calendar.css' %}">
 	<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
 	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-{#	<script src="{% static 'js/calendar.js' %}"></script>#}
+{#	<script src="{% static 'js/loading.js' %}"></script>#}
 
 {#	<script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>#}
 	<script>
@@ -23,6 +23,13 @@
 {% block main %}
 {#<body>#}
 {#    <h1 class="logo"><a href="{% url 'home' %}">Calendar</a></h1>#}
+
+        <div class="col-md-1">
+        <a class="btn btn-primary btn-lg" href="{% url 'home' %}">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            {% trans 'Return Home' %}
+                        </a>
+    </div>
 
 	<div id="container">
 		<div id="cal-side-bar">

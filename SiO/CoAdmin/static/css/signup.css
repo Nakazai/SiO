@@ -1,5 +1,6 @@
 body {
-  background-color: #d84545;
+  /*background-color: #d84545;*/
+  background-color: #FFFFFF;
 }
 
 .logo {
@@ -13,7 +14,9 @@ body {
 }
 
 .logo a {
-  color: #f6f6f6;
+  /*color: #f6f6f6;*/
+    color: #000000;
+
 }
 
 .logo a:hover, .logo a:focus {
