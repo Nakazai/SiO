@@ -15,7 +15,7 @@ ul.stream li {
 .h3ref{
     color: #d84545;
 }
-}
+
 ul.stream li:last-child {
   border-bottom: none;
 }
@@ -217,8 +217,12 @@ ul.stream li div.post div.interaction a {
 .box-area {
     padding: 30px;
     margin-bottom: 30px;
-    background: #F0F0F0;
+    background: #DDD;
     border-bottom: 10px solid #7B1801;
     border-radius: 0 0 15px 15px;
     border-top: 1px solid #7B1801;
+}
+.col-md-3{
+    padding-right: 30px;
+    width: 30%;
 }

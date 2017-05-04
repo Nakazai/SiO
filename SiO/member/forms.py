@@ -5,6 +5,9 @@ from django.core.exceptions import ValidationError
 # from django.contrib.auth.models import AbstractUser as Admin
 from .models import Member, Association
 # from SiO.CoAdmin.models import Member, Association
+from django_popup_view_field.fields import PopupViewField
+
+from .popups import GenderPopupView
 
 from SiO.settings import ALLOWED_SIGNUP_DOMAINS
 from SiO.CoAdmin.models import Administrator
@@ -108,7 +111,15 @@ class RegForm(forms.ModelForm):
     # student_status = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'id': 'value'}))
     reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'reg_date'}))
     date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'date_of_birth'}))
-    gender = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'name': 'gender'}))
+    # gender = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'name': 'gender'}))
+    gender = PopupViewField(
+        # Attrs for popup
+        view_class=GenderPopupView,
+        popup_dialog_title='What is your GENDER',
+        # Attr for CharField
+        required=True,
+        help_text='Woman or man'
+    )
     # gender = forms.CharField(
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
     #     max_length=30,

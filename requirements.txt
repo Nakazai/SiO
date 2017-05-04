@@ -13,6 +13,9 @@ dj-database-url==0.2.1
 dj-static==0.0.6
 Django==1.10
 django-annoying==0.10.3
+django-anymail==0.9
+django-bootstrap-form==3.2.1
+django-bootstrap3==8.2.1
 django-behave==0.1.5
 django-bootstrap-form==3.2
 django-bootstrap3==8.1.0

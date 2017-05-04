@@ -1,4 +1,7 @@
-{% load staticfiles i18n %}<!DOCTYPE html>
+{% load staticfiles i18n %}
+{% load django_popup_view_field_tags %}
+
+<!DOCTYPE html>
 <html lang="en">
   <head>
 {#  {% block head %}#}
@@ -20,6 +23,7 @@
 {% include 'session_security/all.html' %}
   	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+        {% django_popup_view_field_javascript %}
 
 {#    <script src="{% static 'js/SiO.js' %}"></script>#}
 {#  <script src="{% static 'js/date.js' %}"></script>#}
@@ -139,6 +143,8 @@ $(document).ready(function() {
                     {% trans 'Statistics' %}</a></li>
                 <li><a href="{% url 'admin_overview' %}">
                    {% trans 'Administrator' %}</a></li>
+                   <li><a href="{% url 'post' %}">
+                    {% trans 'Mail' %}</a></li>
                 <li><a href="{% url 'calendar' %}">
                     {% trans 'Calendar' %}</a></li>
               </ul>
