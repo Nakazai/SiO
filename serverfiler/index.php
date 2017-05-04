@@ -69,3 +69,4 @@ echo  "<textarea readonly>".$error."</textarea>";
 
 ?>
 </body>
+</html>
