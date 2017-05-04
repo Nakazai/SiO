@@ -12,6 +12,7 @@ dj-database-url==0.4.2
 dj-static==0.0.6
 Django==1.10.6
 django-annoying==0.10.3
+django-anymail==0.9
 django-bootstrap-form==3.2.1
 django-bootstrap3==8.2.1
 django-bootstrap3-datetimepicker==2.2.3
