@@ -92,10 +92,10 @@
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><a tabindex="-1" href="#">Admin/member</a></li>
+        <li><a tabindex="-1" href="{% url 'ChartView' %}">Admin/member</a></li>
         <li><a tabindex="-1" href="#">Gender</a></li>
-        <li><a tabindex="-1" href="#">Monthly registrations</a></li>
-        <li><a tabindex="-1" href="#">Something else here</a></li>
+        <li><a tabindex="-1" href="{% url 'ChartView/month' %}">Monthly registrations</a></li>
+{#        <li><a tabindex="-1" href="#">Something else here</a></li>#}
   </ul>
 </div>
 </div>
@@ -163,7 +163,7 @@
                 <div class="chart1">
 {#                    <div class="col-sm-12">#}
 {#                        <h1>Hello World</h1>#}
-                        <canvas id="myChart2" width="400" height="400"></canvas>
+                        <canvas id="myChart6" width="400" height="400"></canvas>
 {#                    </div>#}
                 </div>
             </div>
@@ -201,7 +201,7 @@
             <div class="chart1">
 {#                <div class="col-sm-12">#}
 {#                    <h1>Hello World</h1>#}
-                    <canvas id="myChart3" width="400" height="400"></canvas>
+                    <canvas id="myChart7" width="400" height="400"></canvas>
 {#                </div>#}
             </div>
         </div>
@@ -235,7 +235,7 @@
             <div class="chart1">
 {#                <div class="col-sm-12">#}
 {#                    <h1>Hello World</h1>#}
-                    <canvas id="myChart4" width="400" height="400"></canvas>
+                    <canvas id="myChart8" width="400" height="400"></canvas>
 {#                </div>#}
             </div>
         </div>

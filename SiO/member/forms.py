@@ -58,6 +58,11 @@ def UniqueEmailValidator(value):
         raise ValidationError('User with this Email already exists.')
 
 
+def validate_gender(value):
+    if not value in ('woman', 'man', 'female', 'male'):
+        raise ValidationError(u'%s is not a valid value for gender.' % value)
+
+
 # def UniqueUsernameIgnoreCaseValidator(value):
 #     if Member.objects.filter(username__iexact=value).exists():
 #         raise ValidationError('User with this Username already exists.')
@@ -115,10 +120,10 @@ class RegForm(forms.ModelForm):
     gender = PopupViewField(
         # Attrs for popup
         view_class=GenderPopupView,
-        popup_dialog_title='What is your GENDER',
+        popup_dialog_title='What is your gender?',
         # Attr for CharField
         required=True,
-        help_text='Woman or man'
+        help_text='Enter either woman or man or female or male'
     )
     # gender = forms.CharField(
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
@@ -143,6 +148,7 @@ class RegForm(forms.ModelForm):
         #     UniqueUsernameIgnoreCaseValidator)
         self.fields['email'].validators.append(UniqueEmailValidator)
         self.fields['email'].validators.append(SignupDomainValidator)
+        self.fields['gender'].validators.append(validate_gender)
         # self.fields['association'].validators.append(get_queryset)
         # self.fields['association'].queryset = Association.objects.filter(asoc_name='asoc_name')
 

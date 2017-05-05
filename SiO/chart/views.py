@@ -62,19 +62,21 @@ class ChartData(APIView):
         # qs_count1 = Member.objects.all().count()
         qs_count1 = Member.objects.filter(association=self.request.user.association).count()
         # qs_count2 = Association.objects.all().count()
-        # qs_count2 = Member.objects.filter(reg_date__year=today.year,
-        #                                   reg_date__month=today.month).filter(
-        #                                   association=self.request.user.association).count()
+        qs_count2 = Member.objects.filter(reg_date__year=today.year,
+                                          reg_date__month=today.month).filter(
+                                          association=self.request.user.association).count()
         # qs_count2 = Association.objects.filter(association=self.request.user.association).count()
-        # labels2 = ["January"]
-        # default_items2 = [qs_count2, ]
+        # labels2 = ["January", "February", "March", "April", "May", "June",
+        #            "July", "August", "September", "October", "November", "December"]
+        labels2 = ["January"]
+        default_items2 = [qs_count2]
         labels = ["Board", "Members"]
         default_items = [qs_count, qs_count1]
         data = {
             "labels": labels,
             "default": default_items,
-            # "labels2": labels2,
-            # "default2": default_items2,
+            "labels2": labels2,
+            "default2": default_items2,
         }
         return Response(data)
 

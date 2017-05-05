@@ -1,0 +1,25 @@
+#woman:hover {
+	/*border: 1px solid #ff8787;*/
+    	border: 1px solid #FF00FF;
+
+	/*background: #ff8787;*/
+	/*color: black;*/
+}
+
+#woman{
+	cursor: pointer; cursor: hand;
+}
+
+
+#man:hover {
+	/*border: 1px solid #ff8787;*/
+    	border: 1px solid #00008B;
+
+	/*background: #ff8787;*/
+	/*color: black;*/
+}
+
+#man{
+	cursor: pointer; cursor: hand;
+}
+
