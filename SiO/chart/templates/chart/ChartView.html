@@ -80,6 +80,47 @@
       $(".btn:first-child").val($(this).text());
    });
 });
+
+    $(document).ready(function() {
+        // For changing the icon in the panels
+        $('.collapse').on('shown.bs.collapse', function () {
+            $(this).parent().find(".fa-chevron-down")
+                .removeClass("fa-chevron-down")
+                .addClass("fa-chevron-up");
+        }).on('hidden.bs.collapse', function () {
+            $(this).parent().find(".fa-chevron-up")
+                .removeClass("fa-chevron-up")
+                .addClass("fa-chevron-down");
+        })
+    });
+
+    var canvas = $("#myChart1").get(0);
+    var dataURL = canvas.toDataURL();
+    console.log(dataURL);
+
+    $("#exportButton").click(function(){
+        var pdf = new jsPDF();
+        pdf.addImage(dataURL, 'JPEG', 0, 0);
+        pdf.save("download.pdf");
+    });
+
+{#    $(document).ready(function () {#}
+{#    var ctx = document.getElementById("myChart1");#}
+{#    window.myLine = new Chart(ctx).Bar(setChart("myChart1"), {#}
+{#        responsive: true#}
+{#    });#}
+{#    $('#download').click(function () {#}
+{#        html2canvas($("#canvas"), {#}
+{#            onrendered: function (canvas) {#}
+{#                var imgData = canvas.toDataURL('image/png');#}
+{#                var doc = new jsPDF('p', 'mm');#}
+{#                doc.addImage(imgData, 'PNG', 10, 10);#}
+{#                doc.save('sample-file.pdf');#}
+{#            }#}
+{#        });#}
+{#    });#}
+{#{);#}
+
     </script>
 
     <div class="row">
@@ -92,10 +133,10 @@
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><a tabindex="-1" href="#">Admin/member</a></li>
+        <li><a tabindex="-1" href="{% url 'ChartView' %}">Admin/member</a></li>
         <li><a tabindex="-1" href="#">Gender</a></li>
         <li><a tabindex="-1" href="{% url 'ChartView/month' %}">Monthly registrations</a></li>
-        <li><a tabindex="-1" href="#">Something else here</a></li>
+{#        <li><a tabindex="-1" href="#">Something else here</a></li>#}
   </ul>
 </div>
 </div>
@@ -129,7 +170,9 @@
             <div class="chart1">
 {#                <div class="col-sm-12">#}
 {#                    <h1>Hello World</h1>#}
-                    <canvas id="myChart1" width="400" height="400"></canvas>
+                    <canvas id="myChart1" width="400" height="400"></canvas><br>
+{#                <button id="exportButton" type="button">Export as PDF</button>#}
+{#                <button id="download">Download Pdf</button>#}
 {#                </div>#}
             </div>
         </div>

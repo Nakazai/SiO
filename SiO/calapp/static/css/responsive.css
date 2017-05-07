@@ -32,8 +32,57 @@
 		width: 100%;
 	}
 	#cal-content {
-		width: 100%;
+		width: 91%;
 	}
+
+	.event-li .event-li-name {
+	/*float: left;*/
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1rem;
+    height: 1rem;
+    white-space: nowrap;
+		padding: 1px 33px 1px 11px;
+	         /*!*T   R    B    L*!*/
+
+}
+.event-li .event-li-time {
+	/*float: left;*/
+	width: 20%;
+		padding: 1px 33px 1px 11px;
+	         /*!*T   R    B    L*!*/
+
+}
+}
+
+@media (min-width:1024px) {
+	#cal-side-bar {
+		width: 20%;
+	}
+	#cal-content {
+		width: 72%;
+	}
+
+	.event-li .event-li-name {
+	/*float: left;*/
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1rem;
+    height: 1rem;
+    white-space: nowrap;
+		padding: 1px 33px 1px 11px;
+	         /*!*T   R    B    L*!*/
+
+}
+.event-li .event-li-time {
+	/*float: left;*/
+	width: 20%;
+		padding: 1px 33px 1px 11px;
+	         /*!*T   R    B    L*!*/
+
+}
 }
 
 /*

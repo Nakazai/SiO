@@ -17,13 +17,49 @@
 	<script>
 		var csrf_token = '{{ csrf_token }}';
 
+		// Create the tooltips only when document ready
+        $(document).ready(function () {
+
+            // Apply tooltip on all <a/> elements with title attributes. Mousing over
+            // these elements will the show tooltip as expected, but mousing onto the
+            // tooltip is now possible for interaction with it's contents.
+            if ("<span id='test'>" === "<span id='test'>"  ) {
+                $('b').each(function () {
+                    $(this).qtip({
+                        content: $(this).next('.tooltiptext'),
+                        hide: {
+                            fixed: false,
+                            delay: 300
+                        }
+                    });
+                });
+            }
+        });
+
+{#                $(document).ready(function () {#}
+{##}
+{#            // Apply tooltip on all <a/> elements with title attributes. Mousing over#}
+{#            // these elements will the show tooltip as expected, but mousing onto the#}
+{#            // tooltip is now possible for interaction with it's contents.#}
+{#            $('a').each(function () {#}
+{#                $(this).qtip({#}
+{#                    content: $(this).next('.tooltiptext2'),#}
+{#                    hide: {#}
+{#                        fixed: true,#}
+{#                        delay: 300#}
+{#                    }#}
+{#                });#}
+{#            });#}
+{##}
+{#        });#}
+
 	</script>
 {% endblock head %}
 
 {% block main %}
 {#<body>#}
 {#    <h1 class="logo"><a href="{% url 'home' %}">Calendar</a></h1>#}
-
+<div class="row">
         <div class="col-md-1">
         <a class="btn btn-primary btn-lg" href="{% url 'home' %}">
                             <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
@@ -31,6 +67,25 @@
                         </a>
     </div>
 
+        <div class="col-md-2 col-md-offset-8">
+                <div class="helpbox">
+                    <b id='test'>You do not know how to add events? Let me help!</b>
+                    <div class="tooltiptext">
+                        <a>As you will see down below are calendar with each cells that contains dates. What you do not
+                        see is the mini-calendar that will appear when you hover the mouse over the cells. When you
+                        see the icon for mini-calendar, just simply click on it to add events you wish to create.</a>
+{#                         A clickable <a href="http://google.com">link</a>#}
+                    </div>
+                        <div class="col-md-3 col-md-offset-9">
+            {#            <div class="helpbox">#}
+                        <i class="smiley"></i>
+    {#                </div>#}
+                        </div>
+                </div>
+
+        </div>
+
+</div>
 	<div id="container">
 		<div id="cal-side-bar">
 			<div id="cal-side-bar-top">
@@ -130,7 +185,17 @@
 {#				<span id="am-pm">am</span>#}
 			</div>
 			<div id="today-events">
-				<div class="top-heading">Events Today</div>
+				<div class="top-heading">Events Today
+                    <div class="helperbox-today-events">
+                    <b id='test'>What do i do?</b>
+                        <div class="tooltiptext">
+                            <a>I will show your todays event and if you would like to see the details.
+                                Just click on the event. Check it out!</a>
+    {#                         A clickable <a href="http://google.com">link</a>#}
+                        </div>
+                    </div>
+                 </div>
+
 				<ul>
 					<li>13</li>
 					<li>14</li>
@@ -163,6 +228,11 @@
 		</div>
 		<div id="cal-content">
 			<div id="cal-content-top">
+{#                    <b id='test'>What do i do?</b>#}
+{#                    <div class="tooltiptext">#}
+{#                        <a>I will synchronize all of your events in to your google account. Check it out!</a>#}
+{#                         A clickable <a href="http://google.com">link</a>#}
+{#                    </div>#}
 				<span id="cal-content-top-month">
                     <span class="btn-fa" id="cal-content-month-up">
                         <i class="fa fa-chevron-up"></i>
@@ -174,6 +244,12 @@
 				<span class="year">2015</span>
 				</span>
 				<span id="cal-content-top-icon">
+                    <b id='test'>What do i do?</b>
+                    <div class="tooltiptext">
+                        <a>I will synchronize all of your events in to your google account. Check it out!</a>
+{#                         A clickable <a href="http://google.com">link</a>#}
+                    </div>
+
                     <span class="btn-fa" id="btn-sync" id="icon-sync">
                         <i class="fa fa-refresh"></i>
                     </span>

@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
@@ -12,5 +12,7 @@ urlpatterns = [
     # url(r'^UpdateMember/$', views.UpdateMember, name='member_update'),
     # url(r'^member_update/(?P<pk>\d+)$', views.member_update.as_view(), name='member_update'),
     # url(r'^member_delete/(?P<member_no>\d+)/$', views.member_delete, name='member_delete')
-    url(r'^member_delete/(?P<pk>\d+)$', views.member_delete.as_view(), name='member_delete')
+    url(r'^member_delete/(?P<pk>\d+)$', views.member_delete.as_view(), name='member_delete'),
+    url(r'^django_popup_view_field/', include('django_popup_view_field.urls')),
+
 ]

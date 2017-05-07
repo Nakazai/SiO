@@ -345,9 +345,6 @@ lightgrey #e5e6e7
 
 
 
-
-
-
 /*html,*/
 body {
 	/*width: 90vw;*/
@@ -365,15 +362,22 @@ ul {
 
 }
 
+.container{
+	  	width: 100%;
+}
+
 #container {
   	width: 100%;
   	/*border-radius: 7px;*/
   	/*margin: 40px auto 0;*/
-	margin: 110px auto 0;
+	/*margin: 110px auto 0;*/
+	/*Adjust the heigh of the calendar*/
+		margin: 20px auto 0;
+
 	/*margin: 60px 80px 60px 60px;*/
 	/*padding: 1px;*/
 	/*width: 100%;*/
-	/*height: 100%;*/
+	/*height: 10%;*/
 	background: #f8f8f8;
 	color: #b3b3b3;
 }
@@ -381,13 +385,15 @@ ul {
 #cal-content {
 	float: left;
 	/*width: calc(100% - 300px);*/
-	width: 70%;
-	height: 70%;
+	/*width: 100%;*/
+	height: 80%;
 	transition: 0.5s;
 }
 #cal-content-top {
 	height: 40px;
-	width: 110%;
+	width: 111%;
+		/*width: 116%;*/
+
 	/*line-height: 30px;*/
 	text-align: center;
 	font-size: 1.2rem;
@@ -397,16 +403,18 @@ ul {
 #cal-content-top-month {
 	display: inline-block;
 	height: 100%;
+		padding: 1px 333px 1px 1px;
+
 }
 #cal-content-top-icon {
-	float: right;
+	/*padding: 1px 55px 1px 1px;*/
 }
 
 #cal-content-grid {
 	font-size: 1.0rem;
 	/*width: 105%;*/
 	height: 105%;
-	padding: 1px 33px 1px 1px;
+	padding: 1px 55px 1px 1px;
 	        /* T   R    B    L*/
 	/*border: 30px;*/
 }
@@ -532,17 +540,23 @@ ul {
 	color: white;
 }
 .event-li .event-li-name {
-	float: left;
+	/*float: left;*/
     width: 80%;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1rem;
     height: 1rem;
     white-space: nowrap;
+		padding: 1px 33px 1px 11px;
+	         /*!*T   R    B    L*!*/
+
 }
 .event-li .event-li-time {
-	float: left;
+	/*float: left;*/
 	width: 20%;
+		padding: 1px 33px 1px 88px;
+	         /*!*T   R    B    L*!*/
+
 }
 
 .form-wrapper {
@@ -659,3 +673,85 @@ textarea {
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+.smiley {
+    border-radius: 1em;
+    box-shadow: 0 0 0 .5em #fff;
+    display: inline-block;
+    height: 2em;
+    left: 50%;
+    margin: -1em;
+    position: absolute;
+    top: 50%;
+    width: 2em;
+    -webkit-filter: drop-shadow(0 2px 3px hsla(0,0%,0%,.25));
+
+}
+.smiley:after,
+.smiley:before {
+    background-image: -webkit-radial-gradient(transparent 35%, #fff 35%);
+    content: '';
+    height: 1em;
+    position: absolute;
+    top: 0;
+    width: 1em;
+}
+.smiley:after {
+    background-position: 75% 75%;
+    border-radius: 1em 0 0 0;
+    left: 0;
+}
+.smiley:before {
+    background-position: 0% 100%;
+    border-radius: 0 1em 0 0;
+    right: 0;
+}
+
+.helpbox{
+	  /*background-color: #f6f6f6;*/
+    /*background-color: #ff8787;*/
+	    background-color: #ffdddd;
+
+  width: 100%;
+  border-radius: 7px;
+  margin: 10px auto 0;
+  padding: 20px 10px 30px 10px;
+	       /*T   R    B    L*/
+
+}
+
+
+#test:hover{
+	/*cursor: pointer; cursor: hand;*/
+		border: 1px solid #ff8787;
+	background: #ff8787;
+	color: black;
+}
+
+.tooltiptext{
+    display: none;
+	font-size: 110%;
+}
+
+/*.signup {*/
+  /*!*background-color: #f6f6f6;*!*/
+    /*background-color: #DCDCDC;*/
+  /*width: 100%;*/
+  /*border-radius: 7px;*/
+  /*margin: 10px auto 0;*/
+/*}*/
+
+/*.signup {*/
+  /*padding: 30px 20px;*/
+/*}*/
+
+/*@media (max-width:980px) {*/
+	/*.signup {*/
+		    /*width: auto;*/
+  /*!*height: 300px;*!*/
+  /*overflow-y: hidden;*/
+  /*overflow-x: scroll;*/
+  /*!*transform: rotate(-90deg);*!*/
+  /*transform-origin: right top;*/
+	/*}*/
+/*}*/

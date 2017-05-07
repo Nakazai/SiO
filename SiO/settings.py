@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     # 'behave',
     'behave_django',
     'session_security',
+    'django_popup_view_field',
+    # 'highcharts',
 
     'SiO.member',
     'SiO.CoAdmin',
@@ -184,6 +186,8 @@ LOGOUT_URL = '/'
 
 SESSION_SECURITY_EXPIRE_AFTER = 3600
 SESSION_SECURITY_WARN_AFTER = 3000
+# SESSION_SECURITY_EXPIRE_AFTER = 10
+# SESSION_SECURITY_WARN_AFTER = 5
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 ALLOWED_SIGNUP_DOMAINS = ['*']
