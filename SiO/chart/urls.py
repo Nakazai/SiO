@@ -13,7 +13,9 @@ urlpatterns = [
     url(r'^ChartView/$', views.ChartView.as_view(), name='ChartView'),
     url(r'^ChartView/month$', views.ChartViewMonth.as_view(), name='ChartView/month'),
     # url(r'^api/data/$', views.get_data, name='api-data'),
+    # TODO: Remember to uncomment below
     url(r'^api/chart/data/$', views.ChartData.as_view()),
+    # url(r'^chart_data_json/$', views.chart_data_json, name="chart_data_json"),
 ]
 
 

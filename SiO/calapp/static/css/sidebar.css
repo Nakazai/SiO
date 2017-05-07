@@ -257,3 +257,27 @@
     height: 1rem;
     white-space: nowrap;
 }
+
+/*#today-events .top-heading .helperbox-today-events {*/
+	/*!*float: right;*!*/
+		/*padding: 1px 55px 1px 111px;*/
+	         /*!*!*T   R    B    L*!*!*/
+/*}*/
+
+/*#today-events .top-heading {*/
+	/*float: left;*/
+		/*!*padding: 1px 55px 1px 111px;*!*/
+	         /*!*!*T   R    B    L*!*/
+/*}*/
+
+#today-events .helperbox-today-events {
+	float: right;
+		/*padding: 1px 55px 1px 111px;*/
+	         /*/*T   R    B    L*/
+}
+
+.tooltiptext{
+    display: none;
+}
+
+
