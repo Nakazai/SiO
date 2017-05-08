@@ -32,6 +32,17 @@ li.active {
   text-decoration: none;
 }
 
+.pagination  {
+    /*background-color: #ff0000; !important;*/
+      background-color: #ff0000;
+
+}
+
+.center {
+     margin: 0 auto;
+     width: 140px;
+}
+
 .signup {
   /*background-color: #f6f6f6;*/
     background-color: #DCDCDC;

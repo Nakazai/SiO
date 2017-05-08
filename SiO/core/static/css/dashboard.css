@@ -226,3 +226,16 @@ ul.stream li div.post div.interaction a {
     padding-right: 30px;
     width: 30%;
 }
+
+.containerBox {
+    display: none;
+}
+
+.preload {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /*margin-right: -50%;*/
+    transform: translate(-50%, -50%);
+}

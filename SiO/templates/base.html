@@ -39,6 +39,14 @@
 {#  <script src="{% static 'js/date.js' %}"></script>#}
     {% block head %}{% endblock %}
 {#  {% endblock %}#}
+
+          <script>
+         $(function() {
+          $(".preload").fadeOut(2000, function() {
+             $(".containerBox").fadeIn(1000);
+          });
+      });
+         </script>
   </head>
   <body>
 {#  <script>#}
@@ -106,8 +114,20 @@ $(document).ready(function() {
 {#            $($(this).attr('href')).addClass('active');#}
 {#        });#}
 {#    });#}
+
+{#      $(function() {#}
+{#          $(".preload").fadeOut(2000, function() {#}
+{#             $(".container").fadeIn(1000);#}
+{#          });#}
+{#      });#}
+
   </script>
     {% block body %}
+                                  <div class="preload">
+                <img src="{% static 'img/loading.gif' %}">
+              </div>
+
+        <div class="containerBox">
       <header>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
           <div class="container">
@@ -193,11 +213,16 @@ $(document).ready(function() {
         <div class="container">
           {% block main %}
 
+{#              <div class="preload">#}
+{#                <img src="{% static 'img/spinner.gif' %}">#}
+{#              </div>#}
+
           {% endblock main %}
         </div>
       </main>
 {#      <script src="{% static 'js/notifications.js' %}"></script>#}
 {#      <script src="{% static 'js/check_messages.js' %}"></script>#}
+        </div>
     {% endblock body %}
 {#    <script src="{% static 'js/ga.js' %}"></script>#}
   </body>

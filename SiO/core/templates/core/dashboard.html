@@ -6,13 +6,26 @@
   <link href="{% static 'css/dashboard.css' %}?v=1" rel="stylesheet">
     <link rel="stylesheet" href="css/animate.css">
 {#  <script src="{% static 'js/feeds.js' %}?v=1"></script>#}
-{% endblock head %}
+{#        <script>#}
+{#         $(function() {#}
+{#          $(".preload").fadeOut(3000, function() {#}
+{#             $(".containerBox").fadeIn(1000);#}
+{#          });#}
+{#      });#}
+{#         </script>#}
 
+
+{% endblock head %}
+{#{% block body %}#}
+{#                          <div class="preload">#}
+{#                <img src="{% static 'img/spinner.gif' %}">#}
+{#              </div>#}
 {% block main %}
-     <script src="js/wow.min.js"></script>
-              <script>
-              new WOW().init();
-              </script>
+
+{#                          <div class="preload">#}
+{#                <img src="{% static 'img/loading.gif' %}">#}
+{#              </div>#}
+{#<div class="containerBox">#}
             <h2 class="center wow bounceInUp">Din medlemsregistreringsside for</h2>
             <h1 class="center">{{ user.profile.get_association_name }}</h1>
         <br>
@@ -36,6 +49,7 @@
 {#    <div class="container">#}
 {#        <h3><a href="{% url 'member_signup' %}" class="btn btn-link">{% trans 'Ny Medlem' %}</a></h3>#}
 {#    </div>#}
+
     <section class="service page-section" id="service">
       <div class="container text-center">
          <div class="heading">
@@ -107,4 +121,6 @@
 
     <br>
  <img src="/static/img/logo.svg" class="logoimg">
+{#    </div>#}
 {% endblock main %}
+{#{% endblock body %}#}
