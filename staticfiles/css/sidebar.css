@@ -149,7 +149,7 @@
 }
 #cal-thumb-content-top {
 	padding: 7px;
-	font-size: 1.1rem;
+	font-size: 1.3rem;
 }
 
 #cal-thumb-content-grid {
@@ -190,7 +190,7 @@
     height: 165px;
 }
 .top-heading {
-	font-size: 0.9rem;
+	font-size: 1.1rem;
 	padding: 5px 20px;
 }
 #today-events ul {
@@ -257,3 +257,27 @@
     height: 1rem;
     white-space: nowrap;
 }
+
+/*#today-events .top-heading .helperbox-today-events {*/
+	/*!*float: right;*!*/
+		/*padding: 1px 55px 1px 111px;*/
+	         /*!*!*T   R    B    L*!*!*/
+/*}*/
+
+/*#today-events .top-heading {*/
+	/*float: left;*/
+		/*!*padding: 1px 55px 1px 111px;*!*/
+	         /*!*!*T   R    B    L*!*/
+/*}*/
+
+#today-events .helperbox-today-events {
+	float: right;
+		/*padding: 1px 55px 1px 111px;*/
+	         /*/*T   R    B    L*/
+}
+
+.tooltiptext{
+    display: none;
+}
+
+

@@ -1,5 +1,7 @@
 body {
-  background-color: #d84545;
+  /*background-color: #d84545;*/
+    /*background-color: #D3D3D3;*/
+      background-color:  #FFFFFF;
 }
 
 .logo {
@@ -13,7 +15,8 @@ body {
 }
 
 .logo a {
-  color: #f6f6f6;
+  /*color: #f6f6f6;*/
+  color: #000000;
 }
 
 .logo a:hover, .logo a:focus {
@@ -22,7 +25,8 @@ body {
 }
 
 .chart1 {
-  background-color: #f6f6f6;
+  /*background-color: #f6f6f6;*/
+    background-color: #DCDCDC;
   /*width: 30%;*/
   border-radius: 7px;
   margin: 10px auto 0;
