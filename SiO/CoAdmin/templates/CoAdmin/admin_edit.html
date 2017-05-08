@@ -1,0 +1,85 @@
+{#{% extends 'base.html' %}#}
+{#{% load i18n %}#}
+{##}
+{#{% load staticfiles i18n %}#}
+
+{% load staticfiles i18n %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+{#  {% block head %}#}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Association{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'img/sio-logo.jpg' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/SiO.css' %}?v=1" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+{% include 'session_security/all.html' %}
+  	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+
+{#    <script src="{% static 'js/SiO.js' %}"></script>#}
+{#  <script src="{% static 'js/date.js' %}"></script>#}
+{#    {% block head %}{% endblock %}#}
+{#  {% endblock %}#}
+  </head>
+
+{% block head %}
+  <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
+{#    <script src="{% static 'js/../../../static/js/date.js' %}"></script>#}
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>#}
+{#        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>#}
+{#  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>#}
+    {{ form.media }}
+{#    <script type="text/javascript">#}
+{#    $(".form_datetime").datetimepicker({#}
+{#        format: "dd MM yyyy - hh:ii",#}
+{#        autoclose: true,#}
+{#        todayBtn: true,#}
+{#        startDate: "2013-02-14 10:00",#}
+{#        minuteStep: 10#}
+{#    });#}
+{#</script>#}
+{% endblock head %}
+
+{% block main %}
+  <h1 class="logo"><a href="{% url 'admin_overview' %}">Admins</a></h1>
+  <div class="signup">
+{#    {% if messages %}#}
+{#        {% for message in messages %}#}
+{#          <div class="alert alert-success alert-dismissable">#}
+{#            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>#}
+{#            {{ message }}#}
+{#          </div>#}
+{#        {% endfor %}#}
+{#      {% endif %}#}
+    <h2>{% trans 'Update admin' %}</h2>
+    <form action=""  method="POST" role="form">
+        {% csrf_token %}
+          {% for field in form.visible_fields %}
+            <div class="form-group{% if field.errors %} has-error{% endif %}">
+
+              <label for="{{ field.label }}">{{ field.label }}</label>
+                  {{ field }}
+                  {% if field.help_text %}
+                    <span class="help-block">{{ field.help_text }}</span>
+                  {% endif %}
+                  {% for error in field.errors %}
+                    <label class="control-label">{{ error }}</label>
+                  {% endfor %}
+
+            </div>
+          {% endfor %}
+      <center><button type="submit" name="submit" class="btn btn-primary btn-lg">{% trans 'Update admin' %}</button>
+       <a class="btn btn-info btn-lg" name="cancel" href="{% url "admin_overview" %}">Cancel</a></center>
+    </form>
+  </div>
+{% endblock main %}

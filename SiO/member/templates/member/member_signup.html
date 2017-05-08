@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{#{% include "includes/tabs.html" with active_tab='member_overview' %}#}
+
+{#{% block nav-member_overview %}<a href="{% url 'member_overview' %}">#}
+{#                     {% trans 'Members' %}</a>{% endblock %}#}
+
+{# <li class="active"><a href="{% url 'member_overview' %}"></a></li>#}
+
+{% load staticfiles i18n %}
+{% load i18n dedal_tags %}
+
+
+{% block head %}
+  <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
+      <link href="{% static 'css/popup_gender.css' %}" rel="stylesheet">
+
+    {{ form.media }}
+{% endblock head %}
+
+{% block main %}
+  <h1 class="logo"><a href="{% url 'home' %}">Members</a></h1>
+  <div class="signup">
+    <h2>{% trans 'Add member' %}</h2>
+    <form action="{% url 'member_signup' %}" method="post" role="form">
+      {% csrf_token %}
+{#        {{ form.non_field_errors }}#}
+{#            <div class="fieldWrapper">#}
+{#                {{ form.subject.errors }}#}
+{#                <label> first_name:</label>#}
+{#                {{ form.first_name }}#}
+{#            </div>#}
+{#            <div class="fieldWrapper">#}
+{#                {{ form.subject.errors }}#}
+{#                <label> last_name:</label>#}
+{#                {{ form.last_name }}#}
+{#            </div>#}
+{#            <div class="fieldWrapper">#}
+{#                {{ form.subject.errors }}#}
+{#                <label> email:</label>#}
+{#                {{ form.email }}#}
+{#            </div>#}
+{#            <div class="fieldWrapper">#}
+{#                {{ form.subject.errors }}#}
+{#            <label> association:</label>#}
+{#                        {% for choice in form.association.field.queryset %}#}
+{#                             {{ choice.asoc_name }}#}
+{#                        {% endfor %}#}
+{#            </div>#}
+{#             <div class="fieldWrapper">#}
+{#                {{ form.subject.errors }}#}
+{#                <label> student_status:</label>#}
+{#                {{ form.student_status }}#}
+{#            </div>#}
+
+{#     <div class="form-group{% if form.first_name.errors %} has-error{% endif %}">#}
+{#          <label for="first_name">{% trans 'Firstname' %}</label>#}
+{#          <input type="text" class="form-control" id="first_name" name="first_name">#}
+{#         {% if first_name.help_text %}#}
+{#            <span class="help-block">{{ first_name.help_text|safe }}</span>#}
+{#          {% endif %}#}
+{#          {% for error in form.first_name.errors %}#}
+{#            <label class="control-label">{{ error }}</label>#}
+{#          {% endfor %}#}
+{#        </div>#}
+{##}
+{#      <div class="form-group{% if form.last_name.errors %} has-error{% endif %}">#}
+{#          <label for="last_name">{% trans 'Lastname' %}</label>#}
+{#          <input type="text" class="form-control" id="last_name" name="last_name">#}
+{#         {% if last_name.help_text %}#}
+{#            <span class="help-block">{{ last_name.help_text|safe }}</span>#}
+{#          {% endif %}#}
+{#          {% for error in form.last_name.errors %}#}
+{#            <label class="control-label">{{ error }}</label>#}
+{#          {% endfor %}#}
+{#        </div>#}
+{##}
+{#      <div class="form-group{% if form.email.errors %} has-error{% endif %}">#}
+{#          <label for="email">{% trans 'Email' %}</label>#}
+{#          <input type="text" class="form-control" id="email" name="email">#}
+{#         {% if email.help_text %}#}
+{#            <span class="help-block">{{ email.help_text|safe }}</span>#}
+{#          {% endif %}#}
+{#          {% for error in form.email.errors %}#}
+{#            <label class="control-label">{{ error }}</label>#}
+{#          {% endfor %}#}
+{#        </div>#}
+{##}
+{#    {% for choice in form.gender %}#}
+{#      <div class="form-group{% if form.gender.errors %} has-error{% endif %}">#}
+{#          <label for="choice">{% trans 'Gender' %}</label>#}
+{#          <input type="radio" class="form-control" id="choice" name="choice">#}
+{#      <input type="radio" class="form-control" id="gender" name="gender">#}
+{#         {% if choice.help_text %}#}
+{#            <span class="help-block">{{ choice.help_text|safe }}</span>#}
+{#          {% endif %}#}
+{#          {% for error in form.gender.errors %}#}
+{#            <label class="control-label">{{ error }}</label>#}
+{#          {% endfor %}#}
+{#        </div>#}
+{#    {% endfor %}#}
+{##}
+{#      <div class="form-group{% if form.date_of_birth.errors %} has-error{% endif %}">#}
+{#          <label for="date_of_birth">{% trans 'Date of Birth' %}</label>#}
+{#          <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">#}
+{#         {% if date_of_birth.help_text %}#}
+{#            <span class="help-block">{{ date_of_birth.help_text|safe }}</span>#}
+{#          {% endif %}#}
+{#          {% for error in form.date_of_birth.errors %}#}
+{#            <label class="control-label">{{ error }}</label>#}
+{#          {% endfor %}#}
+{#        </div>#}
+{##}
+{#      <div class="form-group{% if form.reg_date.errors %} has-error{% endif %}">#}
+{#          <label for="reg_date">{% trans 'Reg date' %}</label>#}
+{#          <input type="date" class="form-control" id="reg_date" name="reg_date">#}
+{#         {% if reg_date.help_text %}#}
+{#            <span class="help-block">{{ reg_date.help_text|safe }}</span>#}
+{#          {% endif %}#}
+{#          {% for error in form.reg_date.errors %}#}
+{#            <label class="control-label">{{ error }}</label>#}
+{#          {% endfor %}#}
+{#        </div>#}
+{##}
+{#      <div class="form-group{% if form.end_date.errors %} has-error{% endif %}">#}
+{#          <label for="end_date">{% trans 'End date' %}</label>#}
+{#          <input type="date" class="form-control" id="end_date" name="end_date">#}
+{#         {% if end_date.help_text %}#}
+{#            <span class="help-block">{{ end_date.help_text|safe }}</span>#}
+{#          {% endif %}#}
+{#          {% for error in form.end_date.errors %}#}
+{#            <label class="control-label">{{ error }}</label>#}
+{#          {% endfor %}#}
+{#        </div>#}
+
+
+      {% for field in form.visible_fields %}
+        <div class="form-group{% if field.errors %} has-error{% endif %}">
+          <label {{ field.label }}>{{ field.label }}</label>
+          {{ field }}
+          {% if field.help_text %}
+            <span class="help-block">{{ field.help_text|safe }}</span>
+          {% endif %}
+          {% for error in field.errors %}
+            <label class="control-label">{{ error }}</label>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+
+{#        <br class="space">#}
+{#      <button type="submit" class="btn btn-primary btn-lg btnfix">{% trans 'Registrer ny member' %}</button>#}
+          <center><button type="submit" name="submit" class="btn btn-primary btn-lg">{% trans 'Register new member' %}</button>
+        <a name="cancel" class="btn btn-info btn-lg" href="{% url "member_overview" %}">Cancel</a></center>
+    </form>
+{#  <div class="hidden">Ibsum Lorem</div>#}
+  </div>
+{% endblock main %}
+
+
+{#            {% for choice in form.association.field.queryset %}#}
+{#                {{ choice.asoc_name }}#}
+{#            {% endfor %}#}

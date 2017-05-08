@@ -1,5 +1,5 @@
 from django import forms
-from SiO.admin.models import Administrator
+from SiO.CoAdmin.models import Administrator
 
 # TODO: Forms for profile og change password som kan utvides hvis vi har tid til overs
 

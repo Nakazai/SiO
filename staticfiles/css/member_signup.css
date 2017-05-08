@@ -1,0 +1,73 @@
+body {
+  background-color: #d84545;
+}
+
+.logo {
+  margin: 0;
+  font-size: 3em;
+  font-weight: 200;
+  font-family: "Audiowide", cursive;
+  text-align: center;
+  text-shadow: 1px 1px 0 #333333;
+  line-height: 70px;
+}
+
+.logo a {
+  color: #f6f6f6;
+}
+
+.logo a:hover, .logo a:focus {
+  color: #0000FF;
+  text-decoration: none;
+}
+
+.signup {
+  background-color: #f6f6f6;
+  border-radius: 7px;
+  margin: 1% 20% 1% 5%;
+    padding: 30px 20px;
+    position: fixed;
+}
+
+.signup form {
+  margin-top: 20px;
+}
+
+.signup h2 {
+  margin: 0;
+}
+
+.btnfix{
+    position: absolute;
+    bottom: 0;
+    right:40%;
+    margin-top: 5%;
+    margin-bottom:2%;
+}
+.form-group {
+  /*margin-bottom: 2%;*/
+    float: left;
+    margin-right:12%;
+    display: inline;
+}
+
+.hidden{
+    visibility: collapse;
+}
+.input-group{
+    width: 50%;
+}
+.space{
+    margin: 10px 10px 10px 10px;
+}
+.has-error{
+    width: 100%;
+    margin-right: 1%;
+    position: relative;
+    display: block;
+}
+/*#id_reg_date {*/
+    /*width: 70%;*/
+    /*poistion: relative;*/
+    /*display: block;*/
+/*}*/

@@ -4,36 +4,123 @@
 
 {% block head %}
   <link href="{% static 'css/dashboard.css' %}?v=1" rel="stylesheet">
-
+    <link rel="stylesheet" href="css/animate.css">
 {#  <script src="{% static 'js/feeds.js' %}?v=1"></script>#}
-{% endblock head %}
+{#        <script>#}
+{#         $(function() {#}
+{#          $(".preload").fadeOut(3000, function() {#}
+{#             $(".containerBox").fadeIn(1000);#}
+{#          });#}
+{#      });#}
+{#         </script>#}
 
+
+{% endblock head %}
+{#{% block body %}#}
+{#                          <div class="preload">#}
+{#                <img src="{% static 'img/spinner.gif' %}">#}
+{#              </div>#}
 {% block main %}
 
-     <center><h1><a>{{ user.profile.get_association_name }}</a></h1></center>
+{#                          <div class="preload">#}
+{#                <img src="{% static 'img/loading.gif' %}">#}
+{#              </div>#}
+{#<div class="containerBox">#}
+            <h2 class="center wow bounceInUp">Din medlemsregistreringsside for</h2>
+            <h1 class="center">{{ user.profile.get_association_name }}</h1>
+        <br>
 
-    <div class="container">
-        <h3>{% trans 'Ny Medlem' %}</h3>
-    </div>
+{#     <center><h1>{{ user.profile.get_association_name }}</h1></center>#}
+{#         <center><h1>{{ user }}</h1></center>#}
 
-    <div class="container">
-        <h3>{% trans 'Medlemmer' %}</h3>
-    </div>
 
-    <div class="container">
-        <h3>{% trans 'Statistikk' %}</h3>
-    </div>
+{#     <center><div class="col-md-7">#}
+{#      {% if messages %}#}
+{#        {% for message in messages %}#}
+{#          <div class="alert alert-success alert-dismissable">#}
+{#            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>#}
+{#                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>#}
+{#            {{ message }}#}
+{#          </div>#}
+{#        {% endfor %}#}
+{#      {% endif %}#}
+{#     </div></center>#}
 
-    <div class="container">
-        <h3><a href="{% url 'signup' %}" class="btn btn-link">{% trans 'Administrator' %}</a></h3>
-    </div>
+{#    <div class="container">#}
+{#        <h3><a href="{% url 'member_signup' %}" class="btn btn-link">{% trans 'Ny Medlem' %}</a></h3>#}
+{#    </div>#}
 
-    <div class="container">
-        <h3>{% trans 'E-post' %}</h3>
-    </div>
+    <section class="service page-section" id="service">
+      <div class="container text-center">
+         <div class="heading">
 
-    <div class="container">
-        <h3>{% trans 'Kalender' %}</h3>
-    </div>
+		</div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-user-plus"></i>
+                  </div>
+                  <h3><a href="{% url 'member_overview' %}" class="h3ref">{% trans 'Medlemmer' %}</a></h3>
+                  <div class="box-area-text">Medlemmer er siden hvor du kan registrere nye medlemmer, redigere gjellende medlemmer eller slette medlemmer. Du kan også søke etter medlemmer ved eventuelle arrangementer.</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                      <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                  </div>
+                  <h3><a href="{% url 'ChartView' %}" class="h3ref">{% trans 'Statestikk' %}</a></h3>
+                  <div class="box-area-text">Statestikk siden vil kunne gi deg verdifull statestikk over din medlemsbase. Kjønnsfordeling eller medlemsregistreringer fra måned til måned er noe av hva du kan finne her.</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-users"></i>
+                  </div>
+                  <h3><a href="{% url 'admin_overview' %}" class="h3ref">{% trans 'Administrator' %}</a></h3>
+                  <div class="box-area-text">I administrasjon siden kan du legge til nye administratorer, redigere disse eller slette eksisterende administratorer. Dette er hvem som har tilgang til siden.</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <h3><a href="{% url 'calendar' %}" class="h3ref">{% trans 'Kalender' %}</a></h3>
+                  <div class="box-area-text">Her kan du registrere interne og vanlige arrangemneter. Disse vil hovedsaklig bli synlig for administratorer av denne siden. Du kan også synce med google kallender. </div>
+              </div>
+            </div>
+              <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-envelope"></i>
+                  </div>
+                  <h3><a  href="{% url 'post' %}" class="h3ref">Mail</a></h3>
+                  <div class="box-area-text">Her kan du sende epost til dine medlemmer om kommende arrangementer. Prøv å ikke sende mer en enn epost i måneden til dine medlemmer for å unngå spam.</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box-area">
+                  <div class="box-area-icon">
+                    <i class="fa fa-cubes"></i>
+                  </div>
+                  <h3><a href="https://sio.no/foreninger" class="h3ref">Studentsamkipnaden i Oslo og Akershus</a></h3>
+                  <div class="box-area-text">På SiO sine hjemmesider kan du finne informasjon og råd til foreningsdrift. Sjekk ut kurskallenderen og søk middler gjennom SiO.</div>
+              </div>
+            </div>
 
+          </div>
+      </div>
+    </section>
+
+{#    <div class="container">#}
+{#        <h3>{% trans 'E-post' %}</h3>#}
+{#    </div>#}
+
+    <br>
+ <img src="/static/img/logo.svg" class="logoimg">
+{#    </div>#}
 {% endblock main %}
+{#{% endblock body %}#}

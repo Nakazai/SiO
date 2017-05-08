@@ -1,0 +1,46 @@
+body {
+  /*background-color: #d84545;*/
+    /*background-color: #D3D3D3;*/
+      background-color:  #FFFFFF;
+}
+
+.logo {
+  margin: 0;
+  font-size: 3em;
+  font-weight: 200;
+  font-family: "Audiowide", cursive;
+  text-align: center;
+  text-shadow: 1px 1px 0 #333333;
+  line-height: 70px;
+}
+
+.logo a {
+  /*color: #f6f6f6;*/
+  color: #000000;
+}
+
+.logo a:hover, .logo a:focus {
+  color: #0000FF;
+  text-decoration: none;
+}
+
+.chart1 {
+  /*background-color: #f6f6f6;*/
+    background-color: #DCDCDC;
+  /*width: 30%;*/
+  border-radius: 7px;
+  margin: 10px auto 0;
+}
+
+.chart1 {
+  padding: 30px 20px;
+    margin-bottom: 2%;
+}
+
+.chart1 form {
+  margin-top: 20px;
+}
+
+.chart h2 {
+  margin: 0;
+}
