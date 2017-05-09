@@ -18,6 +18,8 @@ from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.contrib.messages.views import SuccessMessageMixin
+import time
+import datetime
 
 
 import json
@@ -258,6 +260,8 @@ class member_delete(SuccessMessageMixin, DeleteView):
     #     messages.success(self.request, self.success_message % obj.__dict__)
     #     return super(member_delete, self).delete(request, *args, **kwargs)
 
+i = datetime.datetime.now()
+
 
 def member_signup(request):
     if request.method == 'POST':
@@ -275,7 +279,8 @@ def member_signup(request):
             # asoc = form.cleaned_data.get('association')
             asoc = Association.objects.get(id=asoc_pk)
             gender = form.cleaned_data.get('gender')
-            reg_date = form.cleaned_data.get('reg_date')
+            # reg_date = form.cleaned_data.get('reg_date')
+            reg_date = i.strftime('%Y-%m-%d')
             date_of_birth = form.cleaned_data.get('date_of_birth')
             end_date = form.cleaned_data.get('end_date')
             Member.objects.create(first_name=first_name, last_name=last_name, email=email,

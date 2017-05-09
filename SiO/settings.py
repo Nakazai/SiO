@@ -24,6 +24,8 @@ ALLOWED_HOSTS = ['67.207.72.58', 'www.sioforeninger.no', 'sioforeninger.no']
 
 # TEST_RUNNER = 'django_behave.runner.DjangoBehaveTestSuiteRunner'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 # Application definition
 # TODO: For vær ny app som blir laget må det dannes PATH her
 INSTALLED_APPS = [
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     'session_security',
     'django_popup_view_field',
     # 'highcharts',
+    'crispy_forms',
 
     'SiO.member',
     'SiO.CoAdmin',

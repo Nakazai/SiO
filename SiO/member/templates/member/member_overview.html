@@ -17,6 +17,13 @@
        $('a[href="{% url 'member_overview' %}"]').closest('li').addClass('active');
     }
     });
+
+{#       $(document).ready(function() {#}
+{#        $('li.active').removeClass('active');#}
+{#        $('<span>{{ i }} <span class="sr-only">(current)</span></span>').closest('li').addClass('active');#}
+{#    });#}
+{#               <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>#}
+
 </script>
 
 {% block main %}
@@ -103,7 +110,21 @@
 {#    </div></center>#}
 {#    <br/>#}
 
-   <center><div class="col-md-8  col-md-offset-2">
+{#   <center><div class="col-md-8  col-md-offset-2">#}
+{#      {% if messages %}#}
+{#        {% for message in messages %}#}
+{#          <div class="alert alert-success alert-dismissable">#}
+{#            <button type="button" name="message" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>#}
+{#                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>#}
+{#            {{ message }}#}
+{#          </div>#}
+{#        {% endfor %}#}
+{#      {% endif %}#}
+{#     </div></center>#}
+
+    <div class="signup">
+
+       <center><div class="col-md-8  col-md-offset-2">
       {% if messages %}
         {% for message in messages %}
           <div class="alert alert-success alert-dismissable">
@@ -115,7 +136,6 @@
       {% endif %}
      </div></center>
 
-    <div class="signup">
              <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form method="GET" action="" class="search-form">

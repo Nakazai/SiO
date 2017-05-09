@@ -114,7 +114,7 @@ class RegForm(forms.ModelForm):
     #     max_length=30,
     #     required=True)
     # student_status = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'id': 'value'}))
-    reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'reg_date'}))
+    # reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'reg_date'}))
     date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'date_of_birth'}))
     # gender = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'name': 'gender'}))
     gender = PopupViewField(
@@ -134,7 +134,7 @@ class RegForm(forms.ModelForm):
     class Meta:
         model = Member
         exclude = ['last_login', 'date_joined']
-        fields = ['first_name', 'last_name', 'email', 'gender', 'date_of_birth', 'reg_date', 'end_date']
+        fields = ['first_name', 'last_name', 'email', 'gender', 'date_of_birth', 'end_date']
         # fields = ['first_name', 'last_name', 'email', 'reg_date', ]
 
     def __init__(self, user, *args, **kwargs):
@@ -179,7 +179,7 @@ class EditRegForm(forms.ModelForm):
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
     #     max_length=30,
     #     required=True)
-    reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'reg_date'}))
+    # reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'reg_date'}))
     date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'date_of_birth'}))
     # gender = forms.CharField(
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
@@ -190,7 +190,7 @@ class EditRegForm(forms.ModelForm):
     class Meta:
         model = Member
         exclude = ['last_login', 'date_joined']
-        fields = ['first_name', 'last_name', 'email', 'date_of_birth', 'reg_date', 'end_date']
+        fields = ['first_name', 'last_name', 'email', 'date_of_birth', 'end_date']
 
     def __init__(self, *args, **kwargs):
         super(EditRegForm, self).__init__(*args, **kwargs)

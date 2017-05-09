@@ -126,20 +126,20 @@
     <div class="row">
 <div class="chart">
 <!-- Bruk denne dropdownen til å bestemme ulike statestikk -->
-<div class="col-md-1 col-md-offset-1">
-  <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-labelledby="dropdownMenu" aria-haspopup="true" aria-expanded="true">
-    Select statistic
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><a tabindex="-1" href="{% url 'ChartView' %}">Admin/member</a></li>
-        <li><a tabindex="-1" href="#">Gender</a></li>
-        <li><a tabindex="-1" href="{% url 'ChartView/month' %}">Monthly registrations</a></li>
+{#<div class="col-md-1 col-md-offset-1">#}
+{#  <div class="dropdown">#}
+{#  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-labelledby="dropdownMenu" aria-haspopup="true" aria-expanded="true">#}
+{#    Select statistic#}
+{#    <span class="caret"></span>#}
+{#  </button>#}
+{#  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">#}
+{#        <li><a tabindex="-1" href="{% url 'ChartView' %}">Admin/member</a></li>#}
+{#        <li><a tabindex="-1" href="#">Gender</a></li>#}
+{#        <li><a tabindex="-1" href="{% url 'ChartView/month' %}">Monthly registrations</a></li>#}
 {#        <li><a tabindex="-1" href="#">Something else here</a></li>#}
-  </ul>
-</div>
-</div>
+{#  </ul>#}
+{#</div>#}
+{#</div>#}
 
     <div class="col-md-2 col-md-offset-7">
         <a class="btn btn-primary btn-m" href="{% url 'home' %}">

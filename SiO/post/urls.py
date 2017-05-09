@@ -10,5 +10,5 @@ from rest_framework.response import Response
 User = get_user_model()
 
 urlpatterns = [
-    url(r'^post/$', views.post.as_view(), name="post")
+    url(r'^post/$', views.mailPost.as_view(), name="post")
 ]
