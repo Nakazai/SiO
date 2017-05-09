@@ -7,7 +7,7 @@ from SiO.member.models import Member
 class Email(models.Model):
     sender = models.CharField(max_length=254)
     sentTime = models.DateTimeField(auto_now_add=True, blank=False)
-
+    subject = models.CharField(max_length=254)
     receiver = models.CharField(max_length=254)
     message = models.TextField()
     association = models.ForeignKey(Association)

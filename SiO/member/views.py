@@ -265,7 +265,8 @@ i = datetime.datetime.now()
 
 def member_signup(request):
     if request.method == 'POST':
-        form = RegForm(request.user, request.POST)
+        # form = RegForm(request.user, request.POST)
+        form = RegForm(request.POST)
         if not form.is_valid():
             return render(request, 'member/member_signup.html',
                           {'form': form})
@@ -300,7 +301,9 @@ def member_signup(request):
 
     else:
         return render(request, 'member/member_signup.html',
-                      {'form': RegForm(request.user)})
+                      {'form': RegForm()})
+        # return render(request, 'member/member_signup.html',
+        #               {'form': RegForm(request.user)})
 
 
 def asoc_signup(request):

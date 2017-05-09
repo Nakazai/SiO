@@ -42,16 +42,18 @@ class mailPost(FormView):
             #              form.cleaned_data['message'])
             sender = form.cleaned_data.get('sender')
             receiver = form.cleaned_data.get('receiver')
-            # subject = form.cleaned_data.get('subject')
+            subject = form.cleaned_data.get('subject')
             message = form.cleaned_data.get('message')
             time = datetime.now()
             # # ###asoc_number = 1 # TODO: endre denne til faktisk asoc number
             asoc_pk = Association.objects.filter(asoc_name=self.request.user.association)
             asoc = Association.objects.get(id=asoc_pk)
+            # msg = EmailMultiAlternatives(message, sender, [receiver])
+            # msg.send()
             Email.objects.create(
                 sender=sender,
                 receiver=receiver,
-                # subject=subject,
+                subject=subject,
                 message=message,
                 # ###asocNumber=asoc_number,
                 association=asoc,
@@ -60,10 +62,13 @@ class mailPost(FormView):
             # self.form_valid(form)
             # messages.add_message(request, messages.SUCCESS,
             #                      'Email Sent!')
-            msg = EmailMultiAlternatives(message, sender, [receiver])
-            msg.send()
+            # msg = EmailMultiAlternatives(message, sender, [receiver])
+            # msg.send()
+            # response.raise_for_status()
             # send_mail("It works!", "This will get sent through Mailgun",
             #           "Anymail Sender <from@example.com>", ["jamallakbir@gmail.com"])
+            # send_mail(message, "This will get sent through Mailgun", sender, [receiver])
+            send_mail(subject, message, sender, [receiver])
             return self.form_valid(form)
         else:
             return self.form_invalid(form)

@@ -104,13 +104,4 @@ class mailHandler(forms.Form):
 
 
 
-# msg = EmailMultiAlternatives(
-#     subject="Please activate your account",
-#     body="Click to activate your account: http://example.com/activate",
-#     from_email="Andreas Jacobsen andreas@sioforeninger.no",
-#     to=["New User <user1@example.com>", "account.manager@example.com"],
-#     reply_to=["Helpdesk <support@example.com>"])
-#
-# msg.tags = ["studentforening ID her", "hva mailen er om"]
-# msg.track_clicks = True
-# msg.send()
+

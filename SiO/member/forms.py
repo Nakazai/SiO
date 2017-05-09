@@ -137,7 +137,9 @@ class RegForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'email', 'gender', 'date_of_birth', 'end_date']
         # fields = ['first_name', 'last_name', 'email', 'reg_date', ]
 
-    def __init__(self, user, *args, **kwargs):
+    # def __init__(self, user, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
+        # user = kwargs.pop('user', None)
         super(RegForm, self).__init__(*args, **kwargs)
         # self.fields['association'].queryset = Association.objects.filter(asoc_name=user.association)
 
