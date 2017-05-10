@@ -60,7 +60,7 @@ class MemberSummary(Member):
 class Association(models.Model):
     # asocnumber = models.AutoField(primary_key=True)
     # asocnumber_id = models.OneToOneField(Member, primary_key=True)
-    asoc_name = models.CharField(max_length=50, null=True, blank=True)
+    asoc_name = models.CharField(max_length=50, null=True, blank=True, unique=True)
     # asoc_stardate = models.DateTimeField(null=True, blank=True)
     # trans_id = models.CharField(max_length=50, null=True, blank=True)
     # user = models.ForeignKey(Administrator, related_name='user')
