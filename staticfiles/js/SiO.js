@@ -11,3 +11,11 @@ $(function () {
     $(".help-count", form).text(length);
   };
 });
+
+
+ // $(function() {
+ //    $('#nav li a').click(function() {
+ //       $('#nav li').removeClass();
+ //       $($(this).attr('href')).addClass('active');
+ //    });
+ // });

@@ -32,9 +32,9 @@ li.active {
   text-decoration: none;
 }
 
-.pagination  {
+.pagination li:active {
     /*background-color: #ff0000; !important;*/
-      background-color: #ff0000;
+      border-bottom: #ff0000;
 
 }
 
