@@ -40,7 +40,8 @@ class mailPost(FormView):
             # asoc(form.cleaned_data['receiver'],
             #              form.cleaned_data['subject'],
             #              form.cleaned_data['message'])
-            sender = form.cleaned_data.get('sender')
+            # sender = form.cleaned_data.get('sender')
+            sender = "test@sioforeninger.no"
             receiver = form.cleaned_data.get('receiver')
             subject = form.cleaned_data.get('subject')
             message = form.cleaned_data.get('message')
@@ -166,4 +167,3 @@ class mailPost(FormView):
             #                       reg_date=reg_date, date_of_birth=date_of_birth, end_date=end_date)
             # messages.add_message(request, messages.SUCCESS,
             #                      'Member successfully added')
-

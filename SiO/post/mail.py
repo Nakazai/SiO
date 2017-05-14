@@ -42,7 +42,7 @@ from crispy_forms.bootstrap import FormActions
 #         fields = ['sender', 'receiver', 'subject', 'message', ]
 
 class mailHandler(forms.Form):
-    sender = forms.CharField(label='Sender')
+    # sender = forms.CharField(label='Sender')
     subject = forms.CharField(required=False)
     receiver = forms.EmailField(label='Send To')
     message = forms.CharField(widget=forms.Textarea(attrs={'cols': 50}),
@@ -56,7 +56,7 @@ class mailHandler(forms.Form):
         super(mailHandler, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.form_class = 'form-horizontal'
+        self.helper.form_class = 'form'
         # self.helper.label_class = 'col-sm-3 col-md-3'
         # self.helper.field_class = 'col-sm-9 col-md-9'
         # ###self.helper.form_action = reverse('submit_form')
@@ -68,9 +68,12 @@ class mailHandler(forms.Form):
                     HTML('''
                            {% if messages %}
                            {% for message in messages %}
-                           <p {% if message.tags %}
+                           <center><p {% if message.tags %}
                            class="alert alert-{{ message.tags }}"
-                           {% endif %}>{{ message }}</p>{% endfor %}{% endif %}
+                           {% endif %}>{{ message }}
+                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                           </p></center>
+                           {% endfor %}{% endif %}
                             '''),
             # Field('subject'),
             # Field('sender'),
@@ -85,23 +88,19 @@ class mailHandler(forms.Form):
                     #     # css_class='well col-sm-4 col-md-4',
                     # ),
                     Div('subject',
-                        'sender',
+                        # 'sender',
                         Field('receiver', placeholder='Email address',
                               required=True),
                         'message',
                         FormActions(
-                            Submit('submit', 'Send', css_class='btn btn-lg'),
+                            Submit('submit', 'Send', css_class='btn btn-lg btn-block'),
                             # css_class='btn btn-lg'
                             # css_class='pull-right'
                         ),
                         # css_class='col-sm-8 col-md-8',
                         ),
-                    css_class='row'
+                    # css_class='row'
                 ),
             ),
         )
         # self.fields['subject'].initial = '[GlucoseTracker] Glucose Data Report'
-
-
-
-

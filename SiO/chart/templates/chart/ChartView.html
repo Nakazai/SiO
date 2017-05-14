@@ -72,7 +72,7 @@
 {#</script>#}
 
 {% block main %}
-<h1 class="logo"><a href="{% url 'home' %}">Charts</a></h1>
+<h1 class="logo"><a href="{% url 'home' %}"><span class="fa fa-bar-chart"</span> Charts</a></h1>
     <script>
           $(function(){
     $(".dropdown-menu").on('click', 'li a', function(){
@@ -326,5 +326,3 @@
 	<script src="{% static 'js/chart.js' %}"></script>
 
 {% endblock main %}
-
-

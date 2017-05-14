@@ -6,28 +6,29 @@
 
 
 {% block head %}
-    <link href="{% static 'css/post.css' %}" rel="stylesheet">
-    <link href="{% static 'javascript/post.js' %}" rel="stylesheet">
+    <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
 {#css her#}
 {% endblock head %}
 
 {% block heading %}
-<h3>
+<!-- <h3>
     <span class="fa fa-envelope"></span> Email Report
     <small>
         <a href="{% url 'glucose_filter' %}">Filter Data</a>
         | <a href="{% url 'glucose_charts' %}">Charts & Graphs</a>
     </small>
-</h3>
+</h3> -->
 {% endblock %}
 
 {#{% block main %}#}
 
 {% block main %}
 {#{% block content %}#}
-{#<div class="container">#}
+<h1 class="logo"><a href="{% url 'home' %}"><span class="fa fa-envelope"</span> Email</a></h1>
+
+<div class="signup">
    {% crispy form %}
-{#</div>#}
+</div>
 {#{% endblock %}#}
 {% endblock main %}
 
