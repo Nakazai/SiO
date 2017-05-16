@@ -6,44 +6,57 @@
 
 
 {% block head %}
-    <link href="{% static 'css/post.css' %}" rel="stylesheet">
-    <link href="{% static 'javascript/post.js' %}" rel="stylesheet">
-{#css her#}
+{#    <link href="{% static 'css/post.css' %}" rel="stylesheet">#}
+{#    <link href="{% static 'javascript/post.js' %}" rel="stylesheet">#}
+      <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
+
+{# ###css her#}
 {% endblock head %}
 
 {% block heading %}
-<h3>
-    <span class="fa fa-envelope"></span> Email Report
-    <small>
-        <a href="{% url 'glucose_filter' %}">Filter Data</a>
-        | <a href="{% url 'glucose_charts' %}">Charts & Graphs</a>
-    </small>
-</h3>
+{# ###<h3>#}
+{#    ###<span class="fa fa-envelope"></span> Email Report#}
+{#    ###<small>#}
+{#        ###<a href="{% url 'glucose_filter' %}">Filter Data</a>#}
+{#       ### | <a href="{% url 'glucose_charts' %}">Charts & Graphs</a>#}
+{#    ###</small>#}
+{# ###</h3>#}
 {% endblock %}
 
-{#{% block main %}#}
+{# ###{% block main %}#}
+{#{% load crispy_forms_tags %}#}
 
 {% block main %}
-{#{% block content %}#}
-{#<div class="container">#}
+{# ###{% block content %}#}
+{# ###<div class="container">#}
+{#                        ###<div class="col-md-8  col-md-offset-2">#}
+        <h1 class="logo"><a href="{% url 'home' %}"> <span class="fa fa-envelope"></span> Email</a></h1>
+
+      <div class="signup">
+
    {% crispy form %}
-{#</div>#}
-{#{% endblock %}#}
+                                        </div>
+
+{#      ###</div>#}
+{# ###</div>#}
+{# ###{% endblock %}#}
+
+
 {% endblock main %}
 
 
-{#{% block extrajs %}#}
-{#<script type="text/javascript">#}
-{#$(function () {#}
-{#    $('#id_start_date').datetimepicker({#}
-{#        pickTime: false#}
-{#    });#}
-{#    $('#id_end_date').datetimepicker({#}
-{#        pickTime: false#}
-{#    });#}
-{#{);#}
-{#</script>#}
-{#{% endblock %}#}
+{# ####{% block extrajs %}#}
+{# ####<script type="text/javascript">#}
+{# ####$(function () {#}
+{#    ###$('#id_start_date').datetimepicker({#}
+{#        ###pickTime: false#}
+{#    ##);#}
+{#    ###$('#id_end_date').datetimepicker({#}
+{#        ###pickTime: false#}
+{#    ##);#}
+{# ###{);#}
+{# ###</script>#}
+{# ###{% endblock %}#}
 
 
 
@@ -62,25 +75,6 @@
 
 
 
-
-
-
-
-{# <form action="{% url 'post' %}" method="POST" role="form">#}
-{#       {% csrf_token %}#}
-{# <div class="container">#}
-{#     <div class="form-group">#}
-{#         <label for="toPost">Send email to:</label>#}
-{#         <input type="email" class="form-control" id="toPost">#}
-{#     </div>#}
-{#    <div class="form-group">#}
-{#      <label for="email">Write your email text here</label>#}
-{#      <textarea class="form-control" rows="5" id="email"></textarea>#}
-{#    </div>#}
-{# <button onclick="warning()" type="submit" class="btn btn-danger">Send email</button>#}
-{# </div>#}
-{#  </form><br><br><br>#}
-{#            <center><div class="col-md-8  col-md-offset-2">#}
 {#      {% if messages %}#}
 {#        {% for message in messages %}#}
 {#          <div class="alert alert-success alert-dismissable">#}
@@ -89,6 +83,41 @@
 {#          </div>#}
 {#        {% endfor %}#}
 {#      {% endif %}#}
-{#     </div></center>#}
 
+
+
+
+{#                <center><div class="col-md-8  col-md-offset-2">#}
+{##}
+{#                {% if messages %}#}
+{#                            {% for message in messages %}#}
+{#                            <center><p {% if message.tags %}#}
+{#                            class="alert alert-{{ message.tags }}"#}
+{#                           {% endif %}>{{ message }}</p></center>{% endfor %}{% endif %}#}
+{##}
+{#     </div></center>#}
+{##}
+{#<br><br><br>#}
+{##}
+{#      <div class="signup">#}
+{##}
+{# <form action="{% url 'post' %}" method="POST" role="form">#}
+{#       {% csrf_token %}#}
+{# <div class="container">#}
+{#      <div class="form-group">#}
+{#         <label for="toPost">Subject:</label>#}
+{#         <input type="text" class="form-control" id="toPost">#}
+{#     </div>#}
+{#     <div class="form-group">#}
+{#         <label for="toPost">Send email to:</label>#}
+{#         <input type="email" class="form-control" id="toPost">#}
+{#     </div>#}
+{#    <div class="form-group">#}
+{#      <label for="email">Write your message text here</label>#}
+{#      <textarea class="form-control" rows="5" id="email"></textarea>#}
+{#    </div>#}
+{# <button onclick="warning()" type="submit" class="btn btn-danger">Send email</button>#}
+{# </div>#}
+{# </form>#}
+{#      </div>#}
 {#{% endblock main %}#}

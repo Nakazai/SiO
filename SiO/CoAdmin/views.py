@@ -76,7 +76,7 @@ class admin_delete(DeleteView):
     model = Administrator
     success_url = reverse_lazy('admin_overview')
     template_name = 'CoAdmin/admin_delete.html'
-    success_message = 'Admin successful deleted'
+    success_message = 'Admin successfully deleted'
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)

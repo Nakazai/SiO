@@ -41,7 +41,7 @@ def step_impl(context):
     br.find_element_by_name('submit').click()
 
 
-@then('i see my dashboard')
+@then('i can see my home site')
 def step_impl(context):
     # br = context.browser
     # response = br.response()

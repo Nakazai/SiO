@@ -1,6 +1,5 @@
 # Created by Jamal
 Feature: Add member
-  # Enter feature description here
 
   Scenario Outline: Member succesfully added
     Given a member form

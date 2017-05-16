@@ -24,7 +24,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>#}
 
 {% include 'session_security/all.html' %}
   	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
@@ -90,6 +90,10 @@ $(document).ready(function() {
     if (location.pathname === '{% url 'InnsideSignUp' %}') {
        $('a[href="{% url 'admin_overview' %}"]').closest('li').addClass('active');
     }
+
+     if (location.pathname === '{% url 'chartViewHighGender' %}') {
+       $('a[href="{% url 'chartViewHighAM' %}"]').closest('li').addClass('active');
+    }
 });
 
 {#$('a').each(function () {#}
@@ -124,7 +128,12 @@ $(document).ready(function() {
   </script>
     {% block body %}
                                   <div class="preload">
-                <img src="{% static 'img/loading.gif' %}">
+{#                <img src="{% static 'img/loading.gif' %}">#}
+{#             <img src="{% static 'img/ajax-loader.gif' %}">#}
+            <img src="{% static 'img/ajax-loader.gif' %}">
+
+
+
               </div>
 
         <div class="containerBox">
@@ -169,7 +178,9 @@ $(document).ready(function() {
                      {% trans '       ' %}</a></li>
                 <li  class="active"><a href="{% url 'member_overview' %}">
                      {% trans 'Members' %}</a></li>
-                <li><a href="{% url 'ChartView' %}">
+{#                <li><a href="{% url 'chartViewHigh' %}">#}
+{#                    {% trans 'Statistics' %}</a></li>#}
+                <li><a href="{% url 'chartViewHighAM' %}">
                     {% trans 'Statistics' %}</a></li>
                 <li><a href="{% url 'admin_overview' %}">
                    {% trans 'Administrator' %}</a></li>

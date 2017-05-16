@@ -62,18 +62,40 @@ class AdminTest(TestCase):
     #     self.assertEqual(w.__str__(), w.name)
     #     self.assertEqual(w.__unicode__(), w.name)
 
-# class ProfileTest(TestCase):
-#     def setUp(self):
-#         self.asoc = Association.objects.create(id=2)
-#         self.admin = Administrator.objects.create(username="biri", association=self.asoc)
-#         self.prof = Profile.objects.get_or_create(user_id=self.admin)
-#
-#         self.c = Client()
-#
-#     def test_profile_creation(self):
-#         w = self.prof
-#         self.assertTrue(isinstance(w, Profile))
-#         self.assertEqual(w.__str__(), w)
+
+class ProfileTest(TestCase):
+    # def setUp(self):
+        # ##self.asoc = Association.objects.create(id=2)
+        # self.user = Administrator.objects.create(id=2)
+        # self.username = Profile.objects.create(username="biri", user=self.user)
+        # ##self.prof = Profile.objects.get_or_create(user_id=self.admin)
+
+        # ##self.c = Client()
+
+    # def create_profile(self):
+    #     self.asoc = Association.objects.create(id=2)
+    #     self.admin = Administrator.objects.create(association=self.asoc)
+    #     self.user = Profile.objects.create(administrator=3)
+    #     return Profile.objects.get_or_create(user=self.user, administrator=self.admin)
+
+    # def create_profile(self):
+    #     self.asoc = Association.objects.create(id=7)
+    #     self.admin = Administrator.objects.create(id=6, association=self.asoc)
+    #     self.user = Profile.objects.create(id=self.admin.id)
+    #     return Profile.objects.get(user=self.user, administrator=self.admin)
+
+    def create_profile(self):
+        self.asoc = Association.objects.create()
+        self.admin = Administrator.objects.create(association=self.asoc)
+        # print(self.admin)
+        # self.user = Profile.objects.create(user=self.admin)
+        # print(user.query)
+        return Profile.objects.get(user=self.admin)
+
+    def test_profile_creation(self):
+        w = self.create_profile()
+        self.assertTrue(isinstance(w, Profile))
+        self.assertEqual(w.__str__(), w.user.username)
 
 
 

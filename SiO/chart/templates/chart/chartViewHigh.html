@@ -3,123 +3,449 @@
 {% load staticfiles i18n %}
 
 {% block head %}
-  <link href="{% static 'css/chart.css' %}" rel="stylesheet">
-    {{ form.media }}
-{#        <script type="text/javascript" src="{% static 'js/highcharts/highcharts.js' %}"></script>#}
-{#        <script type="text/javascript" src="{% static 'js/highcharts/modules/exporting.js' %}"></script>#}
-
+{#  <link href="{% static 'css/chart.css' %}" rel="stylesheet">#}
+{#    {{ form.media }}#}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
 {% endblock head %}
 {% block main %}
-<h1 class="logo"><a href="{% url 'home' %}">Charts</a></h1>
-    <script>
-          $(function(){
-    $(".dropdown-menu").on('click', 'li a', function(){
-      $(".btn:first-child").text($(this).text());
-      $(".btn:first-child").val($(this).text());
-   });
+
+        <h1 align="center">Analysis</h1>
+
+
+{% block content %}
+{#    <div id={{ chartID|safe }} class="chart" style="height:100px; width:100%"></div>#}
+{#        <div id="container" class="chart" style="height:100px; width:100%"></div>#}
+    <div id="container" style="width:50%; height:400px;"></div>
+
+    <div id="container2" style="width:50%; height:400px;"></div>
+
+    <div id="container3" style="width:50%; height:400px;"></div>
+
+{% endblock %}
+
+
+    {% block extrajs %}
+<!-- Maps the Python template context variables from views.py to the Highchart js variables -->
+<script>
+{#    var chart_id = {{ chartID|safe }};#}
+{#    var chart = {{ chart|safe }};#}
+{#    var title = {{ title|safe }};#}
+{#    var xAxis = {{ xAxis|safe }};#}
+{#    var yAxis = {{ yAxis|safe }};#}
+{#    var series = {{ series|safe }};#}
+</script>
+
+<!-- Highchart js. Variable map shown above -->
+<script>
+    var endpoint = '/api/chart/data/';
+
+    var labels = [];
+    var defaultData = [];
+    var labels2 = [];
+    var defaultData2 = [];
+    var labels3 = [];
+    var defaultData3 = [];
+    var labels4 = [];
+    var defaultData4 = [];
+    var labels5 = [];
+    var defaultData5 = [];
+{#    var categories = ['Member', 'Board'];#}
+
+
+     $.ajax({
+        method: "GET",
+        url: endpoint,
+         /**
+          * @param data
+          * @param data.labels   indicates ajax code ran successfully
+          * @param data.default
+          * @param data.default2
+          * @param data.labels2
+          * @param data.default3
+          * @param data.labels3
+          * @param data.default4
+          * @param data.labels4
+          * @param data.default5
+          * @param data.labels5
+          * @param data.dif
+          */
+        success: function (data) {
+                labels = data.labels;
+                defaultData = data.default;
+                labels2 = data.labels2;
+                defaultData2 = data.default2;
+                labels3 = data.labels3;
+                defaultData3 = data.default3;
+                labels4 = data.labels4;
+                defaultData4 = data.default4;
+                labels5 = data.labels5;
+                defaultData5 = data.default5;
+                setChart()
+            },
+            error: function (error_data) {
+                console.log("error");
+                console.log(error_data)
+            }
+        });
+
+    function setChart() {
+
+             //Members & Admin
+{#        $(function () {#}
+{#            $('#container').highcharts({#}
+{#                chart: {#}
+{#                    type: 'bar'#}
+{#                },#}
+{#                title: {#}
+{#                    text: 'Total'#}
+{#                },#}
+{#                subtitle: {#}
+{#                    text: 'Source: sioforeninger.no'#}
+{#                },#}
+{#                xAxis: {#}
+{#                    categories: [#}
+{#                        'Group'#}
+{#                    ]#}
+{#                },#}
+{#                yAxis: {#}
+{#                    tickInterval: 1,#}
+{#                    minRange: 1,#}
+{#                    title: {#}
+{#                        text: 'Data'#}
+{#                    }#}
+{#                },#}
+{#                tooltip: {#}
+{#                    useHTML: true#}
+{#                },#}
+{#                plotOptions: {#}
+{#                    column: {#}
+{#                        pointPadding: 0.2,#}
+{#                        borderWidth: 0#}
+{#                    }#}
+{#                },#}
+{#                series: [{#}
+{#                    name: labels,#}
+{#                    data: defaultData#}
+{##}
+{#                },{#}
+{#                    name: labels2,#}
+{#                    data: defaultData2#}
+{##}
+{#                }]#}
+{#            });#}
+{#        });#}
+
+$(document).ready(function() {
+   var chart = {
+       plotBackgroundColor: null,
+       plotBorderWidth: null,
+       plotShadow: false,
+{#        type: 'pie'#}
+   };
+   var title = {
+      text: 'Total'
+   };
+   var tooltip = {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+   };
+   var plotOptions = {
+      pie: {
+         allowPointSelect: true,
+         cursor: 'pointer',
+         dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}%</b>: {point.percentage:.1f} %',
+            style: {
+               color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+            }
+         }
+      }
+   };
+   var series= [{
+      type: 'pie',
+      name: 'Group share',
+      data: [
+          { name: 'Board',   y: defaultData },
+         {
+            name: 'Member',
+            y: defaultData2,
+            sliced: true,
+            selected: true
+         }
+      ]
+   }];
+
+   var json = {};
+   json.chart = chart;
+   json.title = title;
+   json.tooltip = tooltip;
+   json.series = series;
+   json.plotOptions = plotOptions;
+   $('#container').highcharts(json);
 });
 
-    $(document).ready(function() {
-        // For changing the icon in the panels
-        $('.collapse').on('shown.bs.collapse', function () {
-            $(this).parent().find(".fa-chevron-down")
-                .removeClass("fa-chevron-down")
-                .addClass("fa-chevron-up");
-        }).on('hidden.bs.collapse', function () {
-            $(this).parent().find(".fa-chevron-up")
-                .removeClass("fa-chevron-up")
-                .addClass("fa-chevron-down");
-        })
-    });
 
-     var jsonUrl = '{% url 'chart_data_json' %}';
-    // Glucose Average by Category
-    var avgByCategoryOptions = {
-        credits: {
-            enabled: false
-        },
-        chart: {
-            renderTo: 'adminMemberPanel',
-            type: 'column'
-        },
-        legend: {enabled: false},
-        title: {text: null},
-        xAxis: {},
-        yAxis: {title: {text: null}},
-        series: [{}]
-    };
-    function loadAvgByCategory(path){
-        $.getJSON(path,
-            function(data) {
-                avgByCategoryOptions.xAxis.categories = data['chart_data']['categories'];
-                avgByCategoryOptions.series[0].name = 'Avg Glucose ({{ user.settings.glucose_unit }})';
-                avgByCategoryOptions.series[0].data = data['chart_data']['values'];
-                var chart = new Highcharts.Chart(avgByCategoryOptions);
+
+        //Monthly
+        $(function () {
+            $('#container2').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Total'
+                },
+                subtitle: {
+                    text: 'Source: sioforeninger.no'
+                },
+                xAxis: {
+                 categories: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                    'Aug',
+                    'Sep',
+                    'Oct',
+                    'Nov',
+                    'Dec'                    ]
+                },
+                yAxis: {
+{#                    min: 0,#}
+                    tickInterval: 1,
+                    minRange: 1,
+                    title: {
+                        text: 'Data'
+                    }
+                },
+                tooltip: {
+{#                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',#}
+{#                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +#}
+{#                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',#}
+{#                    footerFormat: '</table>',#}
+{#                    shared: true,#}
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                name: labels3,
+                data: defaultData3
+
+            }]
+            });
         });
+
+
+
+        //Female & Male
+          $(function () {
+            $('#container3').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Total'
+                },
+                subtitle: {
+                    text: 'Source: sioforeninger.no'
+                },
+                xAxis: {
+                    categories: [
+                        'Group'
+{#                        'Member',#}
+{#                        'Board'#}
+                    ]
+                },
+                yAxis: {
+{#                    min: 0,#}
+                    tickInterval: 1,
+                    minRange: 1,
+                    title: {
+                        text: 'Data'
+                    }
+                },
+                tooltip: {
+{#                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',#}
+{#                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +#}
+{#                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',#}
+{#                    footerFormat: '</table>',#}
+{#                    shared: true,#}
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: labels4,
+                    data: defaultData4
+
+                },{
+                    name: labels5,
+                    data: defaultData5
+
+                }]
+            });
+        });
+
     }
-    $('#avgByCategorySelect').change(function(){
-        var days = $('#avgByCategorySelect').val();
-        var path = jsonUrl + '?name=avg_by_category&days=' + days;
-        loadAvgByCategory(path);
-    });
 
-    </script>
+{#$(document).ready(function() {#}
+{#    $(chart_id).highcharts({#}
+{#        chart: chart,#}
+{#        title: title,#}
+{#        xAxis: xAxis,#}
+{#        yAxis: yAxis,#}
+{#        series: series#}
+{#    });#}
+{#{);#}
+</script>
+{% endblock %}
 
-    <div class="row">
-<div class="chart">
-<!-- Bruk denne dropdownen til å bestemme ulike statestikk -->
-<div class="col-md-1 col-md-offset-1">
-  <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-labelledby="dropdownMenu" aria-haspopup="true" aria-expanded="true">
-    Select statistic
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><a tabindex="-1" href="{% url 'ChartView' %}">Admin/member</a></li>
-        <li><a tabindex="-1" href="#">Gender</a></li>
-        <li><a tabindex="-1" href="{% url 'ChartView/month' %}">Monthly registrations</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#<h1 class="logo"><a href="{% url 'home' %}">Charts</a></h1>#}
+{#    <script>#}
+{#          $(function(){#}
+{#    $(".dropdown-menu").on('click', 'li a', function(){#}
+{#      $(".btn:first-child").text($(this).text());#}
+{#      $(".btn:first-child").val($(this).text());#}
+{#   });#}
+{#{);#}
+{##}
+{#    $(document).ready(function() {#}
+{#        // For changing the icon in the panels#}
+{#        $('.collapse').on('shown.bs.collapse', function () {#}
+{#            $(this).parent().find(".fa-chevron-down")#}
+{#                .removeClass("fa-chevron-down")#}
+{#                .addClass("fa-chevron-up");#}
+{#        }).on('hidden.bs.collapse', function () {#}
+{#            $(this).parent().find(".fa-chevron-up")#}
+{#                .removeClass("fa-chevron-up")#}
+{#                .addClass("fa-chevron-down");#}
+{#        })#}
+{#    });#}
+{##}
+{#     var jsonUrl = '{% url 'chart_data_json' %}';#}
+{#    // Glucose Average by Category#}
+{#    var avgByCategoryOptions = {#}
+{#        credits: {#}
+{#            enabled: false#}
+{#        },#}
+{#        chart: {#}
+{#            renderTo: 'adminMemberPanel',#}
+{#            type: 'column'#}
+{#        },#}
+{#        legend: {enabled: false},#}
+{#        title: {text: null},#}
+{#        xAxis: {},#}
+{#        yAxis: {title: {text: null}},#}
+{#        series: [{}]#}
+{#    };#}
+{#    function loadAvgByCategory(path){#}
+{#        $.getJSON(path,#}
+{#            function(data) {#}
+{#                avgByCategoryOptions.xAxis.categories = data['chart_data']['categories'];#}
+{#                avgByCategoryOptions.series[0].name = 'Avg Glucose ({{ user.settings.glucose_unit }})';#}
+{#                avgByCategoryOptions.series[0].data = data['chart_data']['values'];#}
+{#                var chart = new Highcharts.Chart(avgByCategoryOptions);#}
+{#        });#}
+{#    }#}
+{#    $('#avgByCategorySelect').change(function(){#}
+{#        var days = $('#avgByCategorySelect').val();#}
+{#        var path = jsonUrl + '?name=avg_by_category&days=' + days;#}
+{#        loadAvgByCategory(path);#}
+{#    });#}
+{##}
+{#    </script>#}
+{##}
+{#    <div class="row">#}
+{#<div class="chart">#}
+{#<!-- Bruk denne dropdownen til å bestemme ulike statestikk -->#}
+{#<div class="col-md-1 col-md-offset-1">#}
+{#  <div class="dropdown">#}
+{#  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-labelledby="dropdownMenu" aria-haspopup="true" aria-expanded="true">#}
+{#    Select statistic#}
+{#    <span class="caret"></span>#}
+{#  </button>#}
+{#  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">#}
+{#        <li><a tabindex="-1" href="{% url 'ChartView' %}">Admin/member</a></li>#}
+{#        <li><a tabindex="-1" href="#">Gender</a></li>#}
+{#        <li><a tabindex="-1" href="{% url 'ChartView/month' %}">Monthly registrations</a></li>#}
 {#        <li><a tabindex="-1" href="#">Something else here</a></li>#}
-  </ul>
-</div>
-</div>
-
-    <div class="col-md-2 col-md-offset-7">
-        <a class="btn btn-primary btn-m" href="{% url 'home' %}">
-            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-            {% trans 'Return Home' %}
-        </a>
-    </div>
-
-    </div>
-    </div>
-
-    <br>
-
-<div class="container">
- <div class="row">
+{#  </ul>#}
+{#</div>#}
+{#</div>#}
+{##}
+{#    <div class="col-md-2 col-md-offset-7">#}
+{#        <a class="btn btn-primary btn-m" href="{% url 'home' %}">#}
+{#            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>#}
+{#            {% trans 'Return Home' %}#}
+{#        </a>#}
+{#    </div>#}
+{##}
+{#    </div>#}
+{#    </div>#}
+{##}
+{#    <br>#}
+{##}
+{#<div class="container">#}
+{# <div class="row">#}
 {#    <div class="col-sm-6 col-md-6">#}
-    <div class ="col-md-6 col-md-6">
-        <div id="accordion1" class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseBody1">
-                        Bar chart
-                        <span class="fa fa-chevron-up pull-right"></span>
-                    </a>
-                </h4>
-            </div>
-        <div id="collapseBody1" class="panel-collapse collapse in">
-            <div class="chart1">
+{#    <div class ="col-md-6 col-md-6">#}
+{#        <div id="accordion1" class="panel panel-default">#}
+{#            <div class="panel-heading">#}
+{#                <h4 class="panel-title">#}
+{#                    <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseBody1">#}
+{#                        Bar chart#}
+{#                        <span class="fa fa-chevron-up pull-right"></span>#}
+{#                    </a>#}
+{#                </h4>#}
+{#            </div>#}
+{#        <div id="collapseBody1" class="panel-collapse collapse in">#}
+{#            <div class="chart1">#}
 {#                <div class="col-sm-12">#}
 {#                    <h1>Hello World</h1>#}
-                    <div id="adminMemberPanel" class="panel-body"></div>
+{#                    <div id="adminMemberPanel" class="panel-body"></div>#}
 {#                </div>#}
-            </div>
-        </div>
-    </div>
-    </div>
-
-
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    </div>#}
+{##}
+{##}
 {#          <div class ="col-sm-6 col-md-6">#}
 {#     <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" data-target="#demo">Bar chart#}
 {#         <span class="fa fa-chevron-up pull-right"></span>#}
@@ -130,29 +456,29 @@
 {#      </div>#}
 {#         </button>#}
 {#     </div>#}
-
-
-    <div class ="col-md-6 col-md-6">
-        <div id="accordion2" class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseBody2">
-                        Polar chart
-                        <span class="fa fa-chevron-up pull-right"></span>
-                    </a>
-                </h4>
-            </div>
-             <div id="collapseBody2" class="panel-collapse collapse in">
-                <div class="chart1">
+{##}
+{##}
+{#    <div class ="col-md-6 col-md-6">#}
+{#        <div id="accordion2" class="panel panel-default">#}
+{#            <div class="panel-heading">#}
+{#                <h4 class="panel-title">#}
+{#                    <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseBody2">#}
+{#                        Polar chart#}
+{#                        <span class="fa fa-chevron-up pull-right"></span>#}
+{#                    </a>#}
+{#                </h4>#}
+{#            </div>#}
+{#             <div id="collapseBody2" class="panel-collapse collapse in">#}
+{#                <div class="chart1">#}
 {#                    <div class="col-sm-12">#}
 {#                        <h1>Hello World</h1>#}
-                        <canvas id="myChart2" width="400" height="400"></canvas>
+{#                        <canvas id="myChart2" width="400" height="400"></canvas>#}
 {#                    </div>#}
-                </div>
-            </div>
-        </div>
-    </div>
-
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
 {#          <div class ="col-sm-6 col-md-6">#}
 {#     <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" data-target="#butCha2">Polar chart#}
 {#         <span class="fa fa-chevron-up pull-right"></span>#}
@@ -163,35 +489,35 @@
 {#      </div>#}
 {#         </button>#}
 {#     </div>#}
-
-</div>
-</div>
-<br>
-
-<div class="container">
- <div class="row">
-    <div class ="col-sm-6 col-md-6">
-        <div id="accordion3" class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseBody3">
-                        Doughnut chart
-                        <span class="fa fa-chevron-up pull-right"></span>
-                    </a>
-                </h4>
-            </div>
-        <div id="collapseBody3" class="panel-collapse collapse in">
-            <div class="chart1">
+{##}
+{#</div>#}
+{#</div>#}
+{#<br>#}
+{##}
+{#<div class="container">#}
+{# <div class="row">#}
+{#    <div class ="col-sm-6 col-md-6">#}
+{#        <div id="accordion3" class="panel panel-default">#}
+{#            <div class="panel-heading">#}
+{#                <h4 class="panel-title">#}
+{#                    <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseBody3">#}
+{#                        Doughnut chart#}
+{#                        <span class="fa fa-chevron-up pull-right"></span>#}
+{#                    </a>#}
+{#                </h4>#}
+{#            </div>#}
+{#        <div id="collapseBody3" class="panel-collapse collapse in">#}
+{#            <div class="chart1">#}
 {#                <div class="col-sm-12">#}
 {#                    <h1>Hello World</h1>#}
-                    <canvas id="myChart3" width="400" height="400"></canvas>
+{#                    <canvas id="myChart3" width="400" height="400"></canvas>#}
 {#                </div>#}
-            </div>
-        </div>
-        </div>
-    </div>
-
-
+{#            </div>#}
+{#        </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{##}
 {#     <div class ="col-sm-6 col-md-6">#}
 {#     <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" data-target="#butCha3">Doughnut chart#}
 {#         <span class="fa fa-chevron-up pull-right"></span>#}
@@ -202,29 +528,29 @@
 {#      </div>#}
 {#         </button>#}
 {#     </div>#}
-
-
-    <div class ="col-sm-6 col-md-6">
-        <div id="accordion4" class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseBody4">
-                    Horizontal bar chart
-                    <span class="fa fa-chevron-up pull-right"></span>
-                </a>
-            </h4>
-        </div>
-         <div id="collapseBody4" class="panel-collapse collapse in">
-            <div class="chart1">
+{##}
+{##}
+{#    <div class ="col-sm-6 col-md-6">#}
+{#        <div id="accordion4" class="panel panel-default">#}
+{#        <div class="panel-heading">#}
+{#            <h4 class="panel-title">#}
+{#                <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseBody4">#}
+{#                    Horizontal bar chart#}
+{#                    <span class="fa fa-chevron-up pull-right"></span>#}
+{#                </a>#}
+{#            </h4>#}
+{#        </div>#}
+{#         <div id="collapseBody4" class="panel-collapse collapse in">#}
+{#            <div class="chart1">#}
 {#                <div class="col-sm-12">#}
 {#                    <h1>Hello World</h1>#}
-                    <canvas id="myChart4" width="400" height="400"></canvas>
+{#                    <canvas id="myChart4" width="400" height="400"></canvas>#}
 {#                </div>#}
-            </div>
-        </div>
-        </div>
-    </div>
-
+{#            </div>#}
+{#        </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
 {#    <div class ="col-sm-6 col-md-6">#}
 {#     <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" data-target="#butCha4">Horizontal bar chart#}
 {#         <span class="fa fa-chevron-up pull-right"></span>#}
@@ -235,10 +561,10 @@
 {#      </div>#}
 {#         </button>#}
 {#     </div>#}
-</div>
-</div>
-
-
+{#</div>#}
+{#</div>#}
+{##}
+{##}
 {#<div class="container">#}
 {# <div class="row">#}
 {#    <div class="col-sm-6 col-md-6">#}
@@ -261,9 +587,9 @@
 {##}
 {#</div>#}
 {#</div>#}
-
-
-	<script src="{% static 'js/chart.js' %}"></script>
+{##}
+{##}
+{#	<script src="{% static 'js/chart.js' %}"></script>#}
 
 {% endblock main %}
 

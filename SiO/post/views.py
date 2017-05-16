@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from SiO.post.mail import mailHandler
 from SiO.post.models import Email
 from datetime import datetime
-from SiO.member.models import Association
+from SiO.CoAdmin.models import Administrator
 from django.contrib import messages
 from SiO.member.models import Association
 from django.core.mail import EmailMultiAlternatives
@@ -40,7 +40,10 @@ class mailPost(FormView):
             # asoc(form.cleaned_data['receiver'],
             #              form.cleaned_data['subject'],
             #              form.cleaned_data['message'])
-            sender = form.cleaned_data.get('sender')
+            # sender = form.cleaned_data.get('sender')
+            # sender = Administrator.objects.get(email=self.request.user.email)
+            # sender = Administrator.objects.get(email=send)
+            sender = "test@sioforeninger.no"
             receiver = form.cleaned_data.get('receiver')
             subject = form.cleaned_data.get('subject')
             message = form.cleaned_data.get('message')

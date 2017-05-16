@@ -20,8 +20,14 @@ class AssociationTest(TestCase):
 
 class MemberTest(TestCase):
 
-    def create_member(self, first_name="miriam"):
-        return Member.objects.create(first_name=first_name, association=1)
+    def create_member(self, first_name="foo", last_name="test"):
+        self.asoc = Association.objects.create(id=1)
+        return Member.objects.create(first_name=first_name, last_name=last_name, association=self.asoc)
+
+    def test_member_creation(self):
+        w = self.create_member()
+        self.assertTrue(isinstance(w, Member))
+        self.assertEqual(w.__str__(), w.first_name + ' ' + w.last_name)
 
 # views (uses reverse)
 

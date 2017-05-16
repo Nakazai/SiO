@@ -61,7 +61,7 @@ class Administrator(AbstractUser):
 #     place = models.CharField(max_length=50, null=True, blank=True)
 #     date = models.CharField(max_length=50, null=True, blank=True)
 #     name = models.CharField(max_length=50, null=True, blank=True)
-
+# TODO: gjøre om lengden til "name" slik at den ikke blir for lang og man ikke ser tidspunkt på kalender
 class Event(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=100)
@@ -94,7 +94,7 @@ class Event(models.Model):
     #     return True
 
 
-@python_2_unicode_compatible
+# @python_2_unicode_compatible
 class Profile(models.Model):
     user = models.OneToOneField(Administrator)
     # first_name = models.CharField(max_length=50, null=True, blank=True)
