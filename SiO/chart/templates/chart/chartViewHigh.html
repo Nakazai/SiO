@@ -169,10 +169,12 @@ $(document).ready(function() {
       type: 'pie',
       name: 'Group share',
       data: [
-          { name: 'Board',   y: defaultData },
+          {
+              name: 'Board',
+              y: defaultData[0] },
          {
             name: 'Member',
-            y: defaultData2,
+            y: defaultData2[0],
             sliced: true,
             selected: true
          }

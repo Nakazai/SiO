@@ -157,8 +157,8 @@
                 },
                 xAxis: {
                     categories: [
-                        'Group'
-
+{#                        'Group'#}
+                    'Age 16-21', 'Age 22-27', 'Age 28-33'
                     ]
                 },
                 yAxis: {
@@ -177,18 +177,26 @@
                         borderWidth: 0
                     }
                 },
-                  series: [{
-                    name: labels13,
-                    data: defaultData13
-
-                },{
-                    name: labels14,
-                    data: defaultData14
-
-                },{
-                    name: labels15,
-                    data: defaultData15
+                series: [{
+                    name: 'Total',
+                    data: [
+                    defaultData13,
+                     defaultData14,
+                    defaultData15
+                    ]
                 }]
+{#                  series: [{#}
+{#                    name: labels13,#}
+{#                    data: defaultData13#}
+{##}
+{#                },{#}
+{#                    name: labels14,#}
+{#                    data: defaultData14#}
+{##}
+{#                },{#}
+{#                    name: labels15,#}
+{#                    data: defaultData15#}
+{#                }]#}
             });
         });
 

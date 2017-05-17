@@ -234,6 +234,7 @@ class ChartData(APIView):
             "default": default_items,
             "labels2": labels2,
             "default2": default_items2,
+            # "xAxisTitle": 2017,
 
             # Gender
             "labels4": labels4,

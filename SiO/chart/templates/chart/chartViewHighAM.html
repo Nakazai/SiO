@@ -50,6 +50,7 @@
     var labels5 = [];
     var defaultData5 = [];
 {#    var categories = ['Member', 'Board'];#}
+{#           var xAxisTitle = "";#}
 
 
      $.ajax({
@@ -80,6 +81,7 @@
                 defaultData4 = data.default4;
                 labels5 = data.labels5;
                 defaultData5 = data.default5;
+{#                xAxisTitle = data.xAxisTitle;#}
                 setChart()
             },
             error: function (error_data) {
@@ -89,14 +91,14 @@
         });
 
          function setChart() {
-             //Female & Male
+             //Board & Members
               $(function () {
             $('#container2').highcharts({
                 chart: {
                     type: 'bar'
                 },
                 title: {
-                    text: 'Total'
+                    text: 'Team'
                 },
                 subtitle: {
                     text: 'Source: sioforeninger.no'
@@ -105,6 +107,7 @@
                     enabled: false
                 },
                 xAxis: {
+                    text: xAxisTitle,
                     categories: [
                         'Group'
 
@@ -144,7 +147,7 @@
                     type: 'column'
                 },
                 title: {
-                    text: 'Total'
+                    text: 'Team'
                 },
                 subtitle: {
                     text: 'Source: sioforeninger.no'
@@ -154,8 +157,8 @@
                 },
                 xAxis: {
                     categories: [
-                        'Group'
-
+{#                        'Group'#}
+                        'Board', 'Members'
                     ]
                 },
                 yAxis: {
@@ -175,14 +178,21 @@
                     }
                 },
                 series: [{
-                    name: labels,
-                    data: defaultData
-
-                },{
-                    name: labels2,
-                    data: defaultData2
-
+                    name: 'Total',
+                    data:[
+                        defaultData,
+                        defaultData2
+                        ]
                 }]
+{#                series: [{#}
+{#                    name: labels,#}
+{#                    data: defaultData#}
+{##}
+{#                },{#}
+{#                    name: labels2,#}
+{#                    data: defaultData2#}
+{##}
+{#                }]#}
             });
         });
 

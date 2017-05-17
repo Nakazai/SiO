@@ -63,6 +63,7 @@
     var defaultData11 = [];
     var labels12 = [];
     var defaultData12 = [];
+{#    var thisYear = [];#}
 {#    var categories = ['Member', 'Board'];#}
 
 
@@ -108,6 +109,7 @@
                 defaultData11 = data.default11;
                 labels12 = data.labels12;
                 defaultData12 = data.default12;
+                thisYear = new Date().getFullYear();
                 setChart()
             },
             error: function (error_data) {
@@ -124,7 +126,7 @@
                     type: 'bar'
                 },
                 title: {
-                    text: 'Total for Current Year'
+                    text: 'Members Registration '
                 },
                   credits: {
                       enabled: false
@@ -133,6 +135,10 @@
 {#                    text: 'Source: sioforeninger.no'#}
                 },
                 xAxis: {
+{#                    title: {text: thisYear},#}
+                    title: { text: new Date().getFullYear() },
+                    tickInterval: 1,
+
                     categories: [
                         'Group'
 {#                        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'#}
@@ -197,14 +203,19 @@
                 }]
             });
         });
-
+{#              function timeConverter(UNIX_timestamp) {#}
+{#                  var a = new Date(UNIX_timestamp * 1000);#}
+{#                  var year = a.getFullYear();#}
+{#                  defaultData01.year;#}
+{#                  return year1#}
+{#              }#}
           $(function () {
             $('#container3').highcharts({
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: 'Total for Current Year '
+                    text: 'Members Registration '
                 },
                  credits: {
                     enabled: false
@@ -213,9 +224,16 @@
 {#                    text: 'Source: sioforeninger.no'#}
                 },
                 xAxis: {
+                    title: { text: new Date().getFullYear() },
+{#                    title: {text: thisYear},#}
+              type:"datetime",
+          dateTimeLabelFormats:{
+            year: '%Y'}
+            ,
+                    tickInterval: 1,
                     categories: [
-                        'Group'
-{#                        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'#}
+{#                        'Group'#}
+                        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
                     ]
                 },
                 yAxis: {
@@ -234,47 +252,65 @@
                         borderWidth: 0
                     }
                 },
-                  series: [{
-                    name: labels01 ,
-                    data: defaultData01
-
-                },{
-                    name: labels02,
-                    data: defaultData02
-
-                },{
-                    name: labels03,
-                    data: defaultData03
-
-                },{
-                    name: labels04,
-                    data: defaultData04
-
-                },{
-                    name: labels05,
-                    data: defaultData05
-                },{
-                    name: labels06,
-                    data: defaultData06
-                },{
-                    name: labels07,
-                    data: defaultData07
-                },{
-                    name: labels08,
-                    data: defaultData08
-                },{
-                    name: labels09,
-                    data: defaultData09
-                },{
-                    name: labels10,
-                    data: defaultData10
-                },{
-                    name: labels11,
-                    data: defaultData11
-                },{
-                    name: labels12,
-                    data: defaultData12
+                series: [{
+                    name: 'Total',
+                    data: [
+                        defaultData01,
+                        defaultData02,
+                        defaultData03,
+                        defaultData04,
+                        defaultData05,
+                        defaultData06,
+                        defaultData07,
+                        defaultData08,
+                        defaultData09,
+                        defaultData10,
+                        defaultData11,
+                        defaultData12
+                    ]
                 }]
+
+{#                  series: [{#}
+{#                    name: labels01 ,#}
+{#                    data: defaultData01#}
+{##}
+{#                },{#}
+{#                    name: labels02,#}
+{#                    data: defaultData02#}
+{##}
+{#                },{#}
+{#                    name: labels03,#}
+{#                    data: defaultData03#}
+{##}
+{#                },{#}
+{#                    name: labels04,#}
+{#                    data: defaultData04#}
+{##}
+{#                },{#}
+{#                    name: labels05,#}
+{#                    data: defaultData05#}
+{#                },{#}
+{#                    name: labels06,#}
+{#                    data: defaultData06#}
+{#                },{#}
+{#                    name: labels07,#}
+{#                    data: defaultData07#}
+{#                },{#}
+{#                    name: labels08,#}
+{#                    data: defaultData08#}
+{#                },{#}
+{#                    name: labels09,#}
+{#                    data: defaultData09#}
+{#                },{#}
+{#                    name: labels10,#}
+{#                    data: defaultData10#}
+{#                },{#}
+{#                    name: labels11,#}
+{#                    data: defaultData11#}
+{#                },{#}
+{#                    name: labels12,#}
+{#                    data: defaultData12#}
+{#                }]#}
             });
         });
 
