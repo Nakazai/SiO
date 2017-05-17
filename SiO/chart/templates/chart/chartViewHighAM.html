@@ -101,6 +101,9 @@
                 subtitle: {
                     text: 'Source: sioforeninger.no'
                 },
+                 credits: {
+                    enabled: false
+                },
                 xAxis: {
                     categories: [
                         'Group'
@@ -145,6 +148,9 @@
                 },
                 subtitle: {
                     text: 'Source: sioforeninger.no'
+                },
+                 credits: {
+                    enabled: false
                 },
                 xAxis: {
                     categories: [
@@ -200,8 +206,8 @@
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
         <li><a tabindex="-1" href="{% url 'chartViewHighAM' %}">Board & Member</a></li>
         <li><a tabindex="-1" href="{% url 'chartViewHighGender' %}">Gender</a></li>
-{#        <li><a tabindex="-1" href="{% url 'ChartView/month' %}">Monthly registrations</a></li>#}
-{#        <li><a tabindex="-1" href="#">Something else here</a></li>#}
+        <li><a tabindex="-1" href="{% url 'chartViewHighMonth' %}">Monthly registrations</a></li>
+        <li><a tabindex="-1" href="{% url 'chartViewHighAge' %}">Age difference</a></li>
   </ul>
 </div>
 </div>

@@ -39,16 +39,16 @@
 
       var endpoint = '/api/chart/data/';
 
-    var labels = [];
-    var defaultData = [];
-    var labels2 = [];
-    var defaultData2 = [];
-    var labels3 = [];
-    var defaultData3 = [];
-    var labels4 = [];
-    var defaultData4 = [];
-    var labels5 = [];
-    var defaultData5 = [];
+{#    var labels01 = [];#}
+{#    var defaultData01 = [];#}
+{#    var labels02 = [];#}
+{#    var defaultData02 = [];#}
+    var labels13 = [];
+    var defaultData13 = [];
+    var labels14 = [];
+    var defaultData14 = [];
+    var labels15 = [];
+    var defaultData15 = [];
 {#    var categories = ['Member', 'Board'];#}
 
 
@@ -70,16 +70,16 @@
           * @param data.dif
           */
         success: function (data) {
-                labels = data.labels;
-                defaultData = data.default;
-                labels2 = data.labels2;
-                defaultData2 = data.default2;
-{#                labels3 = data.labels3;#}
-{#                defaultData3 = data.default3;#}
-                labels4 = data.labels4;
-                defaultData4 = data.default4;
-                labels5 = data.labels5;
-                defaultData5 = data.default5;
+{#                labels01 = data.labels01;#}
+{#                defaultData01 = data.default01;#}
+{#                labels02 = data.labels02;#}
+{#                defaultData02 = data.default02;#}
+                labels13 = data.labels13;
+                defaultData13 = data.default13;
+                labels14 = data.labels14;
+                defaultData14 = data.default14;
+                labels15 = data.labels15;
+                defaultData15 = data.default15;
                 setChart()
             },
             error: function (error_data) {
@@ -96,7 +96,7 @@
                     type: 'bar'
                 },
                 title: {
-                    text: 'Total'
+                    text: 'Age'
                 },
                 subtitle: {
                     text: 'Source: sioforeninger.no'
@@ -127,13 +127,16 @@
                     }
                 },
                 series: [{
-                    name: labels4,
-                    data: defaultData4
+                    name: labels13,
+                    data: defaultData13
 
                 },{
-                    name: labels5,
-                    data: defaultData5
+                    name: labels14,
+                    data: defaultData14
 
+                },{
+                    name: labels15,
+                    data: defaultData15
                 }]
             });
         });
@@ -144,7 +147,7 @@
                     type: 'column'
                 },
                 title: {
-                    text: 'Total'
+                    text: 'Age'
                 },
                 subtitle: {
                     text: 'Source: sioforeninger.no'
@@ -174,14 +177,17 @@
                         borderWidth: 0
                     }
                 },
-                series: [{
-                    name: labels4,
-                    data: defaultData4
+                  series: [{
+                    name: labels13,
+                    data: defaultData13
 
                 },{
-                    name: labels5,
-                    data: defaultData5
+                    name: labels14,
+                    data: defaultData14
 
+                },{
+                    name: labels15,
+                    data: defaultData15
                 }]
             });
         });
@@ -251,7 +257,7 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseBody4">
-                        Bar chart
+                            Bar chart
                         <span class="fa fa-chevron-up pull-right"></span>
                     </a>
                 </h4>

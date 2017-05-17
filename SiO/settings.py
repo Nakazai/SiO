@@ -204,4 +204,4 @@ ANYMAIL = {
     "MAILGUN_SENDER_DOMAIN": 'test.sioforeninger.no',  # your Mailgun domain, if needed
 }
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
-DEFAULT_FROM_EMAIL = "test@sioforeninger.no"  # if you don't already have this in settin
+DEFAULT_FROM_EMAIL = "TestSite Team <noreply@sioforeninger.no>"  # if you don't already have this in settin

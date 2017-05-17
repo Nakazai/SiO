@@ -43,7 +43,7 @@ class mailPost(FormView):
             # sender = form.cleaned_data.get('sender')
             # sender = Administrator.objects.get(email=self.request.user.email)
             # sender = Administrator.objects.get(email=send)
-            sender = "test@sioforeninger.no"
+            sender = "noreply@sioforeninger.no"
             receiver = form.cleaned_data.get('receiver')
             subject = form.cleaned_data.get('subject')
             message = form.cleaned_data.get('message')

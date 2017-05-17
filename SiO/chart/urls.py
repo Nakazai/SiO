@@ -16,10 +16,14 @@ urlpatterns = [
     # TODO: Remember to uncomment below
     url(r'^api/chart/data/$', views.ChartData.as_view()),
     # url(r'^chart_data_json/$', views.chart_data_json, name="chart_data_json"),
-    # url(r'^chartViewHigh/$', views.ChartData.as_view(), name='chartViewHigh'),
+
+    url(r'^chartViewHigh/$', views.ChartHigh.as_view(), name='chartViewHigh'),
+
     url(r'^chartViewHigh/$', views.ChartHigh.as_view(), name='chartViewHigh'),
     url(r'^chartViewHighAM/$', views.ChartHighAM.as_view(), name='chartViewHighAM'),
     url(r'^chartViewHighGender/$', views.ChartHighGender.as_view(), name='chartViewHighGender'),
+    url(r'^chartViewHighMonth/$', views.ChartHighMonth.as_view(), name='chartViewHighMonth'),
+    url(r'^chartViewHighAge/$', views.ChartHighAge.as_view(), name='chartViewHighAge'),
 ]
 
 
