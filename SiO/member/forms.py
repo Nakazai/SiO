@@ -232,6 +232,3 @@ class RegAsoc(forms.ModelForm):
     #         self._errors['password'] = self.error_class(
     #             ['Passwords don\'t match'])
     #     return self.cleaned_data
-
-
-

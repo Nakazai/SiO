@@ -7,7 +7,7 @@
 {% endblock head %}
 
 {% block main %}
-  <h1 class="logo"><a href="{% url 'home' %}">Administrator</a></h1>
+  <h1 class="logo"><a href="{% url 'home' %}"><span class="fa fa-users"</span> Administrator</a></h1>
   <div class="signup">
     <h2>{% trans 'Create admin' %}</h2>
     <form action="{% url 'InnsideSignUp' %}" method="post" role="form">

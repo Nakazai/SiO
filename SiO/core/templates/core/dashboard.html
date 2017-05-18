@@ -26,7 +26,7 @@
 {#                <img src="{% static 'img/loading.gif' %}">#}
 {#              </div>#}
 {#<div class="containerBox">#}
-            <h2 class="center wow bounceInUp">Din medlemsregistreringsside for</h2>
+            <h2 class="center wow bounceInUp">Your member registration site for</h2>
             <h1 class="center">{{ user.profile.get_association_name }}</h1>
         <br>
 
@@ -61,8 +61,8 @@
                   <div class="box-area-icon">
                     <i class="fa fa-user-plus"></i>
                   </div>
-                  <h3><a href="{% url 'member_overview' %}" class="h3ref">{% trans 'Medlemmer' %}</a></h3>
-                  <div class="box-area-text">Medlemmer er siden hvor du kan registrere nye medlemmer, redigere gjellende medlemmer eller slette medlemmer. Du kan også søke etter medlemmer ved eventuelle arrangementer.</div>
+                  <h3><a href="{% url 'member_overview' %}" class="h3ref">{% trans 'Members' %}</a></h3>
+                  <div class="box-area-text">Members is the site where you can add, edit, delete and search for members.<br> You can use this site to check if attenders of you're event is registered members.</div>
               </div>
             </div>
             <div class="col-md-4">
@@ -70,8 +70,8 @@
                   <div class="box-area-icon">
                       <i class="fa fa-bar-chart" aria-hidden="true"></i>
                   </div>
-                  <h3><a href="{% url 'chartViewHighAM' %}" class="h3ref">{% trans 'Statestikk' %}</a></h3>
-                  <div class="box-area-text">Statestikk siden vil kunne gi deg verdifull statestikk over din medlemsbase. Kjønnsfordeling eller medlemsregistreringer fra måned til måned er noe av hva du kan finne her.</div>
+                  <h3><a href="{% url 'ChartView' %}" class="h3ref">{% trans 'Statistics' %}</a></h3>
+                  <div class="box-area-text">Statistics will show you statistical data based on you're members. Use this to make calculated decisions within you're organization to accommodate for a more members.</div>
               </div>
             </div>
             <div class="col-md-4">
@@ -80,7 +80,7 @@
                     <i class="fa fa-users"></i>
                   </div>
                   <h3><a href="{% url 'admin_overview' %}" class="h3ref">{% trans 'Administrator' %}</a></h3>
-                  <div class="box-area-text">I administrasjon siden kan du legge til nye administratorer, redigere disse eller slette eksisterende administratorer. Dette er hvem som har tilgang til siden.</div>
+                  <div class="box-area-text">At the administrator site you can add, edit and delete administrators who have access to this site. Remember to only give access to this site to people within you're board.</div>
               </div>
             </div>
             <div class="col-md-4">
@@ -88,8 +88,8 @@
                   <div class="box-area-icon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <h3><a href="{% url 'calendar' %}" class="h3ref">{% trans 'Kalender' %}</a></h3>
-                  <div class="box-area-text">Her kan du registrere interne og vanlige arrangemneter. Disse vil hovedsaklig bli synlig for administratorer av denne siden. Du kan også synce med google kallender. </div>
+                  <h3><a href="{% url 'calendar' %}" class="h3ref">{% trans 'Calendar' %}</a></h3>
+                  <div class="box-area-text">Here you can add, edit and delete events and upcoming meetings to youre shared callendar. Remember that this is internal callender who only can be accessed by you're admins.</div>
               </div>
             </div>
               <div class="col-md-4">
@@ -98,7 +98,7 @@
                     <i class="fa fa-envelope"></i>
                   </div>
                   <h3><a  href="{% url 'post' %}" class="h3ref">Mail</a></h3>
-                  <div class="box-area-text">Her kan du sende epost til dine medlemmer om kommende arrangementer. Prøv å ikke sende mer en enn epost i måneden til dine medlemmer for å unngå spam.</div>
+                  <div class="box-area-text">Here you can create and send emails to you're members. Remember to use a credible senders name and not to send too many mails so that you're mails ends up in spam folder.</div>
               </div>
             </div>
             <div class="col-md-4">
@@ -106,8 +106,8 @@
                   <div class="box-area-icon">
                     <i class="fa fa-cubes"></i>
                   </div>
-                  <h3><a href="https://sio.no/foreninger" class="h3ref">Studentsamkipnaden i Oslo og Akershus</a></h3>
-                  <div class="box-area-text">På SiO sine hjemmesider kan du finne informasjon og råd til foreningsdrift. Sjekk ut kurskallenderen og søk middler gjennom SiO.</div>
+                  <h3><a href="https://sio.no/foreninger" class="h3ref">SiO Foreninger</a></h3>
+                  <div class="box-area-text">On SiO's student organization site you can find up to date and relevant information about how to manage you're organization. You can also register for seminars.</div>
               </div>
             </div>
 

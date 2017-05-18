@@ -70,7 +70,7 @@ class mailHandler(forms.Form):
                            {% for message in messages %}
                            <center><p {% if message.tags %}
                            class="alert alert-{{ message.tags }}"
-                           {% endif %}>{{ message }}</p></center>{% endfor %}{% endif %}
+                           {% endif %}>{{ message }}</p>{% endfor %}{% endif %}
                             '''),
             # ###Field('subject'),
             # ###Field('sender'),
@@ -86,26 +86,19 @@ class mailHandler(forms.Form):
                     # ),
                     # Fieldset('Post email',
                     Div('subject',
-                        # ###'sender',
+                        'sender',
                         Field('receiver', placeholder='Email address',
                               required=True),
                         'message',
                         FormActions(
-                            Submit('submit', 'Send Email', css_class='btn btn-lg btn-block'),
-                            # Submit('submit', 'Send Email', css_class='btn btn-info'),
-                            # Submit('cancel', 'Cancel', css_class='btn btn-primary'),
-                            # ###css_class='btn btn-lg'
-                            # ###css_class='pull-right'
+                            Submit('submit', 'Send', css_class='btn btn-lg'),
+                            # css_class='btn btn-lg'
+                            # css_class='pull-right'
                         ),
                         # ###css_class='col-sm-8 col-md-8',
                         ),
-                             # ),
-                    # ###css_class='row'
+                    css_class='row'
                 ),
             ),
         )
     #     # ###self.fields['subject'].initial = '[GlucoseTracker] Glucose Data Report'
-
-
-
-

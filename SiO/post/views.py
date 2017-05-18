@@ -169,4 +169,3 @@ class mailPost(FormView):
             #                       reg_date=reg_date, date_of_birth=date_of_birth, end_date=end_date)
             # messages.add_message(request, messages.SUCCESS,
             #                      'Member successfully added')
-
