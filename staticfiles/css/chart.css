@@ -35,6 +35,10 @@ body {
 .chart1 {
   padding: 30px 20px;
     margin-bottom: 2%;
+    background: #e6e6e6;
+    border-bottom: 10px solid #7B1801;
+    border-radius: 0 0 15px 15px;
+    border-top: 1px solid #7B1801;
 }
 
 .chart1 form {
@@ -43,4 +47,8 @@ body {
 
 .chart h2 {
   margin: 0;
+}
+
+.panel{
+    border: none;
 }

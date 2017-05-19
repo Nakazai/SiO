@@ -6,6 +6,7 @@
   <head>
 {#  {% block head %}#}
     <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Association{% endblock %}</title>
@@ -170,23 +171,17 @@ $(document).ready(function() {
 {#                    <span class="fa fa-users"></span>{% trans 'Administrator' %}</a></li>#}
 {#                <li><a href="{% url 'calendar' %}">#}
 {#                    <span class="glyphicon glyphicon-calendar"></span>{% trans 'Kalender' %}</a></li>#}
-                <li><a>
-                     {% trans '       ' %}</a></li>
-                <li><a>
-                     {% trans '       ' %}</a></li>
-                <li><a>
-                     {% trans '       ' %}</a></li>
-                <li  class="active"><a href="{% url 'member_overview' %}">
+                <li  class="active"><a href="{% url 'member_overview' %}" style="font-weight: bold;">
                      {% trans 'Members' %}</a></li>
 {#                <li><a href="{% url 'chartViewHigh' %}">#}
 {#                    {% trans 'Statistics' %}</a></li>#}
-                <li><a href="{% url 'chartViewHighAM' %}">
+                <li><a href="{% url 'chartViewHighAM' %}" style="font-weight: bold;">
                     {% trans 'Statistics' %}</a></li>
-                <li><a href="{% url 'admin_overview' %}">
+                <li><a href="{% url 'admin_overview' %}" style="font-weight: bold;">
                    {% trans 'Administrator' %}</a></li>
-                   <li><a href="{% url 'post' %}">
+                   <li><a href="{% url 'post' %}" style="font-weight: bold;">
                     {% trans 'Mail' %}</a></li>
-                <li><a href="{% url 'calendar' %}">
+                <li><a href="{% url 'calendar' %}" style="font-weight: bold;">
                     {% trans 'Calendar' %}</a></li>
               </ul>
               {% if not hide_search %}

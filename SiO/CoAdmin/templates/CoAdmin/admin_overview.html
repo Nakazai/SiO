@@ -52,6 +52,7 @@
 
     <div class="signup">
 {#        <ul class="list-group">#}
+    <div style="overflow-x:auto;">
 			 <table class="table table-bordered">
                 <tr>
                     <th>First name</th>
@@ -65,13 +66,13 @@
                 </tr>
                 <tr>
                     {% for administrator in object_list %}
-                    <td>{{ administrator.first_name }}</td>
-                    <td>{{ administrator.last_name }}</td>
-                    <td>{{ administrator.email }}</td>
-                    <td>{{ administrator.association }}</td>
+                    <td class="tablecontent">{{ administrator.first_name }}</td>
+                    <td class="tablecontent">{{ administrator.last_name }}</td>
+                    <td class="tablecontent">{{ administrator.email }}</td>
+                    <td class="tablecontent">{{ administrator.association }}</td>
 {#                    <td>{{ administrator.student_status }}</td>#}
-                    <td>{{ administrator.union_position }}</td>
-                    <td>{{ administrator.username }}</td>
+                    <td class="tablecontent">{{ administrator.union_position }}</td>
+                    <td class="tablecontent">{{ administrator.username }}</td>
 {#                    <td>{{ administrator.password }}</td>#}
                     <td>
                         <a class="btn btn-primary btn-m" href="{% url "admin_edit" pk=administrator.id %}">
@@ -93,6 +94,7 @@
                  <p>{% trans 'Nothing to display.' %}</p>
 		        {% endfor %}
 			  </table>
+    </div>
 {#	</ul>#}
  </div>
 {% endblock main %}
