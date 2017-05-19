@@ -15,7 +15,7 @@ li.active {
   margin: 0;
   font-size: 3em;
   font-weight: 200;
-  font-family: "Audiowide", cursive;
+  /*font-family: "Audiowide", cursive;*/
   text-align: center;
   text-shadow: 1px 1px 0 #333333;
   line-height: 70px;
@@ -32,15 +32,15 @@ li.active {
   text-decoration: none;
 }
 
-.pagination li:active {
-    /*background-color: #ff0000; !important;*/
-      border-bottom: #ff0000;
+/*.pagination li:active {*/
+    /*!*background-color: #ff0000; !important;*!*/
+      /*border-bottom: #ff0000;*/
 
-}
+/*}*/
 
 .center {
      margin: 0 auto;
-     width: 140px;
+     width: 100%;
 }
 
 .signup {

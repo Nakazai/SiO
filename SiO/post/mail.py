@@ -97,7 +97,7 @@ class mailHandler(forms.Form):
                         ),
                         # ###css_class='col-sm-8 col-md-8',
                         ),
-                    css_class='row'
+                    # ###css_class='row'
                 ),
             ),
         )

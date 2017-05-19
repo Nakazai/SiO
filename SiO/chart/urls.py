@@ -19,13 +19,9 @@ urlpatterns = [
 
     url(r'^chartViewHigh/$', views.ChartHigh.as_view(), name='chartViewHigh'),
 
-    url(r'^chartViewHigh/$', views.ChartHigh.as_view(), name='chartViewHigh'),
+#    url(r'^chartViewHigh/$', views.ChartHigh.as_view(), name='chartViewHigh'),
     url(r'^chartViewHighAM/$', views.ChartHighAM.as_view(), name='chartViewHighAM'),
     url(r'^chartViewHighGender/$', views.ChartHighGender.as_view(), name='chartViewHighGender'),
     url(r'^chartViewHighMonth/$', views.ChartHighMonth.as_view(), name='chartViewHighMonth'),
     url(r'^chartViewHighAge/$', views.ChartHighAge.as_view(), name='chartViewHighAge'),
 ]
-
-
-
-
