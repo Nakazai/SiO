@@ -15,7 +15,7 @@ li.active {
   margin: 0;
   font-size: 3em;
   font-weight: 200;
-  font-family: "Audiowide", cursive;
+  /*font-family: "Audiowide", cursive;*/
   text-align: center;
   text-shadow: 1px 1px 0 #333333;
   line-height: 70px;
@@ -27,28 +27,34 @@ li.active {
 
 }
 
+.tablecontent {
+  background-color: #e6f0ff;
+}
+
 .logo a:hover, .logo a:focus {
   color: #0000FF;
   text-decoration: none;
 }
 
-.pagination li:active {
-    /*background-color: #ff0000; !important;*/
-      border-bottom: #ff0000;
+/*.pagination li:active {*/
+    /*!*background-color: #ff0000; !important;*!*/
+      /*border-bottom: #ff0000;*/
 
-}
+/*}*/
 
 .center {
      margin: 0 auto;
-     width: 140px;
+     width: 100%;
 }
 
 .signup {
   /*background-color: #f6f6f6;*/
     background-color: #DCDCDC;
   width: 100%;
-  border-radius: 7px;
   margin: 10px auto 0;
+    border-bottom: 10px solid #7B1801;
+    border-radius: 0 0 15px 15px;
+    border-top: 1px solid #7B1801;
 }
 
 .signup {

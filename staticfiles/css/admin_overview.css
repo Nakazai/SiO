@@ -11,7 +11,7 @@ a {
   margin: 0;
   font-size: 3em;
   font-weight: 200;
-  font-family: "Audiowide", cursive;
+  /*font-family: "Audiowide", cursive;*/
   text-align: center;
   text-shadow: 1px 1px 0 #333333;
   line-height: 70px;
@@ -32,12 +32,18 @@ a {
   /*background-color: #f6f6f6;*/
     background-color: #DCDCDC;
   width: 100%;
-  border-radius: 7px;
   margin: 10px auto 0;
+  border-bottom: 10px solid #7B1801;
+    border-radius: 0 0 15px 15px;
+    border-top: 1px solid #7B1801;
 }
 
 .signup {
   padding: 30px 20px;
+}
+
+.tablecontent {
+  background-color: #e6f0ff;
 }
 
 @media (max-width:980px) {
