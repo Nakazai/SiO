@@ -19,7 +19,7 @@
 {% endblock head %}
 
 {% block main %}
-  <h1 class="logo"><a href="{% url 'home' %}"><span class="fa fa-users"</span> Members</a></h1>
+  <h1 class="logo"><a href="{% url 'home' %}"><span class="fa fa-users"></span> Members</a></h1>
   <div class="signup">
     <h2>{% trans 'Add member' %}</h2>
     <form action="{% url 'member_signup' %}" method="post" role="form">

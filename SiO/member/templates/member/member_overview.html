@@ -142,7 +142,8 @@
 {#                <div class="form-group has-feedback">#}
                 <div class="input-group">
 {#                    <label for="search" class="sr-only">Search</label>#}
-            		<input type="text" class="form-control" name="q" placeholder="Search members" value="{{ request.GET.q }}"/>
+            		<input type="text" class="form-control" name="q"
+                           placeholder="Search members on First name, Last name or Email" value="{{ request.GET.q }}"/>
                         <div class="input-group-btn">
                           <button class="btn btn-default" type="submit" name="submit">
                               <i class="glyphicon glyphicon-search"></i>

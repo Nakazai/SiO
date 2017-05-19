@@ -44,7 +44,7 @@ from crispy_forms.bootstrap import FormActions
 class mailHandler(forms.Form):
     # ###sender = forms.CharField(label='Sender')
     subject = forms.CharField(required=False)
-    receiver = forms.EmailField(label='Send To')
+    receiver = forms.EmailField(label='Send to')
     message = forms.CharField(widget=forms.Textarea(attrs={'cols': 50}),
                               required=False)
 
@@ -86,18 +86,18 @@ class mailHandler(forms.Form):
                     # ),
                     # Fieldset('Post email',
                     Div('subject',
-                        'sender',
+                        # ###'sender',
                         Field('receiver', placeholder='Email address',
                               required=True),
                         'message',
                         FormActions(
-                            Submit('submit', 'Send', css_class='btn btn-lg'),
+                            Submit('submit', 'Send', css_class='btn btn-lg btn-block'),
                             # css_class='btn btn-lg'
                             # css_class='pull-right'
                         ),
                         # ###css_class='col-sm-8 col-md-8',
                         ),
-                    css_class='row'
+                    # ###css_class='row'
                 ),
             ),
         )

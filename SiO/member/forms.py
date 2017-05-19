@@ -90,7 +90,8 @@ class RegForm(forms.ModelForm):
         max_length=30,
         required=True)
     email = forms.CharField(
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'name': 'email', 'id': 'email'}),
+        widget=forms.EmailInput(attrs={'class': 'form-control',
+                                       'name': 'email', 'id': 'email', 'placeholder': 'example@example.com'}),
         required=True,
         max_length=75)
     # association = forms.ModelChoiceField(queryset=Association.objects.none(),
@@ -115,7 +116,10 @@ class RegForm(forms.ModelForm):
     #     required=True)
     # student_status = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'id': 'value'}))
     # reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'reg_date'}))
-    date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'date_of_birth'}))
+    date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3,
+                                                      attrs={'name': 'date_of_birth',
+                                                             'placeholder': 'YYYY-MM-DD   example: 1991-03-01'}
+                                                      ))
     gender = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'name': 'gender'}))
     # gender = PopupViewField(
     #     # ##Attrs for popup
@@ -129,7 +133,10 @@ class RegForm(forms.ModelForm):
     #     widget=forms.TextInput(attrs={'class': 'form-control'}),
     #     max_length=30,
     #     required=False)
-    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'end_date'}))
+    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3,
+                                                 attrs={'name': 'end_date',
+                                                        'placeholder': 'YYYY-MM-DD    example: 2017-03-01'}
+                                                 ))
 
     class Meta:
         model = Member
