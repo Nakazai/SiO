@@ -9,6 +9,8 @@ class Email(models.Model):
     sentTime = models.DateTimeField(auto_now_add=True, blank=False)
     subject = models.CharField(max_length=254)
     receiver = models.CharField(max_length=254)
+    cc = models.CharField(max_length=254)
+    bcc = models.CharField(max_length=254)
     message = models.TextField()
     association = models.ForeignKey(Association)
 

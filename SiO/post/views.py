@@ -45,6 +45,8 @@ class mailPost(FormView):
             # sender = Administrator.objects.get(email=send)
             sender = "noreply@sioforeninger.no"
             receiver = form.cleaned_data.get('receiver')
+            cc = form.cleaned_data.get('cc')
+            bcc = form.cleaned_data.get('bcc')
             subject = form.cleaned_data.get('subject')
             message = form.cleaned_data.get('message')
             time = datetime.now()
@@ -56,6 +58,8 @@ class mailPost(FormView):
             Email.objects.create(
                 sender=sender,
                 receiver=receiver,
+                cc=cc,
+                bcc=bcc,
                 subject=subject,
                 message=message,
                 # ###asocNumber=asoc_number,
@@ -65,13 +69,13 @@ class mailPost(FormView):
             # self.form_valid(form)
             # messages.add_message(request, messages.SUCCESS,
             #                      'Email Sent!')
-            # msg = EmailMultiAlternatives(message, sender, [receiver])
-            # msg.send()
+            msg = EmailMultiAlternatives(subject, message, sender, [receiver], bcc=[bcc], cc=[cc])
+            msg.send()
             # response.raise_for_status()
             # send_mail("It works!", "This will get sent through Mailgun",
             #           "Anymail Sender <from@example.com>", ["jamallakbir@gmail.com"])
             # send_mail(message, "This will get sent through Mailgun", sender, [receiver])
-            send_mail(subject, message, sender, [receiver])
+            # send_mail(subject, message, sender, [receiver], [bcc], [cc])
             return self.form_valid(form)
         else:
             return self.form_invalid(form)

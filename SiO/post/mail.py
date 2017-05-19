@@ -45,6 +45,8 @@ class mailHandler(forms.Form):
     # ###sender = forms.CharField(label='Sender')
     subject = forms.CharField(required=False)
     receiver = forms.EmailField(label='Send to')
+    cc = forms.EmailField(label='Send via Cc', required=False)
+    bcc = forms.EmailField(label='Send via Bcc', required=False)
     message = forms.CharField(widget=forms.Textarea(attrs={'cols': 50}),
                               required=False)
 
@@ -70,7 +72,9 @@ class mailHandler(forms.Form):
                            {% for message in messages %}
                            <center><p {% if message.tags %}
                            class="alert alert-{{ message.tags }}"
-                           {% endif %}>{{ message }}</p>{% endfor %}{% endif %}
+                           {% endif %}>{{ message }}
+                           <button type="button" name="message" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></p>
+                           </center>{% endfor %}{% endif %}
                             '''),
             # ###Field('subject'),
             # ###Field('sender'),
@@ -89,6 +93,8 @@ class mailHandler(forms.Form):
                         # ###'sender',
                         Field('receiver', placeholder='Email address',
                               required=True),
+                        Field('cc', placeholder='Email address'),
+                        Field('bcc', placeholder='Email address'),
                         'message',
                         FormActions(
                             Submit('submit', 'Send', css_class='btn btn-lg btn-block'),
