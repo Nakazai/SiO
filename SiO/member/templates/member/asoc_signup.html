@@ -7,9 +7,9 @@
 {% endblock head %}
 
 {% block body %}
-  <h1 class="logo"><a href="{% url 'home' %}">Forening</a></h1>
+  <h1 class="logo"><a href="{% url 'home' %}">New association</a></h1>
   <div class="signup">
-    <h2>{% trans 'Opprett forening' %}</h2>
+    <h2>{% trans 'Create new association' %}</h2>
     <form action="{% url 'asoc_signup' %}" method="post" role="form">
       {% csrf_token %}
       {% for field in form.visible_fields %}
@@ -24,7 +24,8 @@
           {% endfor %}
         </div>
       {% endfor %}
-      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Registrer ny forening' %}</button></center>
+      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Create association' %}</button>
+          <a name="cancel" class="btn btn-info btn-lg center" href="{% url "dashboard" %}">Cancel</a></center>
     </form>
   </div>
 {% endblock body %}
