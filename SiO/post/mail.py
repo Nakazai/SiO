@@ -12,6 +12,12 @@ from crispy_forms.helper import FormHelper, Layout
 from crispy_forms.layout import Div, HTML, \
     Field, Submit, Button, Fieldset
 from crispy_forms.bootstrap import FormActions
+from SiO.member.models import Member
+from multi_email_field.forms import MultiEmailField
+from multi_email_field.widgets import MultiEmailWidget
+from django.core.validators import validate_email
+
+# from django import forms
 
 
 #  Bytt ut med variabeldata hentet vra views.
@@ -41,12 +47,36 @@ from crispy_forms.bootstrap import FormActions
 #         model = Email
 #         fields = ['receiver', 'subject', 'message', ]
 
+
+# class MultiEmailField(forms.Field):
+#     def to_python(self, value):
+#         "Normalize data to a list of strings."
+#
+#         # Return an empty list if no input was given.
+#         if not value:
+#             return []
+#         return value.split(',')
+#
+#     def validate(self, value):
+#         "Check if value consists only of valid emails."
+#
+#         # Use the parent's handling of required fields, etc.
+#         super(MultiEmailField, self).validate(value)
+#
+#         for email in value:
+#             validate_email(email)
+
+
 class mailHandler(forms.Form):
     # ###sender = forms.CharField(label='Sender')
     subject = forms.CharField(required=False)
     receiver = forms.EmailField(label='Send to')
-    cc = forms.EmailField(label='Send via Cc', required=False)
-    bcc = forms.EmailField(label='Send via Bcc', required=False)
+    # receiver = MultiEmailField(label='Send to')
+    # reciever = forms.ModelMultipleChoiceField(label="To",
+    #                                           queryset=Member.objects.all(),
+    #                                           widget=forms.SelectMultiple())
+    # cc = forms.EmailField(label='Send via Cc', required=False)
+    # bcc = forms.EmailField(label='Send via Bcc', required=False)
     message = forms.CharField(widget=forms.Textarea(attrs={'cols': 50}),
                               required=False)
 
@@ -56,6 +86,7 @@ class mailHandler(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(mailHandler, self).__init__(*args, **kwargs)
+        # self.fields['reciever'].queryset = Member.objects.filter(email=self.request.user.association)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.form_class = 'form'
@@ -93,8 +124,10 @@ class mailHandler(forms.Form):
                         # ###'sender',
                         Field('receiver', placeholder='Email address',
                               required=True),
-                        Field('cc', placeholder='Email address'),
-                        Field('bcc', placeholder='Email address'),
+                        # Field('cc', placeholder='Email address',
+                        #       ),
+                        # Field('bcc', placeholder='Email address',
+                        #       ),
                         'message',
                         FormActions(
                             Submit('submit', 'Send', css_class='btn btn-lg btn-block'),

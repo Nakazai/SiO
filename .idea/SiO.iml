@@ -13,10 +13,11 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 3.6.0 virtualenv at C:\Users\Jamal\sio" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6.0 (C:\Python36\python.exe)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="highcharts" level="application" />
     <orderEntry type="library" name="exporting" level="application" />
+    <orderEntry type="library" name="jquery.qtip" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

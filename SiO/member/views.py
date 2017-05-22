@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponseRedirect
+from django.utils.decorators import method_decorator
+
 from .models import Member, Association
 from django.http import HttpResponse
 from django.http import QueryDict
@@ -44,6 +46,12 @@ class member_overview(ListView):
     template_name = 'member/member_overview.html'
     # queryset = Member.objects.all()
     paginate_by = 6
+    # warning_message = 'Member does not exist'
+
+
+    # def overview(self, request, *args, **kwargs):
+    #     messages.success(self.request, self.success_message)
+    #     return super(member_overview, self).overview(request, *args, **kwargs)
 
     # def get_context_data(self, **kwargs):
     #     context = super(ListView, self).get_context_data(**kwargs)
@@ -68,13 +76,7 @@ class member_overview(ListView):
     #     if query:
     #         Member.objects.filter(first_name__icontains=query)
 
-    # def get_queryset(self, *args, **kwargs):
     def get_queryset(self):
-        # user = self.request.administrator
-        # return Member.objects.filter(asoc_name=user)
-        # return Member.objects.select_related(association=administrator.association)
-        # return Member.objects.filter(association__in=Association.objects.filter(
-        #     administrator__in=Administrator.objects.filter(asoc_name=asoc_name)))
         query = self.request.GET.get("q")
         if query:
             queryset = Member.objects.filter(association=self.request.user.association).filter(
@@ -83,14 +85,13 @@ class member_overview(ListView):
                 Q(email__icontains=query)
             )
             return queryset
-        # elif query:
-        #     qs = Member.objects.all()
-        #     for term in query.split():
-        #         qs = qs.filter(Q(first_name__icontains=term) | Q(last_name__icontains=term))
-        #     return qs
         else:
             queryset = Member.objects.filter(association=self.request.user.association)
             return queryset
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(member_overview, self).dispatch(request, *args, **kwargs)
 
     # def get_queryset(self):
     #     user = self.request.user
@@ -107,8 +108,6 @@ class member_overview(ListView):
     #     if CoAdmin == Administrator.objects.get(user=user):
     #         return Member.objects.filter(asoc_name__icontains='hioa')
     #         # return queryset
-
-
 
     # if Administrator.association == Member.association:
         # queryset = Member.objects.filter(Q(asoc_name='asoc_name'))
@@ -226,6 +225,10 @@ class member_edit(SuccessMessageMixin, UpdateView):
             queryset = Member.objects.filter(association=self.request.user.association)
             return queryset
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(member_edit, self).dispatch(request, *args, **kwargs)
+
 
 # def get_object(request):
 #     return Member.objects.get(pk=request.GET.get('pk'))
@@ -246,6 +249,7 @@ class member_delete(SuccessMessageMixin, DeleteView):
     template_name = 'member/member_delete.html'
     success_message = 'Member successfully deleted'
 
+    # This method will show the Delete-message
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(member_delete, self).delete(request, *args, **kwargs)
@@ -253,6 +257,10 @@ class member_delete(SuccessMessageMixin, DeleteView):
     def get_queryset(self):
         queryset = Member.objects.filter(association=self.request.user.association)
         return queryset
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(member_delete, self).dispatch(request, *args, **kwargs)
 
     # This one has SuccessMessageMixin in member_delete parameter
     # def delete(self, request, *args, **kwargs):
@@ -263,6 +271,7 @@ class member_delete(SuccessMessageMixin, DeleteView):
 i = datetime.datetime.now()
 
 
+@login_required
 def member_signup(request):
     if request.method == 'POST':
         # form = RegForm(request.user, request.POST)

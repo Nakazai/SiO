@@ -10,30 +10,24 @@ from django.db.models.signals import post_save
 
 
 # @crud
+
+# Model of Member
 class Member(models.Model):
-    # payment_id = models.AutoField(primary_key=True)
-    # member_no = models.IntegerField(unique=True)
     member_no = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
     email = models.CharField(max_length=50, null=True, blank=True, unique=True)
-
-    # asoc_name = models.CharField(max_length=50)
     association = models.ForeignKey('Association')
-
-    # student_status = models.CharField(max_length=50, default=False)
     reg_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=50, null=True, blank=True)
-    # end_date = models.DateField(null=True, blank=True)
-    # asocnumber = models.ForeignKey('Association')
-    # user = models.OneToOneField(Administrator)
 
+    # Sets the name of the table instead of "Member object"
     class Meta:
         db_table = 'Member'
-# TODO: dette vises i admin istedenfor "Member object"
 
+    # Shows the variables as "first_name" and "last_name" instead of "object"
     def __str__(self):
         return self.first_name + ' ' + self.last_name
 

@@ -89,6 +89,7 @@ def paramMissing(POST, param, res):
     return False
 
 
+@login_required
 def event_delete(request):
     if request.method == 'POST':
         res = {'success': False}
@@ -107,6 +108,7 @@ def event_delete(request):
         raise Http404
 
 
+@login_required
 def event_add_edit(request):
     # if request.method == 'POST':
     #     form = CalForm(request.POST)
@@ -241,6 +243,7 @@ def event_add_edit(request):
         raise Http404
 
 
+@login_required
 def event_setsync(request):
     if request.method == 'POST':
         res = {'success': False}

@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
+from django.utils.decorators import method_decorator
 from django.views.generic import View
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model
@@ -27,55 +28,34 @@ User = get_user_model()
 
 
 # @login_required
-class ChartView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'chart/ChartView.html', {})
+# class ChartView(View):
+#     def get(self, request, *args, **kwargs):
+#         return render(request, 'chart/ChartView.html', {})
 
 
-class ChartViewMonth(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'chart/ChartView/month.html', {})
+# class ChartViewMonth(View):
+#     def get(self, request, *args, **kwargs):
+#         return render(request, 'chart/ChartView/month.html', {})
 
 
-# ##@login_required
-# ##class ChartData(generics.ListAPIView):
 # class ChartData(APIView):
-#
-#     # ####serializer_class = AdministratorSerializer, MemberSerializer
-#     # ####authentication_classes = ([])
-#     # ### authentication_classes = (authentication.TokenAuthentication,)
-#     # ####permission_classes = ([permissions.IsAdminUser])
-#
-#     # ###@login_required
 #     def get(self, request, format=None):
-#         today = datetime.date.today()
-#         # ## usernames = [user.username for user in User.objects.all()]
-#         # ## qs_count = User.objects.all().count()
-#         # ## if Administrator.objects.filter(association=self.request.user.association):
 #         qs_count = Administrator.objects.filter(association=self.request.user.association).count()
-#         # ############## qs_count1 = Member.objects.all().count()
 #         qs_count1 = Member.objects.filter(association=self.request.user.association).count()
-#         # ############# qs_count2 = Association.objects.all().count()
-#         qs_count3 = Member.objects.filter(reg_date__year=today.year,
-#                                           reg_date__month=today.month).filter(
-#                                           association=self.request.user.association).count()
-#         # ###qs_count1 = Member.objects.filter(gender=self.request.user.association).count()
-#
-#         # ###labels3 = ["Gender"]
-#         # ###gender_items = [qs_count1]
-#         labels2 = ["January",]
-#         month_items2 = [qs_count3]
-#         labels = ["Board", "Members"]
-#         default_items = [qs_count, qs_count1]
+
+#         labels = ["Board"]
+#         default_items = [qs_count]
+#         labels2 = ["Member"]
+#         default_items = [qs_count2]
+
 #         data = {
-#             # ###"labels3": labels3,
-#             # ###"genderDif": gender_items,
 #             "labels": labels,
 #             "default": default_items,
 #             "labels2": labels2,
 #             "default2": month_items2,
 #         }
 #         return Response(data)
+
 
 # def chart_data_json(request):
 #     data = {}
@@ -89,30 +69,50 @@ class ChartViewMonth(View):
 
 # class ChartData(View):
 #     def check_valve_data(self):
-
+# TODO:this one shows example of pie-chart
 class ChartHigh(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'chart/chartViewHigh.html', {})
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ChartHigh, self).dispatch(request, *args, **kwargs)
 
 
 class ChartHighAM(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'chart/chartViewHighAM.html', {})
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ChartHighAM, self).dispatch(request, *args, **kwargs)
+
 
 class ChartHighGender(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'chart/chartViewHighGender.html', {})
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ChartHighGender, self).dispatch(request, *args, **kwargs)
 
 
 class ChartHighMonth(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'chart/chartViewHighMonth.html', {})
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ChartHighMonth, self).dispatch(request, *args, **kwargs)
+
 
 class ChartHighAge(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'chart/chartViewHighAge.html', {})
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ChartHighAge, self).dispatch(request, *args, **kwargs)
 
 
 class ChartData(APIView):
@@ -277,6 +277,10 @@ class ChartData(APIView):
             "default15": default_items15
         }
         return Response(data)
+
+    # @method_decorator(login_required)
+    # def dispatch(self, request, *args, **kwargs):
+    #     return super(ChartData, self).dispatch(request, *args, **kwargs)
 
     # data = {'member_no': []}
         #

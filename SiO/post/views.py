@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views.generic import FormView
 from django.views.generic import View
 from django.contrib.auth import get_user_model
@@ -8,7 +10,7 @@ from datetime import datetime
 from SiO.CoAdmin.models import Administrator
 from django.contrib import messages
 from SiO.member.models import Association
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives, send_mass_mail
 from django.core.mail import send_mail
 
 
@@ -43,10 +45,15 @@ class mailPost(FormView):
             # sender = form.cleaned_data.get('sender')
             # sender = Administrator.objects.get(email=self.request.user.email)
             # sender = Administrator.objects.get(email=send)
-            sender = "noreply.@sioforeninger.no"
+            # sender = "noreply@sioforeninger.no"
+            # admin = Administrator.objects.filter(association=self.request.user.association).first()
+            # if admin:
+            # sender = admin.association
+            # sender = "noreply@sioforeninger.no"
+            sender = "noreply@sioforeninger.no"
             receiver = form.cleaned_data.get('receiver')
-            cc = form.cleaned_data.get('cc')
-            bcc = form.cleaned_data.get('bcc')
+            # cc = form.cleaned_data.get('cc')
+            # bcc = form.cleaned_data.get('bcc')
             subject = form.cleaned_data.get('subject')
             message = form.cleaned_data.get('message')
             time = datetime.now()
@@ -58,8 +65,8 @@ class mailPost(FormView):
             Email.objects.create(
                 sender=sender,
                 receiver=receiver,
-                cc=cc,
-                bcc=bcc,
+                # cc=cc,
+                # bcc=bcc,
                 subject=subject,
                 message=message,
                 # ###asocNumber=asoc_number,
@@ -69,16 +76,22 @@ class mailPost(FormView):
             # self.form_valid(form)
             # messages.add_message(request, messages.SUCCESS,
             #                      'Email Sent!')
-            msg = EmailMultiAlternatives(subject, message, sender, [receiver], bcc=[bcc], cc=[cc])
+            # msg = EmailMultiAlternatives(subject, message, sender, [receiver], bcc=[bcc], cc=[cc])
+            msg = EmailMultiAlternatives(subject, message, sender, [receiver])
             msg.send()
             # response.raise_for_status()
             # send_mail("It works!", "This will get sent through Mailgun",
             #           "Anymail Sender <from@example.com>", ["jamallakbir@gmail.com"])
             # send_mail(message, "This will get sent through Mailgun", sender, [receiver])
             # send_mail(subject, message, sender, [receiver], [bcc], [cc])
+            # send_mass_mail(subject, message, sender, [receiver])
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(mailPost, self).dispatch(request, *args, **kwargs)
 
 
 

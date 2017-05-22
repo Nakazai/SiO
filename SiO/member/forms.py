@@ -168,6 +168,7 @@ class RegForm(forms.ModelForm):
     #         self.fields['association'].queryset = Association.objects.filter(asoc_name='asoc_name')
 
 
+# Defines the structure of the form that shows in template
 class EditRegForm(forms.ModelForm):
     first_name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'firstname'}),
@@ -181,35 +182,20 @@ class EditRegForm(forms.ModelForm):
         widget=forms.EmailInput(attrs={'class': 'form-control', 'name': 'email'}),
         required=True,
         max_length=75)
-    # association = forms.ModelChoiceField(queryset=Association.objects.all(),
-    #                                      widget=forms.Select(attrs={'class': 'form-control'}),
-    #                                      required=True)
-    # student_status = forms.CharField(
-    #     widget=forms.TextInput(attrs={'class': 'form-control'}),
-    #     max_length=30,
-    #     required=True)
-    # reg_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'reg_date'}))
-    date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'date_of_birth'}))
-    # gender = forms.CharField(
-    #     widget=forms.TextInput(attrs={'class': 'form-control'}),
-    #     max_length=30,
-    #     required=False)
-    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3, attrs={'name': 'end_date'}))
+    date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3,
+                                                      attrs={'name': 'date_of_birth'}))
+    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3,
+                                                 attrs={'name': 'end_date'}))
 
+    # Sets the permissions to be stored in the database
     class Meta:
         model = Member
         exclude = ['last_login', 'date_joined']
         fields = ['first_name', 'last_name', 'email', 'date_of_birth', 'end_date']
 
+    # The constructor is set and gets called in to views.py
     def __init__(self, *args, **kwargs):
         super(EditRegForm, self).__init__(*args, **kwargs)
-        # self.fields['username'].validators.append(ForbiddenUsernamesValidator)
-        # self.fields['username'].validators.append(InvalidUsernameValidator)
-        # self.fields['username'].validators.append(
-        #     UniqueUsernameIgnoreCaseValidator)
-        # self.fields['email'].validators.append(UniqueEmailValidator)
-        # self.fields['email'].validators.append(SignupDomainValidator)
-        # self.fields['association'].validators.append(CanNotChangeAssociation)
 
 
 class RegAsoc(forms.ModelForm):
