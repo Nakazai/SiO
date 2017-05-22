@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'django_popup_view_field',
     # 'highcharts',
     'crispy_forms',
-    'multi_email_field',
 
     'SiO.member',
     'SiO.CoAdmin',

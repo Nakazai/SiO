@@ -13,8 +13,6 @@ from crispy_forms.layout import Div, HTML, \
     Field, Submit, Button, Fieldset
 from crispy_forms.bootstrap import FormActions
 from SiO.member.models import Member
-from multi_email_field.forms import MultiEmailField
-from multi_email_field.widgets import MultiEmailWidget
 from django.core.validators import validate_email
 
 # from django import forms
