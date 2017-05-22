@@ -1,8 +1,7 @@
 body {
   /*background-color: #d84545;;*/
-    background-color: #f6f6f6;
-
-
+    /*background-color: #f6f6f6;*/
+        background-color: #FFFFFF;
 }
 
 .cover {
@@ -39,4 +38,17 @@ body {
     padding: 10px 20px 400px 20px;
 }
 
+
+.containerCover {
+    display: none;
+}
+
+.preload {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /*margin-right: -50%;*/
+    transform: translate(-50%, -50%);
+}
 
