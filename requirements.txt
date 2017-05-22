@@ -33,6 +33,7 @@ django-highcharts==0.1.7
 django-libs==1.67.11
 django-loading==0.1.1
 django-mptt==0.8.7
+django-multi-email-field==0.4
 django-paintstore==0.2
 django-polymorphic==1.0.2
 django-popup-view-field==0.3.0
