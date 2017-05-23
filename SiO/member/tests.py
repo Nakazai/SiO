@@ -29,12 +29,4 @@ class MemberTest(TestCase):
         self.assertTrue(isinstance(w, Member))
         self.assertEqual(w.__str__(), w.first_name + ' ' + w.last_name)
 
-# views (uses reverse)
 
-    # def test_association_list_view(self):
-    #     w = self.create_member()
-    #     url = reverse("views.member_overview.as_view()")
-    #     resp = self.client.get(url)
-    #
-    #     self.assertEqual(resp.status_code, 200)
-    #     self.assertIn(w.first_name, resp.content)

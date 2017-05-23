@@ -21,3 +21,7 @@ Feature: Add member
     Examples: Members
         | firstname | lastname | email        | gender | date_of_birth | reg_date   | end_date    |
         | foo       | bar      | fb@gmail.com | female | 1990-02-01    | 2017-01-01 | 2017-06-03  |
+
+
+
+

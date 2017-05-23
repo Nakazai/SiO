@@ -1,10 +1,8 @@
 {% load staticfiles i18n %}
-{% load django_popup_view_field_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-{#  {% block head %}#}
     <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,27 +17,17 @@
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.js"></script>
-{#	<script src="{% static 'js/jquery.qtip.min.js' %}"></script>#}
   <link type="text/css" rel="stylesheet" href="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.css" />
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>#}
 
 {% include 'session_security/all.html' %}
   	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
-        {% django_popup_view_field_javascript %}
-{#<script type="text/javascript" src="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.js"></script>#}
-{#  <link type="text/css" rel="stylesheet" href="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.css" />#}
 
-
-
-{#    <script src="{% static 'js/SiO.js' %}"></script>#}
-{#  <script src="{% static 'js/date.js' %}"></script>#}
     {% block head %}{% endblock %}
-{#  {% endblock %}#}
 
           <script>
          $(function() {
@@ -50,92 +38,30 @@
          </script>
   </head>
   <body>
-{#  <script>#}
-{#      $(document).ready(function(){#}
-{#          {% block jquery %}{% endblock %}#}
-{#      })#}
-{#  </script>#}
+
   <script>
-{#     $(function() {#}
-{#        $('nav ul li a').click(function() {#}
-{#           $('nav ul li a').removeClass();#}
-{#           $($(this).attr('href')).addClass('active');#}
-{#        });#}
-{#     });#}
 
-{#var selector = '.nav li';#}
-{##}
-{#$(selector).on('click', function(){#}
-{#    $(selector).removeClass('active');#}
-{#    $(this).addClass('active');#}
-{#{);#}
-
-{#$(".nav a").on("click", function(){#}
-{#   $(".nav").find("active").removeClass("active");#}
-{#   $(this).parent().addClass("active");#}
-{#{);#}
-
-// TODO: This works but it is slightely lagging
 $(document).ready(function() {
     $('li.active').removeClass('active');
     $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
-{#    console.log([location.pathname])#}
     if (location.pathname === '{% url 'member_signup' %}') {
        $('a[href="{% url 'member_overview' %}"]').closest('li').addClass('active');
     }
 
-{#    if (location.pathname === '{% url "member_edit" pk=member.member_no  %}') {#}
-{#       $('a[href="{% url 'member_overview' %}"]').closest('li').addClass('active');#}
-{#    }#}
+
 
     if (location.pathname === '{% url 'InnsideSignUp' %}') {
        $('a[href="{% url 'admin_overview' %}"]').closest('li').addClass('active');
     }
 
-{#     if (location.pathname === '{% url 'chartViewHighGender' %}') {#}
-{#       $('a[href="{% url 'chartViewHighAM' %}"]').closest('li').addClass('active');#}
-{#    }#}
 });
 
-{#$('a').each(function () {#}
-{#var $this = $(this);#}
-{#var loc = location.#}
-{#if (location.pathname.replace(/\/[^\/]*\.html$/, '').startsWith($this.attr('href').replace(/\.html$/, '')))#}
-{#{#}
-{#  $this.parent().addClass('active');}#}
-{#{);#}
-
-// TODO: This will make the navbar dark in the background when clicked on
-{#$(document).ready(function() {#}
-{#    $(document).on('click', 'nav ul li a', function () {#}
-{#        $(this).parent().addClass('active');#}
-{#    });#}
-{#{);#}
-
-{#      $(document).ready(function () {#}
-{#        $('nav ul li a').click(function (e) {#}
-{#            e.preventDefault();#}
-{#            $('nav ul li a').removeClass('active');#}
-{#            $($(this).attr('href')).addClass('active');#}
-{#        });#}
-{#    });#}
-
-{#      $(function() {#}
-{#          $(".preload").fadeOut(2000, function() {#}
-{#             $(".container").fadeIn(1000);#}
-{#          });#}
-{#      });#}
 
   </script>
     {% block body %}
-                                  <div class="preload">
-{#                <img src="{% static 'img/loading.gif' %}">#}
-{#             <img src="{% static 'img/ajax-loader.gif' %}">#}
+          <div class="preload">
             <img src="{% static 'img/ajax-loader.gif' %}">
-
-
-
-              </div>
+          </div>
 
         <div class="containerBox">
       <header>
@@ -156,30 +82,15 @@ $(document).ready(function() {
 
 
                   <a class="navbar-brand" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
-{#                    <span class="glyphicon glyphicon-dashboard"></span>#}
                   </a>
 
             </div>
             <div class="collapse navbar-collapse" id="menu">
-{#              <ul class="nav navbar-nav navbar-center">#}
             <ul class="nav navbar-nav">
-{#                <li>#}
-{#                  <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">#}
-{#                    <span class="glyphicon glyphicon-bell"></span>#}
-{#                  </a>#}
-{#                </li>#}
-{#                <li><a href="{% url 'member_overview' %}">#}
-{#                     <span class="glyphicon glyphicon-plus"></span>{% trans 'Medlemmer' %}</a></li>#}
-{#                <li><a href="{% url 'ChartView' %}">#}
-{#                    <span class="fa fa-bar-chart  fa-lg"></span>{% trans 'Statestikk' %}</a></li>#}
-{#                <li><a href="{% url 'admin_overview' %}">#}
-{#                    <span class="fa fa-users"></span>{% trans 'Administrator' %}</a></li>#}
-{#                <li><a href="{% url 'calendar' %}">#}
-{#                    <span class="glyphicon glyphicon-calendar"></span>{% trans 'Kalender' %}</a></li>#}
+
                 <li  class="active"><a href="{% url 'member_overview' %}" style="font-weight: bold;">
                      {% trans 'Members' %}</a></li>
-{#                <li><a href="{% url 'chartViewHigh' %}">#}
-{#                    {% trans 'Statistics' %}</a></li>#}
+
                 <li><a href="{% url 'chartViewHighAM' %}" style="font-weight: bold;">
                     {% trans 'Statistics' %}</a></li>
                 <li><a href="{% url 'admin_overview' %}" style="font-weight: bold;">
@@ -190,26 +101,17 @@ $(document).ready(function() {
                     {% trans 'Calendar' %}</a></li>
               </ul>
               {% if not hide_search %}
-{#                <form class="navbar-form navbar-left" role="search" action="{% url 'search' %}">#}
-{#                  <div class="input-group" style="width:210px">#}
-{#                    <input type="text" class="form-control" name="q" placeholder="Search">#}
-{#                    <span class="input-group-btn">#}
-{#                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>#}
-{#                    </span>#}
-{#                  </div>#}
-{#                </form>#}
+
               {% endif %}
               <ul class="nav navbar-nav navbar-right">
                 <li>
-{#                  <a href="{% url 'profile' user.username %}">{{ user.profile.get_screen_name }}</a>#}
                      <a><span class="glyphicon glyphicon-user"></span>
                          {{ user.profile.get_screen_name }}</a>
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
                   <ul class="dropdown-menu">
-{#                    <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>#}
-{#                    <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>#}
+
                     <li class="divider"></li>
                       <li><a href="{% url 'password' %}"><span class="glyphicon glyphicon-lock"></span>{% trans ' Change password' %}</a></li>
                     <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span>{% trans ' Log out' %}</a></li>
@@ -218,25 +120,16 @@ $(document).ready(function() {
               </ul>
             </div>
 
-{#                            {% else %}#}
+            {% else %}
 
-                                            {% else %}
-
-              <a class="navbar-brand" href="{% url 'login' %}">Association <span class="glyphicon glyphicon-dashboard"></span></a>
-
-{#                {% endif %}#}
-
-
+                 <a class="navbar-brand" href="{% url 'login' %}">Association <span class="glyphicon glyphicon-dashboard"></span></a>
 
                     <form class="navbar-form navbar-right">
                     <button type="button" class="btn btn-primary"
                         onclick="location.href=&quot;{% url 'login' %}&quot;;">
                         Log In</button>
-{#                        <button type="submit" name="submit" class="btn btn-default">{% trans 'Log in' %}</button>#}
-{#                        href="{% url "login" %}"#}
                     </form>
-                            {% endif %}
-
+            {% endif %}
 
           </div>
         </nav>
@@ -245,17 +138,13 @@ $(document).ready(function() {
         <div class="container">
           {% block main %}
 
-{#              <div class="preload">#}
-{#                <img src="{% static 'img/spinner.gif' %}">#}
-{#              </div>#}
+
 
           {% endblock main %}
         </div>
       </main>
-{#      <script src="{% static 'js/notifications.js' %}"></script>#}
-{#      <script src="{% static 'js/check_messages.js' %}"></script>#}
+
         </div>
     {% endblock body %}
-{#    <script src="{% static 'js/ga.js' %}"></script>#}
   </body>
 </html>

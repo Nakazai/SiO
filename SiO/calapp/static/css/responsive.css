@@ -85,32 +85,4 @@
 }
 }
 
-/*
-@media (min-width:900px) {
-	html,
-	body {
-		font-size: 10pt;
-	}
-	#cal-content-top {
-		height: 40px;
-		line-height: 40px;
-	}
-	#week-days li.week-day {
-		height: 40px;
-		line-height: 40px;
-	}
-	.week-row li.week-row-cell {
-		height: calc((100% - 80px) / 6);
-	}
-	#cal-side-bar {
-		width: 250px;
-	}
-	#cal-content {
-		width: calc(100% - 250px);
-	}
-	.form-wrapper form {
-		width: 300px;
-		height: 450px;
-	}
-}
-*/
+

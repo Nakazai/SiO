@@ -1,13 +1,3 @@
-"""
-SessionSecurityMiddleware is the heart of the security that this application
-attemps to provide.
-
-To install this middleware, add to your ``settings.MIDDLEWARE_CLASSES``::
-
-    'session_security.middleware.SessionSecurityMiddleware'
-
-Make sure that it is placed **after** authentication middlewares.
-"""
 
 from datetime import datetime, timedelta
 
@@ -25,13 +15,8 @@ from .settings import EXPIRE_AFTER, PASSIVE_URLS, PASSIVE_URL_NAMES
 
 
 class SessionSecurityMiddleware(MiddlewareMixin):
-    """
-    In charge of maintaining the real 'last activity' time, and log out the
-    user if appropriate.
-    """
 
     def is_passive_request(self, request):
-        """ Should we skip activity update on this URL/View. """
         if request.path in PASSIVE_URLS:
             return True
 
@@ -46,11 +31,9 @@ class SessionSecurityMiddleware(MiddlewareMixin):
         return False
 
     def get_expire_seconds(self, request):
-        """Return time (in seconds) before the user should be logged out."""
         return EXPIRE_AFTER
 
     def process_request(self, request):
-        """ Update last activity time or logout. """
         if not request.user.is_authenticated():
             return
 
@@ -70,11 +53,6 @@ class SessionSecurityMiddleware(MiddlewareMixin):
             set_last_activity(request.session, now)
 
     def update_last_activity(self, request, now):
-        """
-        If ``request.GET['idleFor']`` is set, check if it refers to a more
-        recent activity than ``request.session['_session_security']`` and
-        update it in this case.
-        """
         last_activity = get_last_activity(request.session)
         server_idle_for = (now - last_activity).seconds
 

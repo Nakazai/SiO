@@ -2,10 +2,8 @@
 Feature: Edit admin
 
   Scenario Outline: Edit admin succesfully
-#    Given a form
     Given a overview of admins
     When i click on update
-#    And i edit "<end_date>"
     And i edit in "<firstname>","<lastname>","<email>","<union_position>","<username>"
     And  update the admin form
     Then i will see the new admin added with correct information
@@ -16,7 +14,6 @@ Feature: Edit admin
 
 
    Scenario Outline: Admin not edited
-#    Given a form
     Given a overview of admins
     When i click on update
     And i edit in "<union_position>"
@@ -24,5 +21,9 @@ Feature: Edit admin
     Then i will be redirected to overview of all admins
 
     Examples: Admins
-         | firstname | lastname | email        | union_position | username |
-         | sara      | bara     | fb@gmail.com | leader         | sara     |
+         | union_position |
+         | leader         |
+
+
+
+

@@ -1,6 +1,4 @@
 body {
-  /*background-color: #d84545;*/
-  /*background-color: #f6f6f6;*/
     background-color: #FFFFFF;
 }
 
@@ -32,13 +30,7 @@ li.active {
   text-decoration: none;
 }
 
-/*.signup {*/
-  /*background-color: #f6f6f6;*/
-  /*border-radius: 7px;*/
-  /*margin: 1% 20% 1% 5%;*/
-    /*padding: 30px 20px;*/
-    /*position: fixed;*/
-/*}*/
+
 
 .signup {
   /*background-color: #f6f6f6;*/
@@ -67,42 +59,18 @@ ul {
   /*navbutton_background_color: #FFFFFF;*/
  }
 
+.containerBox {
+    display: none;
+}
 
-
-/*.btnfix{*/
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*right:40%;*/
-    /*margin-top: 5%;*/
-    /*margin-bottom:2%;*/
-/*}*/
-/*.form-group {*/
-  /*!*margin-bottom: 2%;*!*/
-    /*float: left;*/
-    /*margin-right:12%;*/
-    /*display: inline;*/
-/*}*/
-
-/*.hidden{*/
-    /*visibility: collapse;*/
-/*}*/
-/*.input-group{*/
-    /*width: 50%;*/
-/*}*/
-/*.space{*/
-    /*margin: 10px 10px 10px 10px;*/
-/*}*/
-/*.has-error{*/
-    /*width: 100%;*/
-    /*margin-right: 1%;*/
-    /*position: relative;*/
-    /*display: block;*/
-/*}*/
+.preload {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /*margin-right: -50%;*/
+    transform: translate(-50%, -50%);
+}
 
 
 
-/*#id_reg_date {*/
-    /*width: 70%;*/
-    /*poistion: relative;*/
-    /*display: block;*/
-/*}*/

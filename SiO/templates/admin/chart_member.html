@@ -17,11 +17,7 @@
             <span>Association</span>
           </div>
         </th>
-{#        <th>#}
-{#          <div class=”text”>#}
-{#            <span>Total Members</span>#}
-{#          </div>#}
-{#        </th>#}
+
            <th>
           <div class=”text”>
             <span>Total Female</span>
@@ -32,29 +28,16 @@
             <span>Total Male</span>
           </div>
         </th>
-{#        <th>#}
-{#          <div class="text">#}
-{#            <a href="#">#}
-{#              <strong>% Of Total Members</strong>#}
-{#            </a>#}
-{#          </div>#}
-{#        </th>#}
+
       </tr>
     </thead>
     <tbody>
       {% for row in summary %}
       <tr class="{% cycle 'row1' 'row2' %}">
         <td> {{ row.asoc_name }} </td>
-{#        <td> {{ row.member }} </td>#}
           <td> {{ row.female }} </td>
           <td> {{ row.male }} </td>
-{#        <td> {{ row.member_no }} </td>#}
-{#        <td> {{ row.total_sales | default:0 | intcomma }}$ </td>#}
-{#        <td>#}
-{#          <strong>#}
-{#          {{ row.total | default:0 | percentof: summary_total.total }}#}
-{#          </strong>#}
-{#        </td>#}
+
       {% endfor %}
       </tr>
             <tr style="font-weight:bold; border-top:2px solid #DDDDDD;">
@@ -67,7 +50,6 @@
 </div>
 
 <br>
-{# <h2> Association Chart </h2>#}
     <style>
     .bar-chart {
       display: flex;
@@ -104,33 +86,6 @@
     }
     </style>
 
-{#      <div class="results">#}
-{#        <div class="bar-chart">#}
-{#        {% for x in summary_over_time %}#}
-{#            <div class="bar" style="height:{{x.pct}}%">#}
-{#                <div class="bar-tooltip">#}
-{#                    {{x.total | default:0 | intcomma }}<br>#}
-{#                    {{ x.total | default:0 }}<br>#}
-{#                    {{ x.asoc_name }}#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        </div>#}
-{#    </div>#}
-
-{#    <div class="results">#}
-{#        <div class="bar-chart">#}
-{#        {% for x in summary_over_time %}#}
-{#            <div class="bar" style="height:{{x.pct}}%">#}
-{#                <div class="bar-tooltip">#}
-{#                    {{x.total | default:0 | intcomma }}<br>#}
-{#                    {{x.total | default:0 }}<br>#}
-{#                    {{x.period | date:"d/m/Y"}}#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#        </div>#}
-{#    </div>#}
 
 
 {% endblock %}

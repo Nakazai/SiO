@@ -1,11 +1,7 @@
-{#{% extends 'base.html' %}#}
-{##}
-{#{% load staticfiles i18n %}#}
-
-{% load staticfiles i18n %}<!DOCTYPE html>
+{% load staticfiles i18n %}
+<!DOCTYPE html>
 <html lang="en">
   <head>
-{#  {% block head %}#}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,14 +17,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-{% include 'session_security/all.html' %}
+    {% include 'session_security/all.html' %}
   	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
-
-{#    <script src="{% static 'js/SiO.js' %}"></script>#}
-{#  <script src="{% static 'js/date.js' %}"></script>#}
-{#    {% block head %}{% endblock %}#}
-{#  {% endblock %}#}
   </head>
 
 {% block head %}
@@ -39,14 +30,10 @@
 {% block main %}
       <h1 class="logo"><a href="{% url 'admin_overview' %}"><span class="glyphicon glyphicon-trash"></span> Admins</a></h1>
 
-{#{% block content %}#}
 
-{#    <p>Are you sure you want to delete "{{ member_no }}"?</p>#}
  <div class="signup">
     <form action="" method="POST">
-{#    <form action="" method="POST">#}
         {% csrf_token %}
-{#        <p>Are you sure you want to delete following member: {{ member.first_name }}?</p>#}
          <center><h4>Are you sure you want to delete following admin ?</h4></center>
         <br>
          <table class="table table-bordered">
@@ -55,10 +42,8 @@
                     <th>first_name</th>
                     <th>last_name</th>
                     <th>email</th>
-{#                    <th>student_status</th>#}
                     <th>union_position</th>
                     <th>username</th>
-{#                    <th>password</th>#}
                 </tr>
              </thead>
               <tbody>
@@ -66,10 +51,8 @@
                     <td>{{ administrator.first_name }}</td>
                     <td>{{ administrator.last_name }}</td>
                     <td>{{ administrator.email }}</td>
-{#                    <td>{{ administrator.student_status }}</td>#}
                     <td>{{ administrator.union_position }}</td>
                     <td>{{ administrator.username }}</td>
-{#                    <td>{{ administrator.password }}</td>#}
                 </tr>
               </tbody>
          </table>
@@ -77,17 +60,5 @@
         <a class="btn btn-info btn-m" name="cancel" href="{% url "admin_overview" %}">No, cancel.</a></center>
     </form>
  </div>
-
-
-{#    <div class="confirmation-box">#}
-{#        <p>{{ messages }}</p>#}
-{#        <div>#}
-{#            <a href="{{ member_overview }}">Cancel</a>#}
-{#            <form action="{{ member_delete }}" method="post">#}
-{#                <input type="hidden" name="next" value="{{ member_overview }}" />#}
-{#                <input type="submit" value="Send" />#}
-{#            </form>#}
-{#        </div>#}
-{#    </div>#}
 
 {% endblock main %}

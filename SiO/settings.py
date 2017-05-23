@@ -1,12 +1,8 @@
 import os
 from unipath import Path
 
-# TODO: Muligens må ta med andre PATHs her for at prosjekte ska funke
-# BASE_DIR1 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#
-#
-# BASE_DIR = Path(__file__).parent
 PROJECT_DIR = Path(__file__).parent
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -27,9 +23,8 @@ ALLOWED_HOSTS = ['67.207.72.58', 'www.sioforeninger.no', 'sioforeninger.no']
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Application definition
-# TODO: For vær ny app som blir laget må det dannes PATH her
+# Creation of an app must be added here & packages
 INSTALLED_APPS = [
-    # 'django.contrib.member',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,51 +33,40 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
 
+    # Packages
     'bootstrap3',
     'coverage',
     'datetimewidget',
-    'dedal',
-    # 'bootstrapform',
-    # 'behave',
     'behave_django',
     'session_security',
-    'django_popup_view_field',
-    # 'highcharts',
+    # 'django_popup_view_field',
     'crispy_forms',
+    'anymail',
 
+
+    # Apps
     'SiO.member',
     'SiO.CoAdmin',
     'SiO.chart',
     'SiO.core',
-    # 'SiO.member',
     'SiO.calapp',
     'SiO.post',
-    # email 
-    'anymail',
-
 ]
 
 
-# TODO: Dette må til slik at db-table får navnet Administrator
+# This will add the name of User model
 AUTH_USER_MODEL = 'CoAdmin.Administrator'
-
-# AUTHENTICATION_BACKENDS = ['SiO.core.views.EmailBackend']
 
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        # 'rest_framework.permissions.IsAuthenticated',
-        # 'rest_framework.permissions.AllowAny',
-        # 'rest_framework.permissions.IsAdminUser',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
 
-# MIDDLEWARE_CLASSES = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -93,7 +77,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'session_security.middleware.SessionSecurityMiddleware',
-
 ]
 
 ROOT_URLCONF = 'SiO.urls'
@@ -120,8 +103,6 @@ WSGI_APPLICATION = 'SiO.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-# TODO: Kommunikasjon med databasen
 
 DATABASES = {
     'default': {
@@ -156,9 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
-# TODO: change format of date, but it will change the language as well
 LANGUAGE_CODE = 'en-us'
-# LANGUAGE_CODE = 'nb'
 
 TIME_ZONE = 'UTC'
 
@@ -167,8 +146,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-# DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
@@ -183,11 +160,11 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = PROJECT_DIR.parent.child('media')
 MEDIA_URL = '/media/'
 
-# TODO: Her velges det ulike PATH for hvor bruker skal dirigeres til
-LOGIN_URL = '/'
+# Paths for LOGIN
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_URL = '/'
 
+# Session-timer
 SESSION_SECURITY_EXPIRE_AFTER = 3600
 SESSION_SECURITY_WARN_AFTER = 3000
 # SESSION_SECURITY_EXPIRE_AFTER = 10
@@ -205,4 +182,4 @@ ANYMAIL = {
     "MAILGUN_SENDER_DOMAIN": 'test.sioforeninger.no',  # your Mailgun domain, if needed
 }
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
-DEFAULT_FROM_EMAIL = "TestSite Team <noreply@sioforeninger.no>"  # if you don't already have this in settin
+DEFAULT_FROM_EMAIL = "TestSite Team <noreply@sioforeninger.no>"  # if you don't already have this in settings

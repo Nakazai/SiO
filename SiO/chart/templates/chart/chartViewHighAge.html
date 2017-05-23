@@ -5,10 +5,6 @@
 {% block head %}
     <link href="{% static 'css/chart.css' %}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-{#        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">#}
-{##}
-{#            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>#}
-
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
@@ -38,18 +34,12 @@
     });
 
       var endpoint = '/api/chart/data/';
-
-{#    var labels01 = [];#}
-{#    var defaultData01 = [];#}
-{#    var labels02 = [];#}
-{#    var defaultData02 = [];#}
     var labels13 = [];
     var defaultData13 = [];
     var labels14 = [];
     var defaultData14 = [];
     var labels15 = [];
     var defaultData15 = [];
-{#    var categories = ['Member', 'Board'];#}
 
 
      $.ajax({
@@ -70,10 +60,7 @@
           * @param data.dif
           */
         success: function (data) {
-{#                labels01 = data.labels01;#}
-{#                defaultData01 = data.default01;#}
-{#                labels02 = data.labels02;#}
-{#                defaultData02 = data.default02;#}
+
                 labels13 = data.labels13;
                 defaultData13 = data.default13;
                 labels14 = data.labels14;
@@ -89,6 +76,7 @@
         });
 
          function setChart() {
+
              //Female & Male
               $(function () {
             $('#container2').highcharts({
@@ -157,7 +145,6 @@
                 },
                 xAxis: {
                     categories: [
-{#                        'Group'#}
                     'Age 16-21', 'Age 22-27', 'Age 28-33'
                     ]
                 },
@@ -185,18 +172,7 @@
                     defaultData15
                     ]
                 }]
-{#                  series: [{#}
-{#                    name: labels13,#}
-{#                    data: defaultData13#}
-{##}
-{#                },{#}
-{#                    name: labels14,#}
-{#                    data: defaultData14#}
-{##}
-{#                },{#}
-{#                    name: labels15,#}
-{#                    data: defaultData15#}
-{#                }]#}
+
             });
         });
 

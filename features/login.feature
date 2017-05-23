@@ -12,10 +12,13 @@ Feature: Login to site
 
 
   Scenario Outline: Login fails
-#    Given a user
     When i log in with invalid "<username>" and "<password>"
     Then i will see error message
 
     Examples: Users
         | username          | password               |
         | anonymous         | none                   |
+
+
+
+

@@ -5,10 +5,6 @@
 {% block head %}
     <link href="{% static 'css/chart.css' %}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-{#        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">#}
-{##}
-{#            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>#}
-
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
@@ -63,27 +59,13 @@
     var defaultData11 = [];
     var labels12 = [];
     var defaultData12 = [];
-{#    var thisYear = [];#}
-{#    var categories = ['Member', 'Board'];#}
+
 
 
      $.ajax({
         method: "GET",
         url: endpoint,
-         /**
-          * @param data
-          * @param data.labels   indicates ajax code ran successfully
-          * @param data.default
-          * @param data.default2
-          * @param data.labels2
-          * @param data.default3
-          * @param data.labels3
-          * @param data.default4
-          * @param data.labels4
-          * @param data.default5
-          * @param data.labels5
-          * @param data.dif
-          */
+
         success: function (data) {
                 labels01 = data.labels01;
                 defaultData01 = data.default01;
@@ -119,6 +101,7 @@
         });
 
          function setChart() {
+
              //Female & Male
               $(function () {
             $('#container2').highcharts({
@@ -132,16 +115,13 @@
                       enabled: false
                 },
                 subtitle: {
-{#                    text: 'Source: sioforeninger.no'#}
                 },
                 xAxis: {
-{#                    title: {text: thisYear},#}
                     title: { text: new Date().getFullYear() },
                     tickInterval: 1,
 
                     categories: [
                         'Group'
-{#                        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'#}
                     ]
                 },
                 yAxis: {
@@ -203,12 +183,7 @@
                 }]
             });
         });
-{#              function timeConverter(UNIX_timestamp) {#}
-{#                  var a = new Date(UNIX_timestamp * 1000);#}
-{#                  var year = a.getFullYear();#}
-{#                  defaultData01.year;#}
-{#                  return year1#}
-{#              }#}
+
           $(function () {
             $('#container3').highcharts({
                 chart: {
@@ -221,18 +196,15 @@
                     enabled: false
                 },
                 subtitle: {
-{#                    text: 'Source: sioforeninger.no'#}
                 },
                 xAxis: {
                     title: { text: new Date().getFullYear() },
-{#                    title: {text: thisYear},#}
               type:"datetime",
           dateTimeLabelFormats:{
             year: '%Y'}
             ,
                     tickInterval: 1,
                     categories: [
-{#                        'Group'#}
                         'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
                     ]
                 },
@@ -270,47 +242,7 @@
                     ]
                 }]
 
-{#                  series: [{#}
-{#                    name: labels01 ,#}
-{#                    data: defaultData01#}
-{##}
-{#                },{#}
-{#                    name: labels02,#}
-{#                    data: defaultData02#}
-{##}
-{#                },{#}
-{#                    name: labels03,#}
-{#                    data: defaultData03#}
-{##}
-{#                },{#}
-{#                    name: labels04,#}
-{#                    data: defaultData04#}
-{##}
-{#                },{#}
-{#                    name: labels05,#}
-{#                    data: defaultData05#}
-{#                },{#}
-{#                    name: labels06,#}
-{#                    data: defaultData06#}
-{#                },{#}
-{#                    name: labels07,#}
-{#                    data: defaultData07#}
-{#                },{#}
-{#                    name: labels08,#}
-{#                    data: defaultData08#}
-{#                },{#}
-{#                    name: labels09,#}
-{#                    data: defaultData09#}
-{#                },{#}
-{#                    name: labels10,#}
-{#                    data: defaultData10#}
-{#                },{#}
-{#                    name: labels11,#}
-{#                    data: defaultData11#}
-{#                },{#}
-{#                    name: labels12,#}
-{#                    data: defaultData12#}
-{#                }]#}
+
             });
         });
 

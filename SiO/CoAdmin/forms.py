@@ -1,10 +1,9 @@
 from django import forms
-# from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-# from django.contrib.auth.models import AbstractUser as Admin
 from .models import Administrator
 from SiO.settings import ALLOWED_SIGNUP_DOMAINS
 from SiO.member.models import Association
+
 
 # TODO: Her lages det validering
 def SignupDomainValidator(value):
@@ -72,18 +71,6 @@ class SignUpForm(forms.ModelForm):
                                          widget=forms.Select(attrs={'class': 'form-control'}),
                                          required=True)
 
-    # association_choices = [(i['pk'], i['asoc_name'])
-    #                        for i in Association.objects.values('pk', 'asoc_name')]
-    # association = forms.ChoiceField(choices=association_choices, widget=forms.Select(attrs={'class': 'form-control'}),
-    #                                 required=True)
-
-    # association_choices = [(i['asoc_name'], i['asoc_name'])
-    #                        for i in Association.objects.values('asoc_name')]
-    # asoc_name = forms.ChoiceField(choices=association_choices,widget=forms.Select(attrs={'class': 'form-control'}), required=True)
-    # association = forms.CharField(
-    #     widget=forms.TextInput(attrs={'class': 'form-control'}),
-    #     max_length=30,
-    #     required=True)
     union_position = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
@@ -104,55 +91,19 @@ class SignUpForm(forms.ModelForm):
         required=True,
         max_length=75)
 
-    # def save(self, commit=True):
-    #     instance = super(SignUpForm, self).save(commit=False)
-    #     asoc = self.cleaned_data['association']
-    #     instance.association = Association.objects.get(pk=asoc)
-    #     instance.save(commit)
-    #     return instance
-
     class Meta:
         model = Administrator
         exclude = ['last_login', 'date_joined',]
         fields = ['first_name', 'last_name', 'association', 'union_position', 'username', 'email', 'password', 'confirm_password', ]
 
-    # user = None
-    # usergroups = None
-    # association = forms.ModelChoiceField(queryset=usergroups,
-    #                                      widget=forms.Select(attrs={'class': 'form-control'}),
-    #                                      required=True)
-
     def __init__(self, *args, **kwargs):
-        # self.user = user
-        # self.request = request
+
         super(SignUpForm, self).__init__(*args, **kwargs)
-        # self.fields['association'].queryset = Administrator.objects.filter(association=self.request.user.association)
-        # super(SignUpForm, self).__init__(*args, **kwargs)
-        # self.fields['association'].queryset = qs
-        # instance = getattr(self, 'instance', None)
-        # if instance and instance.pk:
-        #     self.fields['association'].widget.attrs['disabled'] = True
-        # self.fields['username'].validators.append(ForbiddenUsernamesValidator)
-        # self.fields['username'].validators.append(InvalidUsernameValidator)
-        # self.fields['username'].validators.append(
-        #     UniqueUsernameIgnoreCaseValidator)
-        # self.fields['email'].validators.append(UniqueEmailValidator)
+        self.fields['username'].validators.append(ForbiddenUsernamesValidator)
+        self.fields['username'].validators.append(InvalidUsernameValidator)
+        self.fields['username'].validators.append(
+            UniqueUsernameIgnoreCaseValidator)
         self.fields['email'].validators.append(SignupDomainValidator)
-
-    # def clean_assoc(self):
-    #     assoc = self.request.user
-
-    # def clean_sku(self):
-    #     instance = getattr(self, 'instance', None)
-    #     if instance and instance.pk:
-    #         return instance.sku
-    #     else:
-    #         return self.cleaned_data['association']
-
-    # def get_queryset(self):
-    #     qs = Administrator.objects.filter(association=self.request.user.association)
-    #     super(SignUpForm, self).get_queryset()
-    #     self.fields['association'].queryset = qs
 
     def clean(self):
         super(SignUpForm, self).clean()
@@ -173,9 +124,6 @@ class EditSignUpForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
         required=True)
-    # association = forms.ModelChoiceField(queryset=Association.objects.all(),
-    #                                      widget=forms.Select(attrs={'class': 'form-control'}),
-    #                                      required=True)
     union_position = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
@@ -197,13 +145,12 @@ class EditSignUpForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(EditSignUpForm, self).__init__(*args, **kwargs)
-        # self.fields['username'].validators.append(ForbiddenUsernamesValidator)
-        # self.fields['username'].validators.append(InvalidUsernameValidator)
-        # self.fields['username'].validators.append(
-        #     UniqueUsernameIgnoreCaseValidator)
-        # self.fields['email'].validators.append(UniqueEmailValidator)
+        self.fields['username'].validators.append(ForbiddenUsernamesValidator)
+        self.fields['username'].validators.append(InvalidUsernameValidator)
+        self.fields['username'].validators.append(
+            UniqueUsernameIgnoreCaseValidator)
+        self.fields['email'].validators.append(UniqueEmailValidator)
         self.fields['email'].validators.append(SignupDomainValidator)
-        # self.fields['association'].validators.append(CanNotChangeAssociation)
 
 
 class InnsideSignUpForm(forms.ModelForm):
@@ -215,11 +162,6 @@ class InnsideSignUpForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
         required=True)
-    # association = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-
-    # association = forms.ModelChoiceField(queryset=Association.objects.none(),
-    #                                      widget=forms.Select(attrs={'class': 'form-control'}),
-    #                                      required=True)
     union_position = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
@@ -247,16 +189,12 @@ class InnsideSignUpForm(forms.ModelForm):
 
     def __init__(self, user, *args, **kwargs):
         super(InnsideSignUpForm, self).__init__(*args, **kwargs)
-        # self.fields['association'].queryset = Association.objects.filter(asoc_name=user.association)
-
-        # self.fields['username'].validators.append(ForbiddenUsernamesValidator)
-        # self.fields['username'].validators.append(InvalidUsernameValidator)
-        # self.fields['username'].validators.append(
-        #     UniqueUsernameIgnoreCaseValidator)
-        # self.fields['email'].validators.append(UniqueEmailValidator)
+        self.fields['username'].validators.append(ForbiddenUsernamesValidator)
+        self.fields['username'].validators.append(InvalidUsernameValidator)
+        self.fields['username'].validators.append(
+            UniqueUsernameIgnoreCaseValidator)
+        self.fields['email'].validators.append(UniqueEmailValidator)
         self.fields['email'].validators.append(SignupDomainValidator)
-        # self.fields['association'].validators.append(CanNotChangeAssociation)
-        # self.fields['association'].widget.attrs['readonly'] = True
 
 
 class ChangePasswordForm(forms.ModelForm):

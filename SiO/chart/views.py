@@ -1,74 +1,21 @@
-from django.http import HttpResponse
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.generic import View
-from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 
 from SiO.member.models import Member, Association
-# from SiO.CoAdmin.models import Member, Association
-
 from SiO.CoAdmin.models import Administrator
-from django.core import serializers
 from django.contrib.auth.decorators import login_required
 
-from SiO.CoAdmin.serializers import AdministratorSerializer
-from SiO.member.serializers import MemberSerializer
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import authentication, permissions
-from rest_framework import generics
-from rest_framework.authentication import BasicAuthentication
-# from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 import datetime
-import json
 
 
 User = get_user_model()
 
 
-# @login_required
-# class ChartView(View):
-#     def get(self, request, *args, **kwargs):
-#         return render(request, 'chart/ChartView.html', {})
-
-
-# class ChartViewMonth(View):
-#     def get(self, request, *args, **kwargs):
-#         return render(request, 'chart/ChartView/month.html', {})
-
-
-# class ChartData(APIView):
-#     def get(self, request, format=None):
-#         qs_count = Administrator.objects.filter(association=self.request.user.association).count()
-#         qs_count1 = Member.objects.filter(association=self.request.user.association).count()
-
-#         labels = ["Board"]
-#         default_items = [qs_count]
-#         labels2 = ["Member"]
-#         default_items = [qs_count2]
-
-#         data = {
-#             "labels": labels,
-#             "default": default_items,
-#             "labels2": labels2,
-#             "default2": month_items2,
-#         }
-#         return Response(data)
-
-
-# def chart_data_json(request):
-#     data = {}
-#     params = request.GET
-#
-#     name = params.get('name', '')
-#     if name == 'admin_member':
-#         data['chart_data'] = Administrator.objects.filter(association=request.user.association).count()
-#
-#     return HttpResponse(json.dumps(data), content_type='application/json')
-
-# class ChartData(View):
-#     def check_valve_data(self):
 # TODO:this one shows example of pie-chart
 class ChartHigh(View):
     def get(self, request, *args, **kwargs):
@@ -119,12 +66,9 @@ class ChartData(APIView):
     def get(self, request, format=None):
         today = datetime.date.today()
 
-        # Board & Members
         qs_count = Administrator.objects.filter(association=self.request.user.association).count()
         qs_count2 = Member.objects.filter(association=self.request.user.association).count()
-        # qs_count3 = Member.objects.filter(reg_date__year=today.year,
-        #                                   reg_date__month=today.month).filter(
-        #                                   association=self.request.user.association).count()
+
 
         # Months
         qs_count01 = Member.objects.filter(reg_date__year=today.year,
@@ -175,8 +119,7 @@ class ChartData(APIView):
                                            date_of_birth__lte=datetime.date(1989, 12, 31)).filter(
                                             association=self.request.user.association).count()
 
-        #Gender
-        # if Member.gender == "Male":
+        # Gender
         qs_count4 = Member.objects.filter(gender="Male").filter(
                                           association=self.request.user.association).count()
         qs_count5 = Member.objects.filter(gender="Female").filter(
@@ -278,36 +221,7 @@ class ChartData(APIView):
         }
         return Response(data)
 
-    # @method_decorator(login_required)
-    # def dispatch(self, request, *args, **kwargs):
-    #     return super(ChartData, self).dispatch(request, *args, **kwargs)
 
-    # data = {'member_no': []}
-        #
-        # # ###people = Member.objects.all()
-        # people = Member.objects.filter(association=self.request.user.association)
-        #
-        # for unit in people:
-        #     data['member_no'].append(unit.member_no)
-        #
-        # return data
-
-
-# def chartViewHigh(self, chartID='chart_ID', chart_type='column', chart_height=500):
-#     data = ChartData.check_valve_data(self)
-#
-#     chart = {"renderTo": chartID, "type": chart_type, "height": chart_height, }
-#     title = {"text": 'Check Member Data'}
-#     xAxis = {"title": {"text": 'Member'}, "categories": data['member_no']}
-#     yAxis = {"title": {"text": 'Data'}}
-#     # ###yAxis = {"title": {"text": 'Data'}, "allowDecimals": 'False'}
-#     series = [
-#         # ###this is details that appears on each columns when hovered
-#         {"name": 'MEMBERS', "data": data['member_no']}
-#     ]
-#
-#     return render_to_response('chart/chartViewHigh.html', {'chartID': chartID, 'chart': chart, 'series': series,
-#                                                            'title': title, 'xAxis': xAxis, 'yAxis': yAxis})
 
 
 

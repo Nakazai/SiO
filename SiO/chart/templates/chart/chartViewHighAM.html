@@ -5,9 +5,6 @@
 {% block head %}
     <link href="{% static 'css/chart.css' %}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-{#        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">#}
-{##}
-{#            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>#}
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -49,8 +46,7 @@
     var defaultData4 = [];
     var labels5 = [];
     var defaultData5 = [];
-{#    var categories = ['Member', 'Board'];#}
-{#           var xAxisTitle = "";#}
+
 
 
      $.ajax({
@@ -75,13 +71,11 @@
                 defaultData = data.default;
                 labels2 = data.labels2;
                 defaultData2 = data.default2;
-{#                labels3 = data.labels3;#}
-{#                defaultData3 = data.default3;#}
+
                 labels4 = data.labels4;
                 defaultData4 = data.default4;
                 labels5 = data.labels5;
                 defaultData5 = data.default5;
-{#                xAxisTitle = data.xAxisTitle;#}
                 setChart()
             },
             error: function (error_data) {
@@ -91,6 +85,7 @@
         });
 
          function setChart() {
+
              //Board & Members
               $(function () {
             $('#container2').highcharts({
@@ -107,7 +102,6 @@
                     enabled: false
                 },
                 xAxis: {
-{#                    text: xAxisTitle,#}
                     categories: [
                         'Group'
 
@@ -157,7 +151,6 @@
                 },
                 xAxis: {
                     categories: [
-{#                        'Group'#}
                         'Board', 'Members'
                     ]
                 },
@@ -184,15 +177,6 @@
                         defaultData2
                         ]
                 }]
-{#                series: [{#}
-{#                    name: labels,#}
-{#                    data: defaultData#}
-{##}
-{#                },{#}
-{#                    name: labels2,#}
-{#                    data: defaultData2#}
-{##}
-{#                }]#}
             });
         });
 

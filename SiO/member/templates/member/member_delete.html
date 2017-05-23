@@ -1,11 +1,7 @@
-{#{% extends 'base.html' %}#}
-
-{#{% load staticfiles i18n %}#}
-
-{% load staticfiles i18n %}<!DOCTYPE html>
+{% load staticfiles i18n %}
+<!DOCTYPE html>
 <html lang="en">
   <head>
-{#  {% block head %}#}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,29 +20,35 @@
 {% include 'session_security/all.html' %}
   	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
-
-{#    <script src="{% static 'js/SiO.js' %}"></script>#}
-{#  <script src="{% static 'js/date.js' %}"></script>#}
-{#    {% block head %}{% endblock %}#}
-{#  {% endblock %}#}
   </head>
 
 {% block head %}
   <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
     {{ form.media }}
+
+      <script>
+         $(function() {
+          $(".preload").fadeOut(700, function() {
+             $(".containerBox").fadeIn(300);
+          });
+      });
+     </script>
 {% endblock head %}
 
 {% block main %}
+
+     <div class="preload">
+            <img src="{% static 'img/ajax-loader.gif' %}">
+      </div>
+
+    <div class="containerBox">
+
       <h1 class="logo"><a href="{% url 'member_overview' %}"><span class="glyphicon glyphicon-trash"></span> Members</a></h1>
 
-{#{% block content %}#}
 
-{#    <p>Are you sure you want to delete "{{ member_no }}"?</p>#}
  <div class="signup">
     <form action="" method="POST">
-{#    <form action="" method="POST">#}
         {% csrf_token %}
-{#        <p>Are you sure you want to delete following member: {{ member.first_name }}?</p>#}
          <center><h4>Are you sure you want to delete following member ?</h4></center>
         <br>
          <table class="table table-bordered">
@@ -58,7 +60,6 @@
                     <th>Gender</th>
                     <th>Date of Birth</th>
                     <th>Reg date</th>
-{#                    <th>gender</th>#}
                     <th>End date</th>
                 </tr>
              </thead>
@@ -70,7 +71,6 @@
                     <td>{{ member.gender }}</td>
                     <td>{{ member.date_of_birth }}</td>
                     <td>{{ member.reg_date }}</td>
-{#                    <td>{{ member.gender }}</td>#}
                     <td>{{ member.end_date }}</td>
                 </tr>
               </tbody>
@@ -79,17 +79,7 @@
         <a class="btn btn-info btn-m" href="{% url "member_overview" %}">No, cancel.</a></center>
     </form>
  </div>
+    </div>
 
-
-{#    <div class="confirmation-box">#}
-{#        <p>{{ messages }}</p>#}
-{#        <div>#}
-{#            <a href="{{ member_overview }}">Cancel</a>#}
-{#            <form action="{{ member_delete }}" method="post">#}
-{#                <input type="hidden" name="next" value="{{ member_overview }}" />#}
-{#                <input type="submit" value="Send" />#}
-{#            </form>#}
-{#        </div>#}
-{#    </div>#}
 
 {% endblock main %}
