@@ -43,7 +43,6 @@ var cal = {
 	render: function () {
 		//update grid month name and year
 		cal.$monthLong
-			// .html(cal.gridDate.toLocaleDateString("no-bok", {
 				.html(cal.gridDate.toLocaleDateString("en-us", {
 				month: "long"
 			}));
@@ -209,8 +208,6 @@ var cal = {
 
 		var $ename = $("<span class='event-li-name'>");
 		$ename.text(event.name);
-		// var dataDjango = '{{ event.name|escapejs  }}';
-		// $ename.text(dataDjango);
 
 		$li.append($ename);
 
@@ -229,38 +226,12 @@ var cal = {
 
 		return $li;
 	},
-    //
-	// getEventli: function (event) {
-	// 	var $li = $("<li class='event-li'>");
-    //
-	// 	var $ename = $("<span class='event-li-name'>");
-	// 	$ename.text(event.name);
-	// 	// var dataDjango = '{{ event.name|escapejs  }}';
-	// 	// $ename.text(dataDjango);
-    //
-	// 	$li.append($ename);
-    //
-	// 	var $etime = $("<span class='event-li-time'>");
-	// 	var start = new Date(event.start),
-	// 		h = cal.getHourStr(start.getHours());
-    //
-	// 	$etime.text(h);
-	// 	$li.append($etime);
-    //
-	// 	// add data-eid attribute for detail show
-	// 	$li.data("eid", event.id);
-	// 	$li.click(cal.showDetailForm);
-    //
-	// 	cal.eventsById[event.id].eventli.push($li);
-    //
-	// 	return $li;
-	// },
+
 
 
 	//hour string format: (hour)(a/p), change from 12 to 24 format
 	getHourStr: function (h) {
 		return (h < 24 ? '0' + h : h - 12).slice(-2) + (h < 12 ?  '' : '');
-		// return (h < 24 ? h : h - 12) + (h < 12 ? "a" : "p");
 	},
 	//get events to fill today ul
 	getTodayEvents: function () {
@@ -275,7 +246,6 @@ var cal = {
 			var h=x.getHours(),
 				hstr = cal.getHourStr(h),
 				$lili = $("<li class='events-today'>" + hstr + "</li>");
-				// $lili = $("<li class='events-today'> + hstr +  ");
 
 
 			$ul.append($lili);
@@ -289,30 +259,10 @@ var cal = {
 				console.log("today events", response);
 				response.data.forEach(function(event){
 					var h = new Date(event.start).getHours();
-					// var $ename = $("<span class='events-today-name'>");
-					// var $enamE = $ename.text(event.name);
-					// $lis[h].append(" - "+$enamE);
-					// $lis[h].append(" - "+event.name);
 					$lis[h].append(" - "+event.name);
-					// $lis[h].append(" - "+$li);
-					// $lis[h].append(event.name);
-					//this we let the user see full details of event time during current day
 					$lis[h].data("eid", event.id);
 					$lis[h].click(cal.showDetailForm);
 
-					// if ($lis[h].click(cal.showDetailForm) == cal.$btnEdit.data("eid", event.id)) {
-					// 	$lis[h].click(cal.$btnEdit);
-					// }
-
-					// cal.addEventLi(event);
-					// if(cal.$btnDelete){
-					// 	cal.eventsById[event.id].eventli.push($lis[h]);
-					// 	return $lis[h];
-					// }
-
-					// cal.eventsById[event.id].eventli.push($lis[h]);
-                    //
-					// return $lis[h];
 				})
 			}
 		});
@@ -333,9 +283,7 @@ var cal = {
 			hour = time.getHours(),
 			min = time.getMinutes(),
 			ampm = (hour < 24 ? "" : "");
-			// ampm = (hour < 24 ? "am" : "pm");
 
-		// hour = (hour > 24 ? '0' + hour - 12 : hour);
 		hour = (hour < 24 ? '0' + hour : hour).slice(-2);
 		min = (min < 10 ? '0' + min : min);
 
@@ -413,90 +361,9 @@ var cal = {
 		cal.$addEventAllday[0].checked = false;
 		cal.$addEventDesc.val("");
 
-		// var options = '';
-		// // var data = ('$addEventAsoc');
-		// // $(document).ready(function(){
-		// 	$('select[id=association]').change(function(){
-		// 		 $.ajax({
-		// 			 type: "GET",
-		// 			 // url: '/calendar/',
-		// 			success: function(data){
-		// 				$.each(data, function(key, value) {
-		// 					// options += '<option value="' + value.association + '" text="' + value.association + '" />';
-		// 					options += '<option value="' + key + '">' + value +'</option>';
-		// 				});
-		// 			}
-		// 		})
-		// 	});
-		// });
-        //
-		// $('#association').append(options);
 
-		// $('#association').append('<option>' + data[0].association  + '</option>');
-
-		// cal.$addEventAsoc.val('{{ asoc.id }}');
-		// alert (cal.$addEventAsoc.val('{{ asoc.id }}'));
-
-		 // $("#association").data(function (e) {
-		 // 	e.preventDefault();
-		// var association = $(this).val('id');
-		// $association_id = $(this).attr('id');
-		// var dataString = "name=" + association;
-		// var association = document.getElementById("add-event-asoc").value;
-		// var $addEventAsoc = $(this).val();
-
-        // var asoc = $('#association').val();
-        //
-        // // alert ($association_id);
-        // // console.log(association);
-        // $.ajax ({
-        //     // type: "GET",
-        //     // url: "http://localhost:8000/calendar/",
-        //     // type: $(this).attr('method'),
-        //     // url: this.action,
-			// // data: $addEventAsoc,
-			// res: {
-			// 	csrfmiddlewaretoken: "{{ csrf_token }}"
-			// },
-        //     // data: {
-        //     //     // 'association': $('#add-event-asoc').val()
-			// 	// association: association
-        //     //     // id: $association_id ,
-        //     //     // 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
-        //     //
-        //     // },
-        //     // data: association,
-        //     // dataType: 'json',
-        //     success: function () {
-        //         // $('#association').val(data);
-        //         cal.$addEventAsoc.val(asoc.id);
-        //         // window.open(data.association);
-        //         // alert(data.result);
-        //
-        //         // association = data.association;
-        //
-        //     },
-        //     error: function (rs, e) {
-        //         // console.log("error");
-        //         // alert(data.result);
-        //         // console.log('Error:', data)
-			// 	alert('Sorry, try again.');
-        //     }
-        //
-        //   });
-		// });
-
-		// cal.$addEventAsoc.val('association');
-
-
-		// var date = new Date($(this).data("date"));
 		var date = new Date($(this).data("date"));
 		cal.$addEventTop.text(date.toDateString());
-		// cal.$addEventTop.text(date.toUTCString());
-		// var dateString=new Date($(this).data("date"));
-		// dateString=new Date(dateString).toUTCString();
-		// dateString=dateString.split(' ').slice(0, 4).join(' ');
-		// cal.$addEventTop.text(dateString);
 
 
 		date.setHours(cal.currDate.getHours());
@@ -1000,7 +867,6 @@ sync.init();
 
 //try auth on load of calendar
 function tryauth() {
-	//console.log("auth");
 	gapi.auth.authorize({
 			client_id: sync.CLIENT_ID,
 			scope: sync.SCOPES,
