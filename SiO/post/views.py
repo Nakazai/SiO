@@ -36,8 +36,8 @@ class mailPost(FormView):
         if form.is_valid():
             sender = "noreply@sioforeninger.no"
             receiver = form.cleaned_data.get('receiver')
-            # cc = form.cleaned_data.get('cc')
-            # bcc = form.cleaned_data.get('bcc')
+            cc = form.cleaned_data.get('cc')
+            bcc = form.cleaned_data.get('bcc')
             subject = form.cleaned_data.get('subject')
             message = form.cleaned_data.get('message')
             time = datetime.now()
@@ -55,9 +55,13 @@ class mailPost(FormView):
                 association=asoc,
                 sentTime=time
             )
-            # msg = EmailMultiAlternatives(subject, message, sender, [receiver], bcc=[bcc], cc=[cc])
-            msg = EmailMultiAlternatives(subject, message, sender, [receiver])
-            msg.send()
+            if cc and bcc:
+                msg = EmailMultiAlternatives(subject, message, sender, [receiver], bcc=[bcc], cc=[cc])
+            # msg = EmailMultiAlternatives(subject, message, sender, [receiver])
+                msg.send()
+            else:
+                msg = EmailMultiAlternatives(subject, message, sender, [receiver])
+                msg.send()
             # send_mail(subject, message, sender, [receiver], [bcc], [cc])
             # send_mass_mail(subject, message, sender, [receiver])
             return self.form_valid(form)

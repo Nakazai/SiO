@@ -632,7 +632,8 @@ Date.prototype.toTimeInput = function () {
 
 // object to manage sync with Google Calendar
 var sync = {
-	CLIENT_ID: '642165405561-i3955klb3np69upspeuakno68hg6adt0.apps.googleusercontent.com',
+	// CLIENT_ID: '642165405561-i3955klb3np69upspeuakno68hg6adt0.apps.googleusercontent.com',
+	CLIENT_ID: '1009711446801-0uqa30otsost3agt1ij54qprjls0587s.apps.googleusercontent.com',
 	SCOPES: ["https://www.googleapis.com/auth/calendar"],
 	synced: false,
 	$btnSync: $("#btn-sync"),
