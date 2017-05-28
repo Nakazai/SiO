@@ -59,3 +59,5 @@ tests/.coverage
 build/
 tests/report/
 \.idea/misc\.xml
+
+\.idea/

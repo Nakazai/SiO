@@ -15,6 +15,7 @@ SECRET_KEY = '55ib3m14rm=g(aqcp_k63gcuzp_$hq^@9tc6v_))h0f%u0&c^5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['67.207.72.58', 'www.sioforeninger.no', 'sioforeninger.no']
 
@@ -163,6 +164,7 @@ MEDIA_URL = '/media/'
 # Paths for LOGIN
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_URL = '/'
+LOGIN_URL = '/login'
 
 # Session-timer
 SESSION_SECURITY_EXPIRE_AFTER = 3600

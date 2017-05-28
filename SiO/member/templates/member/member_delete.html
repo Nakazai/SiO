@@ -23,7 +23,7 @@
   </head>
 
 {% block head %}
-  <link href="{% static 'css/member_signup.css' %}" rel="stylesheet">
+  <link href="{% static 'css/member_delete.css' %}" rel="stylesheet">
     {{ form.media }}
 
       <script>
@@ -42,7 +42,7 @@
       </div>
 
     <div class="containerBox">
-
+<br>
       <h1 class="logo"><a href="{% url 'member_overview' %}"><span class="glyphicon glyphicon-trash"></span> Members</a></h1>
 
 
@@ -51,6 +51,8 @@
         {% csrf_token %}
          <center><h4>Are you sure you want to delete following member ?</h4></center>
         <br>
+            <div style="overflow-x:auto;">
+
          <table class="table table-bordered">
             <thead>
                 <tr>
@@ -75,6 +77,8 @@
                 </tr>
               </tbody>
          </table>
+                    </div>
+<br>
          <center><input type="submit" name="submit" class="btn btn-danger btn-m"  value="Yes, delete" />
         <a class="btn btn-info btn-m" href="{% url "member_overview" %}">No, cancel.</a></center>
     </form>

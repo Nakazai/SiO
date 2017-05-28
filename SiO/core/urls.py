@@ -19,4 +19,5 @@ urlpatterns = [
 
     url(r'^reset/done/$', auth_views.password_reset_complete,  {'template_name': 'core/password_reset_complete.html'},
         name='password_reset_complete'),
+
 ]

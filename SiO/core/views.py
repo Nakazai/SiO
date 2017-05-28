@@ -1,6 +1,7 @@
 import os
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
 
 from SiO.CoAdmin.models import Administrator
 from django.shortcuts import get_object_or_404, redirect, render, render_to_response
@@ -51,6 +52,9 @@ def settings(request):
             'asoc_name': user.profile.asoc_name
             })
     return render(request, 'core/settings.html', {'form': form})
+
+
+
 
 
 

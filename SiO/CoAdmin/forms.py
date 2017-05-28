@@ -78,8 +78,8 @@ class SignUpForm(forms.ModelForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
-        required=True,
-        help_text='Usernames may contain <strong>alphanumeric</strong>, <strong>_</strong> and <strong>.</strong> characters')  # noqa: E261
+        required=True)
+        # help_text='Usernames may contain <strong>alphanumeric</strong>, <strong>_</strong> and <strong>.</strong> characters')  # noqa: E261
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     confirm_password = forms.CharField(
@@ -112,7 +112,15 @@ class SignUpForm(forms.ModelForm):
         if password and password != confirm_password:
             self._errors['password'] = self.error_class(
                 ['Passwords don\'t match'])
+            self._errors['confirm_password'] = self.error_class(
+                ['Passwords don\'t match'])
         return self.cleaned_data
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if len(password) < 8:
+            raise ValidationError('Passsword is too short, must contain at least 8 characters')
+        return password
 
 
 class EditSignUpForm(forms.ModelForm):
@@ -131,8 +139,8 @@ class EditSignUpForm(forms.ModelForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
-        required=True,
-        help_text='Usernames may contain <strong>alphanumeric</strong>, <strong>_</strong> and <strong>.</strong> characters')  # noqa: E261
+        required=True)
+        # help_text='Usernames may contain <strong>alphanumeric</strong>, <strong>_</strong> and <strong>.</strong> characters')  # noqa: E261
     email = forms.CharField(
         widget=forms.EmailInput(attrs={'class': 'form-control'}),
         required=True,
@@ -169,8 +177,8 @@ class InnsideSignUpForm(forms.ModelForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
-        required=True,
-        help_text='Usernames may contain <strong>alphanumeric</strong>, <strong>_</strong> and <strong>.</strong> characters')  # noqa: E261
+        required=True)
+        # help_text='Usernames may contain <strong>alphanumeric</strong>, <strong>_</strong> and <strong>.</strong> characters')  # noqa: E261
     email = forms.CharField(
         widget=forms.EmailInput(attrs={'class': 'form-control'}),
         required=True,
@@ -195,6 +203,23 @@ class InnsideSignUpForm(forms.ModelForm):
             UniqueUsernameIgnoreCaseValidator)
         self.fields['email'].validators.append(UniqueEmailValidator)
         self.fields['email'].validators.append(SignupDomainValidator)
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if len(password) < 8:
+            raise ValidationError('Passsword is too short, must contain at least 8 characters')
+        return password
+
+    def clean(self):
+        super(InnsideSignUpForm, self).clean()
+        password = self.cleaned_data.get('password')
+        confirm_password = self.cleaned_data.get('confirm_password')
+        if password and password != confirm_password:
+            self._errors['password'] = self.error_class(
+                ['Passwords don\'t match'])
+            self._errors['confirm_password'] = self.error_class(
+                ['Passwords don\'t match'])
+        return self.cleaned_data
 
 
 class ChangePasswordForm(forms.ModelForm):
@@ -230,7 +255,17 @@ class ChangePasswordForm(forms.ModelForm):
         if new_password and new_password != confirm_password:
             self._errors['new_password'] = self.error_class([
                 'Passwords don\'t match'])
+        if len(new_password) < 8:
+            self._errors['new_password'] = self.error_class([
+                'Passsword is too short, must contain at least 8 characters'])
         return self.cleaned_data
+
+    # def clean_password(self):
+    #     super(ChangePasswordForm, self).clean_password()
+    #     new_password = self.cleaned_data.get('new_password')
+    #     if len(new_password) < 6:
+    #         raise ValidationError('Passsword is too short, must contain at least 6 characters')
+    #     return new_password
 
 
 

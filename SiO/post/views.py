@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import F
 from django.utils.decorators import method_decorator
 from django.views.generic import FormView
 from django.contrib.auth import get_user_model
@@ -9,6 +10,8 @@ from django.contrib import messages
 from SiO.member.models import Association
 from django.core.mail import EmailMultiAlternatives, send_mass_mail
 from django.core.mail import send_mail
+from django.db.models.functions import Concat
+from django.db.models import CharField, Value
 
 
 User = get_user_model()
@@ -34,7 +37,14 @@ class mailPost(FormView):
         form = self.get_form(form_class)
 
         if form.is_valid():
-            sender = "noreply@sioforeninger.no"
+            # sender = "noreply@sioforeninger.no"
+            # sender = Association.objects.get(asoc_name=self.request.user.association)
+            # sender = Association.objects.filter(asoc_name=self.request.user.association).annotate(email=Concat('asoc_name', Value('@sioforeninger.no')))
+            sender = "{} <noreply@sioforeninger.no>".format(self.request.user.association.asoc_name)
+            # mail = "@sioforeninger.no"
+            # asoc_mail = Association.objects.filter(asoc_name=self.request.user.association)
+            # asoc_mail2 = Association.objects.get(id=asoc_mail)
+            # sender = asoc_mail2.__str__(mail)
             receiver = form.cleaned_data.get('receiver')
             # cc = form.cleaned_data.get('cc')
             # bcc = form.cleaned_data.get('bcc')

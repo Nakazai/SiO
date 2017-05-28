@@ -1,68 +1,135 @@
-@media only screen and (max-device-width: 480px) {
-	/* smartphones, iPhone, portrait 480x320 phones */
-	html,
-	body {
-		font-size: 18pt;
-	}
-	#cal-content-top {
-		height: 60px;
-		line-height: 60px;
-	}
-	#week-days li.week-day {
-		height: 60px;
-		line-height: 60px;
-	}
-	#week-row li.week-row-cell {
-		height: calc((100% - 120px) / 6);
-	}
-	#cal-side-bar {
-		width: 0;
-	}
-	#cal-content {
-		width: 70%;
-	}
-	.form-wrapper form {
-		width: 600px;
-		height: 700px;
-	}
-}
 
-@media (max-width:900px) {
-	#cal-side-bar {
-		width: 100%;
-	}
-	#cal-content {
-		width: 91%;
-	}
+    /*@media (min-width: 1026px) {*/
+/*#cal-side-bar {*/
+		/*width: 20%;*/
+	/*}*/
+	/*#cal-content {*/
+		/*width: 80%;*/
+	/*}*/
+		/*#cal-content-top {*/
+		/*width: 99%;*/
+	/*}*/
+	/*#cal-content-grid {*/
+		/*width: 101%;*/
+		/*!*width: 898px;*!*/
+	/*}*/
 
-	.event-li .event-li-name {
-	/*float: left;*/
-    width: 80%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1rem;
-    height: 1rem;
-    white-space: nowrap;
-		padding: 1px 33px 1px 11px;
+
+	/*.form-wrapper {*/
+	/*position: absolute;*/
+	/*top: 0;*/
+	/*left: 0;*/
+	/*width: 100%;*/
+	/*!*height: 120%;*!*/
+			/*height: 153%;*/
+
+	/*background: rgba(0, 0, 0, 0.3);*/
+	/*opacity: 0;*/
+	/*visibility: hidden;*/
+	/*transition: 0.5s;*/
+/*}*/
+/*.form-wrapper.visible {*/
+	/*opacity: 1;*/
+	/*visibility: visible;*/
+/*}*/
+/*.form-wrapper form {*/
+	/*padding: 10px 20px;*/
+	/*width: 300px;*/
+	/*height: 450px;*/
+	/*position: absolute;*/
+	/*top: 50%;*/
+	/*left: 50%;*/
+	/*transform: translate(-50%, -50%);*/
+	/*background: white;*/
+	/*border-radius: 3px;*/
+	/*border: 2px solid #ff8787;*/
+/*}*/
+/*.form-wrapper .form-li {*/
+	/*width: 100%;*/
+	/*padding: 8px 0px;*/
+/*}*/
+/*.form-wrapper .form-top {*/
+	/*font-size: 1.1rem;*/
+	/*color: #ff8787;*/
+/*}*/
+
+	/*.event-li .event-li-name {*/
+	/*!*float: left;*!*/
+    /*width: 80%;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*line-height: 1rem;*/
+    /*height: 1rem;*/
+    /*white-space: nowrap;*/
+		/*padding: 1px 33px 1px 11px;*/
 	         /*!*T   R    B    L*!*/
 
-}
-.event-li .event-li-time {
-	/*float: left;*/
-	width: 20%;
-		padding: 1px 33px 1px 11px;
+/*}*/
+/*.event-li .event-li-time {*/
+	/*!*float: left;*!*/
+	/*width: 20%;*/
+		/*padding: 1px 33px 1px 11px;*/
 	         /*!*T   R    B    L*!*/
 
-}
-}
+/*}}*/
 
-@media (min-width:1024px) {
+
+
+
+
+@media (min-width:1280px) {
 	#cal-side-bar {
 		width: 20%;
 	}
 	#cal-content {
-		width: 72%;
+		width: 80%;
 	}
+		#cal-content-top {
+		width: 99%;
+	}
+	#cal-content-grid {
+		width: 101%;
+		/*width: 898px;*/
+	}
+
+
+	.form-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 120%;
+			/*height: 155%;*/
+
+	background: rgba(0, 0, 0, 0.3);
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.5s;
+}
+.form-wrapper.visible {
+	opacity: 1;
+	visibility: visible;
+}
+.form-wrapper form {
+	padding: 10px 20px;
+	width: 300px;
+	height: 450px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	border-radius: 3px;
+	border: 2px solid #ff8787;
+}
+.form-wrapper .form-li {
+	width: 100%;
+	padding: 8px 0px;
+}
+.form-wrapper .form-top {
+	font-size: 1.1rem;
+	color: #ff8787;
+}
 
 	.event-li .event-li-name {
 	/*float: left;*/
@@ -73,16 +140,720 @@
     height: 1rem;
     white-space: nowrap;
 		padding: 1px 33px 1px 11px;
-	         /*!*T   R    B    L*!*/
+	         /*T   R    B    L*/
 
 }
 .event-li .event-li-time {
 	/*float: left;*/
 	width: 20%;
 		padding: 1px 33px 1px 11px;
-	         /*!*T   R    B    L*!*/
+	         /*T   R    B    L*/
 
 }
 }
+
+
+
+
+@media (max-width:1279px) {
+	#cal-side-bar {
+		width: 100%;
+	}
+	#cal-content {
+		width: 100%;
+	}
+		#cal-content-top {
+		width: 100%;
+	}
+		#cal-content-top-month {
+		padding: 7px 70px 1px 0px;
+			/*			L		R*/
+	}
+		#cal-content-top-icon {
+		padding: 1px 44px 1px 1px;
+	}
+	#cal-content-grid {
+		width: 100%;
+	}
+
+
+	.form-wrapper {
+	position: absolute;
+	width: 100%;
+	height: 200%;
+	background: rgba(0, 0, 0, 0.3);
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.5s;
+}
+.form-wrapper.visible {
+	opacity: 1;
+	visibility: visible;
+}
+.form-wrapper form {
+	padding: 10px 20px;
+	width: 300px;
+	height: 450px;
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	border-radius: 3px;
+	border: 2px solid #ff8787;
+}
+.form-wrapper .form-li {
+	width: 100%;
+	padding: 8px 0px;
+}
+.form-wrapper .form-top {
+	font-size: 1.1rem;
+	color: #ff8787;
+}
+
+	.event-li .event-li-name {
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1rem;
+    height: 1rem;
+    white-space: nowrap;
+		padding: 1px 33px 1px 11px;
+	         /*T   R    B    L*/
+
+}
+.event-li .event-li-time {
+	width: 20%;
+		padding: 1px 33px 1px 11px;
+	         /*T   R    B    L*/
+
+}
+}
+
+
+
+
+
+
+
+
+/*!***GALAXY S5****!*/
+	/*@media (max-width:360px) {*/
+	/*#cal-side-bar {*/
+		/*width: 100%;*/
+	/*}*/
+	/*#cal-content {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top-month {*/
+		/*padding: 7px 70px 1px 0px;*/
+			/*!*			L		R*!*/
+	/*}*/
+		/*#cal-content-top-icon {*/
+		/*padding: 1px 44px 1px 1px;*/
+	/*}*/
+	/*#cal-content-grid {*/
+		/*width: 108%;*/
+	/*}*/
+
+	/*.form-wrapper {*/
+	/*position: absolute;*/
+	/*width: 110%;*/
+	/*height: 217%;*/
+	/*background: rgba(0, 0, 0, 0.3);*/
+	/*opacity: 0;*/
+	/*visibility: hidden;*/
+	/*transition: 0.5s;*/
+/*}*/
+/*.form-wrapper.visible {*/
+	/*opacity: 1;*/
+	/*visibility: visible;*/
+/*}*/
+/*.form-wrapper form {*/
+	/*padding: 10px 20px;*/
+	/*width: 300px;*/
+	/*height: 450px;*/
+	/*position: absolute;*/
+	/*top: 80%;*/
+	/*left: 50%;*/
+	/*transform: translate(-50%, -50%);*/
+	/*background: white;*/
+	/*border-radius: 3px;*/
+	/*border: 2px solid #ff8787;*/
+/*}*/
+/*.form-wrapper .form-li {*/
+	/*width: 100%;*/
+	/*padding: 8px 0px;*/
+/*}*/
+/*.form-wrapper .form-top {*/
+	/*font-size: 1.1rem;*/
+	/*color: #ff8787;*/
+/*}*/
+
+	/*.event-li .event-li-name {*/
+    /*width: 80%;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*line-height: 1rem;*/
+    /*height: 1rem;*/
+    /*white-space: nowrap;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*.event-li .event-li-time {*/
+	/*width: 20%;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*}*/
+
+
+
+/*!***NEXUS 5X****!*/
+	/*@media (max-width:412px) {*/
+	/*#cal-side-bar {*/
+		/*width: 100%;*/
+	/*}*/
+	/*#cal-content {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top-month {*/
+		/*padding: 7px 70px 1px 0px;*/
+			/*!*			L		R*!*/
+	/*}*/
+		/*#cal-content-top-icon {*/
+		/*padding: 1px 44px 1px 1px;*/
+	/*}*/
+	/*#cal-content-grid {*/
+		/*width: 108%;*/
+	/*}*/
+
+	/*.form-wrapper {*/
+	/*position: absolute;*/
+	/*width: 110%;*/
+	/*height: 209%;*/
+	/*background: rgba(0, 0, 0, 0.3);*/
+	/*opacity: 0;*/
+	/*visibility: hidden;*/
+	/*transition: 0.5s;*/
+/*}*/
+/*.form-wrapper.visible {*/
+	/*opacity: 1;*/
+	/*visibility: visible;*/
+/*}*/
+/*.form-wrapper form {*/
+	/*padding: 10px 20px;*/
+	/*width: 300px;*/
+	/*height: 450px;*/
+	/*position: absolute;*/
+	/*top: 80%;*/
+	/*left: 50%;*/
+	/*transform: translate(-50%, -50%);*/
+	/*background: white;*/
+	/*border-radius: 3px;*/
+	/*border: 2px solid #ff8787;*/
+/*}*/
+/*.form-wrapper .form-li {*/
+	/*width: 100%;*/
+	/*padding: 8px 0px;*/
+/*}*/
+/*.form-wrapper .form-top {*/
+	/*font-size: 1.1rem;*/
+	/*color: #ff8787;*/
+/*}*/
+
+	/*.event-li .event-li-name {*/
+    /*width: 80%;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*line-height: 1rem;*/
+    /*height: 1rem;*/
+    /*white-space: nowrap;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*.event-li .event-li-time {*/
+	/*width: 20%;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*}*/
+
+
+
+/*!***NEXUS 6P****!*/
+	/*@media (max-width:412px) {*/
+	/*#cal-side-bar {*/
+		/*width: 100%;*/
+	/*}*/
+	/*#cal-content {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top-month {*/
+		/*padding: 7px 70px 1px 0px;*/
+			/*!*			L		R*!*/
+	/*}*/
+		/*#cal-content-top-icon {*/
+		/*padding: 1px 44px 1px 1px;*/
+	/*}*/
+	/*#cal-content-grid {*/
+		/*width: 108%;*/
+	/*}*/
+
+	/*.form-wrapper {*/
+	/*position: absolute;*/
+	/*width: 110%;*/
+	/*height: 200%;*/
+	/*background: rgba(0, 0, 0, 0.3);*/
+	/*opacity: 0;*/
+	/*visibility: hidden;*/
+	/*transition: 0.5s;*/
+/*}*/
+/*.form-wrapper.visible {*/
+	/*opacity: 1;*/
+	/*visibility: visible;*/
+/*}*/
+/*.form-wrapper form {*/
+	/*padding: 10px 20px;*/
+	/*width: 300px;*/
+	/*height: 450px;*/
+	/*position: absolute;*/
+	/*top: 80%;*/
+	/*left: 50%;*/
+	/*transform: translate(-50%, -50%);*/
+	/*background: white;*/
+	/*border-radius: 3px;*/
+	/*border: 2px solid #ff8787;*/
+/*}*/
+/*.form-wrapper .form-li {*/
+	/*width: 100%;*/
+	/*padding: 8px 0px;*/
+/*}*/
+/*.form-wrapper .form-top {*/
+	/*font-size: 1.1rem;*/
+	/*color: #ff8787;*/
+/*}*/
+
+	/*.event-li .event-li-name {*/
+    /*width: 80%;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*line-height: 1rem;*/
+    /*height: 1rem;*/
+    /*white-space: nowrap;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*.event-li .event-li-time {*/
+	/*width: 20%;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*}*/
+
+
+
+
+/*!***IPHONE 5****!*/
+	/*@media (max-width:320px) {*/
+	/*#cal-side-bar {*/
+		/*width: 100%;*/
+	/*}*/
+	/*#cal-content {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top-month {*/
+					/*width: 70%;*/
+	/*}*/
+		/*#cal-content-top-icon {*/
+			/*width: 20%;*/
+		/*padding: 1px 99px 1px 30px;*/
+	/*}*/
+	/*#cal-content-grid {*/
+		/*width: 114%;*/
+	/*}*/
+
+	/*.form-wrapper {*/
+	/*position: absolute;*/
+	/*width: 110%;*/
+	/*height: 250%;*/
+	/*background: rgba(0, 0, 0, 0.3);*/
+	/*opacity: 0;*/
+	/*visibility: hidden;*/
+	/*transition: 0.5s;*/
+/*}*/
+/*.form-wrapper.visible {*/
+	/*opacity: 1;*/
+	/*visibility: visible;*/
+/*}*/
+/*.form-wrapper form {*/
+	/*padding: 10px 20px;*/
+	/*width: 300px;*/
+	/*height: 450px;*/
+	/*position: absolute;*/
+	/*top: 80%;*/
+	/*left: 50%;*/
+	/*transform: translate(-50%, -50%);*/
+	/*background: white;*/
+	/*border-radius: 3px;*/
+	/*border: 2px solid #ff8787;*/
+/*}*/
+/*.form-wrapper .form-li {*/
+	/*width: 100%;*/
+	/*padding: 8px 0px;*/
+/*}*/
+/*.form-wrapper .form-top {*/
+	/*font-size: 1.1rem;*/
+	/*color: #ff8787;*/
+/*}*/
+
+	/*.event-li .event-li-name {*/
+    /*width: 80%;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*line-height: 1rem;*/
+    /*height: 1rem;*/
+    /*white-space: nowrap;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*.event-li .event-li-time {*/
+	/*width: 20%;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*}*/
+
+
+
+/*!***IPHONE 6****!*/
+	/*@media (max-width:375px) {*/
+	/*#cal-side-bar {*/
+		/*width: 100%;*/
+	/*}*/
+	/*#cal-content {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top-month {*/
+		/*padding: 7px 88px 1px 0px;*/
+			/*!*			L		R*!*/
+	/*}*/
+		/*#cal-content-top-icon {*/
+		/*padding: 1px 33px 1px 1px;*/
+	/*}*/
+	/*#cal-content-grid {*/
+		/*width: 112% ;*/
+	/*}*/
+
+	/*.form-wrapper {*/
+	/*position: absolute;*/
+	/*width: 110%;*/
+	/*height: 210%;*/
+	/*background: rgba(0, 0, 0, 0.3);*/
+	/*opacity: 0;*/
+	/*visibility: hidden;*/
+	/*transition: 0.5s;*/
+/*}*/
+/*.form-wrapper.visible {*/
+	/*opacity: 1;*/
+	/*visibility: visible;*/
+/*}*/
+/*.form-wrapper form {*/
+	/*padding: 10px 20px;*/
+	/*width: 300px;*/
+	/*height: 450px;*/
+	/*position: absolute;*/
+	/*top: 80%;*/
+	/*left: 50%;*/
+	/*transform: translate(-50%, -50%);*/
+	/*background: white;*/
+	/*border-radius: 3px;*/
+	/*border: 2px solid #ff8787;*/
+/*}*/
+/*.form-wrapper .form-li {*/
+	/*width: 100%;*/
+	/*padding: 8px 0px;*/
+/*}*/
+/*.form-wrapper .form-top {*/
+	/*font-size: 1.1rem;*/
+	/*color: #ff8787;*/
+/*}*/
+
+	/*.event-li .event-li-name {*/
+    /*width: 80%;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*line-height: 1rem;*/
+    /*height: 1rem;*/
+    /*white-space: nowrap;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*.event-li .event-li-time {*/
+	/*width: 20%;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*}*/
+
+
+
+	/*!***IPHONE 6 PLUS****!*/
+	/*@media (max-width:414px) {*/
+	/*#cal-side-bar {*/
+		/*width: 100%;*/
+	/*}*/
+	/*#cal-content {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top-month {*/
+		/*padding: 7px 88px 1px 0px;*/
+			/*!*			L		R*!*/
+	/*}*/
+		/*#cal-content-top-icon {*/
+		/*padding: 1px 33px 1px 1px;*/
+	/*}*/
+	/*#cal-content-grid {*/
+		/*width: 110% ;*/
+	/*}*/
+
+	/*.form-wrapper {*/
+	/*position: absolute;*/
+	/*width: 30%;*/
+	/*height: 210%;*/
+	/*background: rgba(0, 0, 0, 0.3);*/
+	/*opacity: 0;*/
+	/*visibility: hidden;*/
+	/*transition: 0.5s;*/
+/*}*/
+/*.form-wrapper.visible {*/
+	/*opacity: 1;*/
+	/*visibility: visible;*/
+/*}*/
+/*.form-wrapper form {*/
+	/*padding: 10px 20px;*/
+	/*width: 300px;*/
+	/*height: 450px;*/
+	/*position: absolute;*/
+	/*top: 80%;*/
+	/*left: 50%;*/
+	/*transform: translate(-50%, -50%);*/
+	/*background: white;*/
+	/*border-radius: 3px;*/
+	/*border: 2px solid #ff8787;*/
+/*}*/
+/*.form-wrapper .form-li {*/
+	/*width: 100%;*/
+	/*padding: 8px 0px;*/
+/*}*/
+/*.form-wrapper .form-top {*/
+	/*font-size: 1.1rem;*/
+	/*color: #ff8787;*/
+/*}*/
+
+	/*.event-li .event-li-name {*/
+    /*width: 80%;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*line-height: 1rem;*/
+    /*height: 1rem;*/
+    /*white-space: nowrap;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*.event-li .event-li-time {*/
+	/*width: 20%;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*}*/
+
+
+
+
+	/*!***IPAD****!*/
+	/*@media (max-width:768px) {*/
+	/*#cal-side-bar {*/
+		/*width: 100%;*/
+	/*}*/
+	/*#cal-content {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top-month {*/
+		/*padding: 7px 88px 1px 0px;*/
+			/*!*			L		R*!*/
+	/*}*/
+		/*#cal-content-top-icon {*/
+		/*padding: 1px 33px 1px 1px;*/
+	/*}*/
+	/*#cal-content-grid {*/
+		/*width: 103%;*/
+	/*}*/
+
+	/*.form-wrapper {*/
+	/*position: absolute;*/
+	/*width: 101%;*/
+	/*height: 133%;*/
+	/*background: rgba(0, 0, 0, 0.3);*/
+	/*opacity: 0;*/
+	/*visibility: hidden;*/
+	/*transition: 0.5s;*/
+/*}*/
+/*.form-wrapper.visible {*/
+	/*opacity: 1;*/
+	/*visibility: visible;*/
+/*}*/
+/*.form-wrapper form {*/
+	/*padding: 10px 20px;*/
+	/*width: 300px;*/
+	/*height: 450px;*/
+	/*position: absolute;*/
+	/*top: 80%;*/
+	/*left: 50%;*/
+	/*transform: translate(-50%, -50%);*/
+	/*background: white;*/
+	/*border-radius: 3px;*/
+	/*border: 2px solid #ff8787;*/
+/*}*/
+/*.form-wrapper .form-li {*/
+	/*width: 100%;*/
+	/*padding: 8px 0px;*/
+/*}*/
+/*.form-wrapper .form-top {*/
+	/*font-size: 1.1rem;*/
+	/*color: #ff8787;*/
+/*}*/
+
+	/*.event-li .event-li-name {*/
+    /*width: 80%;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*line-height: 1rem;*/
+    /*height: 1rem;*/
+    /*white-space: nowrap;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*.event-li .event-li-time {*/
+	/*width: 20%;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*}*/
+
+
+	/*!***IPAD PRO ***!*/
+	 /*@media only screen and (device-width:1024px) {*/
+	/*#cal-side-bar {*/
+		/*width: 100%;*/
+	/*}*/
+	/*#cal-content {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top {*/
+		/*width: 100%;*/
+	/*}*/
+		/*#cal-content-top-month {*/
+		/*padding: 7px 88px 1px 0px;*/
+			/*!*			L		R*!*/
+	/*}*/
+		/*#cal-content-top-icon {*/
+		/*padding: 1px 33px 1px 1px;*/
+	/*}*/
+	/*#cal-content-grid {*/
+		/*width: 100%;*/
+	/*}*/
+
+	/*.form-wrapper {*/
+	/*position: absolute;*/
+	/*width: 100%;*/
+	/*height: 100%;*/
+	/*background: rgba(0, 0, 0, 0.3);*/
+	/*opacity: 0;*/
+	/*visibility: hidden;*/
+	/*transition: 0.5s;*/
+/*}*/
+/*.form-wrapper.visible {*/
+	/*opacity: 1;*/
+	/*visibility: visible;*/
+/*}*/
+/*.form-wrapper form {*/
+	/*padding: 10px 20px;*/
+	/*width: 300px;*/
+	/*height: 450px;*/
+	/*position: absolute;*/
+	/*top: 80%;*/
+	/*left: 50%;*/
+	/*transform: translate(-50%, -50%);*/
+	/*background: white;*/
+	/*border-radius: 3px;*/
+	/*border: 2px solid #ff8787;*/
+/*}*/
+/*.form-wrapper .form-li {*/
+	/*width: 100%;*/
+	/*padding: 8px 0px;*/
+/*}*/
+/*.form-wrapper .form-top {*/
+	/*font-size: 1.1rem;*/
+	/*color: #ff8787;*/
+/*}*/
+
+	/*.event-li .event-li-name {*/
+    /*width: 80%;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*line-height: 1rem;*/
+    /*height: 1rem;*/
+    /*white-space: nowrap;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*.event-li .event-li-time {*/
+	/*width: 20%;*/
+		/*padding: 1px 33px 1px 11px;*/
+	         /*!*T   R    B    L*!*/
+
+/*}*/
+/*}*/
+
+
+
+
 
 

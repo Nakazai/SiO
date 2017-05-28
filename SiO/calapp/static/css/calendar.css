@@ -89,8 +89,9 @@ ul {
 }
 #cal-content-top {
 	height: 40px;
-	width: 111%;
-		/*width: 116%;*/
+	/*width: 111%;*/
+	/*width: 100%;*/
+	/*width: 116%;*/
 
 	/*line-height: 30px;*/
 	text-align: center;
@@ -275,7 +276,7 @@ ul {
 .form-wrapper form {
 	padding: 10px 20px;
 	width: 300px;
-	height: 450px;
+	height: 50px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -420,7 +421,7 @@ textarea {
 
 
 #test:hover{
-	/*cursor: pointer; cursor: hand;*/
+	cursor: pointer; cursor: hand;
 		border: 1px solid #ff8787;
 	background: #ff8787;
 	color: black;

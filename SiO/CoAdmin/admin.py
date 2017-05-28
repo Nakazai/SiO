@@ -5,6 +5,7 @@ from django.contrib.auth.models import Group
 from SiO.CoAdmin.models import Administrator
 
 
+
 class AdministratorCreationForm(UserCreationForm):
     union_position = forms.CharField()
 
@@ -38,6 +39,9 @@ class AdministratorAdmin(UserAdmin):
             'fields': ('username', 'password1', 'password2', 'union_position', 'association', )}
          ),
     )
+
+    list_display = ('first_name', 'last_name', 'email', 'association', 'union_position', 'is_superuser')
+
 
 
 admin.site.register(Administrator, AdministratorAdmin)

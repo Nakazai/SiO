@@ -6,13 +6,44 @@ body {
 
 .cover {
   width: 400px;
-  height: 400px;
+  /*height: 400px;*/
+  height: 200px;
   position: fixed;
   margin-left: -200px;
-  margin-top: -200px;
-  top: 50%;
+  /*margin-top: -200px;*/
+  /*top: 50%;*/
+  top: 10%;
   left: 50%;
 }
+
+@media only screen and (max-device-width: 1080px) {
+    .cover {
+      width: 300px;
+      /*height: 400px;*/
+      height: 200px;
+      position: relative;
+      margin-left: -150px;
+      /*margin-top: -200px;*/
+      /*top: 50%;*/
+      top: 10%;
+      left: 50%;
+    }
+}
+
+
+/*@media only screen and (max-device-width: 320px) {*/
+        /*.cover {*/
+      /*width: 300px;*/
+      /*!*height: 400px;*!*/
+      /*height: 200px;*/
+      /*position: relative;*/
+      /*margin-left: -150px;*/
+      /*!*margin-top: -200px;*!*/
+      /*!*top: 50%;*!*/
+      /*top: 10%;*/
+      /*left: 50%;*/
+    /*}*/
+/*}*/
 
 .logo {
   font-size: 3em;
