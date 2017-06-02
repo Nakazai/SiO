@@ -51,10 +51,14 @@ class RegForm(forms.ModelForm):
                                        'name': 'email', 'id': 'email', 'placeholder': 'example@example.com'}),
         required=True,
         max_length=75)
+    # date_of_birth = forms.DateField( initial="1990-06-21", widget=DateWidget(usel10n=True, bootstrap_version=3,
+    #                                                   attrs={'name': 'date_of_birth',
+    #                                                          'placeholder': 'YYYY-MM-DD or YYYY MM DD   example: 1991 03 01'},
+    #                                                   ))
     date_of_birth = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3,
-                                                      attrs={'name': 'date_of_birth',
-                                                             'placeholder': 'YYYY-MM-DD or YYYY MM DD   example: 1991 03 01'},
-                                                      ))
+                                                                            attrs={'name': 'date_of_birth',
+                                                                                   'placeholder': 'YYYY-MM-DD or YYYY MM DD   example: 1991 03 01'},
+                                                                            ))
     gender = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'name': 'gender'}))
     # gender = PopupViewField(
     #     # ##Attrs for popup
