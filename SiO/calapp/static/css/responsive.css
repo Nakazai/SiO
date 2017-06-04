@@ -75,6 +75,9 @@
 
 /***GALAXY S5****/
 @media only screen and (min-width:360px) and (max-width:363px) {
+	.helpbox {
+		width: 100%;
+	}
 	#cal-side-bar {
 		width: 100%;
 	}
@@ -162,11 +165,11 @@
 		width: 100%;
 	}
 	#cal-content-top-month {
-		padding: 7px 70px 1px 0px;
+		padding: 7px 70px 1px 30px;
 			/*			L		R*/
 	}
 	#cal-content-top-icon {
-		padding: 1px 44px 1px 1px;
+		padding: 1px 33px 1px 1px;
 	}
 	#cal-content-grid {
 		width: 110%;
@@ -613,83 +616,6 @@
 }
 
 
-		/*!***IPAD****!*/
-/*@media (max-width:1024px) {*/
-	/*#cal-side-bar {*/
-		/*width: 100%;*/
-	/*}*/
-	/*#cal-content {*/
-		/*width: 100%;*/
-	/*}*/
-		/*#cal-content-top {*/
-		/*width: 100%;*/
-	/*}*/
-		/*#cal-content-top-month {*/
-		/*padding: 7px 88px 1px 0px;*/
-			/*!*			L		R*!*/
-	/*}*/
-		/*#cal-content-top-icon {*/
-		/*padding: 1px 33px 1px 1px;*/
-	/*}*/
-	/*#cal-content-grid {*/
-		/*width: 103%;*/
-	/*}*/
-
-	/*.form-wrapper {*/
-	/*position: absolute;*/
-	/*width: 101%;*/
-	/*height: 177%;*/
-	/*background: rgba(0, 0, 0, 0.3);*/
-	/*opacity: 0;*/
-	/*visibility: hidden;*/
-	/*transition: 0.5s;*/
-/*}*/
-/*.form-wrapper.visible {*/
-	/*opacity: 1;*/
-	/*visibility: visible;*/
-/*}*/
-/*.form-wrapper form {*/
-	/*padding: 10px 20px;*/
-	/*width: 300px;*/
-	/*height: 450px;*/
-	/*position: absolute;*/
-	/*top: 80%;*/
-	/*left: 50%;*/
-	/*transform: translate(-50%, -50%);*/
-	/*background: white;*/
-	/*border-radius: 3px;*/
-	/*border: 2px solid #ff8787;*/
-/*}*/
-/*.form-wrapper .form-li {*/
-	/*width: 100%;*/
-	/*padding: 8px 0px;*/
-/*}*/
-/*.form-wrapper .form-top {*/
-	/*font-size: 1.1rem;*/
-	/*color: #ff8787;*/
-/*}*/
-
-	/*.event-li .event-li-name {*/
-    /*width: 80%;*/
-    /*overflow: hidden;*/
-    /*text-overflow: ellipsis;*/
-    /*line-height: 1rem;*/
-    /*height: 1rem;*/
-    /*white-space: nowrap;*/
-		/*padding: 1px 33px 1px 11px;*/
-	         /*!*T   R    B    L*!*/
-
-/*}*/
-/*.event-li .event-li-time {*/
-	/*width: 20%;*/
-		/*padding: 1px 33px 1px 11px;*/
-	         /*!*T   R    B    L*!*/
-
-/*}*/
-/*}*/
-
-
-
 
 	/***IPAD PRO ***/
 @media only screen and (min-width:1024px) and (max-width:1030px) {
@@ -767,7 +693,80 @@
 }
 
 
+		/***Galaxy S2****/
+@media only screen and (min-width:480px) and (max-width:481px) {
+	#cal-side-bar {
+		width: 100%;
+	}
+	#cal-content {
+		width: 100%;
+	}
+		#cal-content-top {
+		width: 100%;
+	}
+		#cal-content-top-month {
+		padding: 7px 88px 1px 30px;
+			/*			L		R*/
+	}
+		#cal-content-top-icon {
+		padding: 1px 33px 1px 1px;
+	}
+	#cal-content-grid {
+		width: 107%;
+	}
 
+	.form-wrapper {
+	position: absolute;
+	width: 103%;
+	height: 170%;
+	background: rgba(0, 0, 0, 0.3);
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.5s;
+}
+.form-wrapper.visible {
+	opacity: 1;
+	visibility: visible;
+}
+.form-wrapper form {
+	padding: 10px 20px;
+	width: 300px;
+	height: 450px;
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	border-radius: 3px;
+	border: 2px solid #ff8787;
+}
+.form-wrapper .form-li {
+	width: 100%;
+	padding: 8px 0px;
+}
+.form-wrapper .form-top {
+	font-size: 1.1rem;
+	color: #ff8787;
+}
+
+	.event-li .event-li-name {
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1rem;
+    height: 1rem;
+    white-space: nowrap;
+		padding: 1px 33px 1px 11px;
+	         /*T   R    B    L*/
+
+}
+.event-li .event-li-time {
+	width: 20%;
+		padding: 1px 33px 1px 11px;
+	         /*T   R    B    L*/
+
+}
+}
 
 
 
