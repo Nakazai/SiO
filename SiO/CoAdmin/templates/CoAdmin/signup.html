@@ -9,7 +9,7 @@
 {% block main %}
   <h1 class="logo"><a href="{% url 'home' %}">Administrator</a></h1>
   <div class="signup">
-    <h2>{% trans 'Opprett CoAdmin' %}</h2>
+    <h2>{% trans 'Create admin' %}</h2>
     <form action="{% url 'signup' %}" method="post" role="form">
       {% csrf_token %}
       {% for field in form.visible_fields %}
@@ -24,7 +24,7 @@
           {% endfor %}
         </div>
       {% endfor %}
-      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Registrer ny CoAdmin' %}</button>
+      <center><button type="submit" class="btn btn-primary btn-lg">{% trans 'Register new admin' %}</button>
       <a name="cancel" class="btn btn-info btn-lg center" href="{% url "login" %}">Cancel</a></center>
     </form>
   </div>

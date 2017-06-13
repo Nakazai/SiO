@@ -118,6 +118,9 @@ class ChartData(APIView):
         qs_count15 = Member.objects.filter(date_of_birth__gte=datetime.date(1984, 1, 1),
                                            date_of_birth__lte=datetime.date(1989, 12, 31)).filter(
                                             association=self.request.user.association).count()
+        qs_count16 = Member.objects.filter(date_of_birth__gte=datetime.date(1900, 1, 1),
+                                           date_of_birth__lte=datetime.date(1983, 12, 31)).filter(
+                                            association=self.request.user.association).count()
 
         # Gender
         qs_count4 = Member.objects.filter(gender="Male").filter(
@@ -170,6 +173,8 @@ class ChartData(APIView):
         default_items14 = [qs_count14]
         labels15 = ["Age 28-33"]
         default_items15 = [qs_count15]
+        labels16 = ["Age 34+"]
+        default_items16 = [qs_count16]
 
         data = {
             # Board & Members
@@ -217,7 +222,9 @@ class ChartData(APIView):
             "labels14": labels14,
             "default14": default_items14,
             "labels15": labels15,
-            "default15": default_items15
+            "default15": default_items15,
+            "labels16": labels16,
+            "default16": default_items16
         }
         return Response(data)
 

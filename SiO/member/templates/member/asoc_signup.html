@@ -6,7 +6,7 @@
   <link href="{% static 'css/signup.css' %}" rel="stylesheet">
 {% endblock head %}
 
-{% block body %}
+{% block main %}
   <h1 class="logo"><a href="{% url 'home' %}">New association</a></h1>
   <div class="signup">
     <h2>{% trans 'Create new association' %}</h2>
@@ -28,4 +28,4 @@
           <a name="cancel" class="btn btn-info btn-lg center" href="{% url "login" %}">Cancel</a></center>
     </form>
   </div>
-{% endblock body %}
+{% endblock main %}

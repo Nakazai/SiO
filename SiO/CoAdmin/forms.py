@@ -155,9 +155,6 @@ class EditSignUpForm(forms.ModelForm):
         super(EditSignUpForm, self).__init__(*args, **kwargs)
         self.fields['username'].validators.append(ForbiddenUsernamesValidator)
         self.fields['username'].validators.append(InvalidUsernameValidator)
-        self.fields['username'].validators.append(
-            UniqueUsernameIgnoreCaseValidator)
-        self.fields['email'].validators.append(UniqueEmailValidator)
         self.fields['email'].validators.append(SignupDomainValidator)
 
 
